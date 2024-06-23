@@ -1,0 +1,23 @@
+@use '../abstracts/' as *;
+.auth{
+    background-color:$dark-color ;
+    .auth-container{
+        height:86vh;
+    }
+    .logo{
+        img{
+            background-color: aqua;
+            width: 9%;
+        }
+    
+    }
+    .right-side{
+      background-color:$main-color ;
+      img{
+        width: 70%;
+      }
+    }
+    p{
+        color: azure;
+    }
+}

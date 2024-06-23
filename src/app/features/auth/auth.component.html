@@ -1,8 +1,20 @@
-<section class="auth">
-    <div class=" mx-5  bg-info">
+<section class="auth vh-100 overflow-auto">
+    <div class="auth-container m-5 ">
+      <div class="row h-100">
+        <div class="col-md-7">
+         <figure class="logo">
+          <img class="img-fluid rounded-circle" src="../../../assets/images/logo2.avif" alt="">
+         </figure>
+         <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-5   h-100">
+         <div class="right-side h-100 text-center d-flex justify-content-center align-items-center">
+            <img class="img-fluid" src="../../../assets/images/Auth Image.svg" alt="">
+         </div>
+        </div>
+      </div>
       
-        <h1>ghfds</h1>
-        <router-outlet></router-outlet>
+       
     </div>
    
 </section>
