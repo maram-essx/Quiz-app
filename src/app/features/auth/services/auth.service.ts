@@ -13,4 +13,6 @@ export class AuthService {
   register(userData:FormData):Observable<any>{
     return this._HttpClient.post<any>('admin/users',userData)
   }
+  role: string = '';
+  
 }
