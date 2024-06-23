@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [{ path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) }, { path: 'instructor', loadChildren: () => import('./features/instructor/instructor.module').then(m => m.InstructorModule) }, { path: 'students', loadChildren: () => import('./features/students/students.module').then(m => m.StudentsModule) }, { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) }];
+const routes: Routes = [
+  { path: '', redirectTo:'auth',pathMatch:'full' },
+  { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'instructor', loadChildren: () => import('./features/instructor/instructor.module').then(m => m.InstructorModule) }, 
+  { path: 'students', loadChildren: () => import('./features/students/students.module').then(m => m.StudentsModule) },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
