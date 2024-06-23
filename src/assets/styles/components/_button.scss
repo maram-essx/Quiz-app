@@ -8,10 +8,18 @@ button{
     color: $dark-color;
     padding: 0.7rem 0.5rem;
     border: $border-style transparent;
+    .icon-circle{
+        color: white;
+        background-color: $dark-color;
+        border-radius: 50%;}
     &:hover {
       background-color: transparent;
       color: #fff;
       border: $border-style #fff;
+      .icon-circle{
+        color:  $dark-color;
+        background-color: #fff;
+    }
     }
   }
 }
