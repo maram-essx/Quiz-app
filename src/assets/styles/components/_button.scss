@@ -1,0 +1,17 @@
+@use '../abstracts/' as *;
+button{
+ border: none;
+ border-radius: 10px;
+ transition: $main-transtion;
+ &.white {
+    background-color: #fff;
+    color: $dark-color;
+    padding: 0.7rem 0.5rem;
+    border: $border-style transparent;
+    &:hover {
+      background-color: transparent;
+      color: #fff;
+      border: $border-style #fff;
+    }
+  }
+}
