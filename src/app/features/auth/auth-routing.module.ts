@@ -9,7 +9,7 @@ const routes: Routes = [{ path: '', component: AuthComponent ,children:[
   {path:'',component:LoginComponent,title:'login'},
   {path:'login',component:LoginComponent,title:'login'},
   {path:'register',component:RegisterComponent,title:'register'},
-  
+
 ]}];
 
 @NgModule({
