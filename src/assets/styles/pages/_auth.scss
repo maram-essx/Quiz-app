@@ -28,7 +28,13 @@
 }
 
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
+
+  .formCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .fullImage{
       display: none !important;
