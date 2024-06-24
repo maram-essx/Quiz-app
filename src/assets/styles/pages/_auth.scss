@@ -9,7 +9,7 @@
 
             width: 9%;
         }
-    
+
     }
     .right-side{
       background-color:$main-color ;
@@ -24,5 +24,26 @@
         label{
             color: white;
         }
+        .form-control::placeholder {
+          color: white;
+          opacity: 1;
+        }
     }
+    .border-radius {
+      border-radius: 20px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .formCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fullImage{
+      display: none !important;
+  }
 }

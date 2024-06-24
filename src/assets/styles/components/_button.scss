@@ -22,4 +22,55 @@ button{
     }
     }
   }
+
+  &.grey {
+    width: 10.6rem;
+    height: 7.5rem;
+    background-color: $grey-color;
+    border: $border-style transparent;
+    .icon{
+        color: white;
+        background-color: $dark-color;
+        border-radius: 50%;
+        font-size: 62px;
+      }
+
+    &:hover {
+      border: $border-style $primary-color;
+      .icon{
+        color:  $primary-color;
+        background-color: #fff;
+
+    }
+    }
+
+    &--selected {
+      width: 10.6rem;
+      height: 7.5rem;
+      background-color: $grey-color;
+      border: $border-style $primary-color;
+      .icon{
+        color:  $primary-color;
+        background-color: #fff;
+        font-size: 62px;
+    }
+    }
+
+    @media screen and (max-width:768px) {
+      width: 5rem;
+      height: 4rem;
+      .icon {
+        font-size: 28px;
+      }
+
+      &--selected {
+        width: 5rem;
+        height: 4rem;
+        .icon {
+          font-size: 28px;
+        }
+      }
+    }
+
+  }
 }
