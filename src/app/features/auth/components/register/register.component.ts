@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       //   }
       // });
 
-      console.log(data);
+      console.log(data.value);
 
     }
   }
