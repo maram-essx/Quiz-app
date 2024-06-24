@@ -22,14 +22,14 @@
           <label for="">Your first name</label>
           <div class="input-group my-2 text-white">
             <span
-              class="input-group-text bg-transparent text-white"
+              class="input-group-text bg-transparent text-white border-end-0"
               id="basic-addon1"
             >
               <i class="fa fa-id-card"></i>
             </span>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              class="form-control bg-transparent text-white border-start-0"
               placeholder="Type your first name"
               aria-label="firstName"
               aria-describedby="basic-addon1"
@@ -40,14 +40,14 @@
           <label for="">Your last name</label>
           <div class="input-group my-2 text-white">
             <span
-              class="input-group-text bg-transparent text-white"
+              class="input-group-text bg-transparent text-white border-end-0"
               id="basic-addon1"
             >
               <i class="fa fa-id-card"></i>
             </span>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              class="form-control bg-transparent text-white border-start-0"
               placeholder="Your last name"
               aria-label="lastName"
               aria-describedby="basic-addon1"
@@ -59,48 +59,75 @@
           <label>Your email address</label>
           <div class="input-group my-2 text-white">
             <span
-              class="input-group-text bg-transparent text-white"
+              class="input-group-text bg-transparent text-white border-end-0"
               id="basic-addon1"
               ><i class="fa-solid fa-envelope"></i
             ></span>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              class="form-control bg-transparent text-white border-start-0"
               placeholder="Your email address"
               aria-label="email"
               aria-describedby="basic-addon1"
             />
           </div>
         </div>
-        <div>
+        <!-- <div>
           <label>Your role</label>
           <div class="input-group my-2 text-white">
             <span
-              class="input-group-text bg-transparent text-white"
+              class="input-group-text bg-transparent text-white border-end-0"
               id="basic-addon1"
               ><i class="fa-solid fa-envelope"></i
             ></span>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              class="form-control bg-transparent text-white border-end-0 border-start-0"
               placeholder="Your role"
               aria-label="role"
               aria-describedby="basic-addon1"
             />
+            <span
+              class="input-group-text bg-transparent text-white border-start-0"
+              id="basic-addon1"
+              ><i class="fa-solid fa-arrow-down"></i></span>
+          </div>
+        </div> -->
+
+        <div>
+          <label>Your role</label>
+          <div class="input-group my-2 text-white">
+            <span class="input-group-text bg-transparent text-white border-end-0" id="basic-addon1">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <select
+              class="form-control bg-transparent text-white border-end-0 border-start-0"
+              aria-label="role"
+              aria-describedby="basic-addon1"
+              (change)="onRoleChange($event)"
+            >
+              <option class="bg-dark text-white" value="" disabled selected>Choose your role</option>
+              <option *ngFor="let role of roles" class="bg-dark text-white" [value]="role">{{ role }}</option>
+            </select>
+            <span class="input-group-text bg-transparent text-white border-start-0" id="basic-addon1">
+              <i class="fa-solid fa-arrow-down"></i>
+            </span>
           </div>
         </div>
+
+
 
         <div>
           <label>Password</label>
           <div class="input-group my-2 text-white">
             <span
-              class="input-group-text bg-transparent text-white"
+              class="input-group-text bg-transparent text-white border-end-0"
               id="basic-addon1"
               ><i class="fa-solid fa-key"></i
             ></span>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              class="form-control bg-transparent text-white border-start-0"
               placeholder="Password"
               aria-label="password"
               aria-describedby="basic-addon1"

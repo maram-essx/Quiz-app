@@ -9,9 +9,18 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
 
+  selectedRole: string = '';
+  roles: string[] = ['Instructor', 'Student'];
+
+
   constructor(private _AuthService:AuthService, private _Router:Router) {}
 
   login() {
     this._Router.navigate(['/auth/login'])
+  }
+
+  onRoleChange(event: any) {
+    this.selectedRole = event.target.value;
+    console.log('Selected role:', this.selectedRole);
   }
 }
