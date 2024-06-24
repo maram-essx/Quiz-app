@@ -29,4 +29,7 @@ login(loginData:Auth.ILoginReq):Observable<Auth.ILoginRes>{
     // return this._HttpClient.post<any>('auth/register',userData)
   }
 
+resetPassword(data:Auth.IResetPasswordReq):Observable<Auth.IResetPasswordRes>{
+  return this._HttpClient.post<Auth.IResetPasswordRes>(`auth/reset-password` , data)
+}
 }

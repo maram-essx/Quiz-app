@@ -23,4 +23,23 @@ export namespace Auth {
         status: string
         role: string
       }
+
+      export interface IResetPasswordReq{
+        opt:number,
+        email:string,
+        password:string
+      }
+      export interface IResetPasswordRes {
+        message: string,
+        data: IResetPasswordData,
+      }
+      
+      export interface IResetPasswordData {
+        _id: string,
+        first_name: string
+        last_name: string
+        email: string,
+        status: string,
+        role: string,
+      }
 }
