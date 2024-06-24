@@ -1,12 +1,12 @@
 @use '../abstracts/' as *;
 button{
  border: none;
- border-radius: 10px;
  transition: $main-transtion;
  &.white {
+    border-radius: 10px;
     background-color: #fff;
     color: $dark-color;
-    padding: 0.7rem 0.5rem;
+    padding: 0.7rem 0.9rem;
     border: $border-style transparent;
     .icon-circle{
         color: white;
@@ -22,6 +22,13 @@ button{
     }
     }
   }
+
+  &.dark{
+    border-radius: 10px;
+    background-color: #333333;
+  }
+}
+
 
   &.grey {
     width: 10.6rem;
@@ -74,3 +81,4 @@ button{
 
   }
 }
+
