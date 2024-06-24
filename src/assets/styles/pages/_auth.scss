@@ -9,7 +9,7 @@
 
             width: 9%;
         }
-    
+
     }
     .right-side{
       background-color:$main-color ;
@@ -25,4 +25,12 @@
             color: white;
         }
     }
+}
+
+
+@media screen and (max-width:768px) {
+
+  .fullImage{
+      display: none !important;
+  }
 }
