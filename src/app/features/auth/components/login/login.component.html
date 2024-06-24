@@ -19,7 +19,7 @@
         <span class="d-block text-white">sign up</span>
       </button>
     </div>
-    <form action="" class="my-3" (ngSubmit)="onLogin(loginForm)">
+    <form action="" class="my-3" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)">
       <label for="">Registered email address</label>
       <div class="input-group my-2 text-white">
         <span
@@ -31,6 +31,7 @@
         <input
           type="text"
           class="form-control bg-transparent text-white"
+          formControlName="email"
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
@@ -47,6 +48,7 @@
         <input
           type="text"
           class="form-control bg-transparent text-white"
+          formControlName="password"
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"

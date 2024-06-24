@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import {Auth} from '../../model/Auth';
+import { Auth} from '../../model/Auth';
 import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
@@ -27,6 +27,7 @@ export class LoginComponent {
    this.isActiveSignUp=!this.isActiveSignUp
   }
   onLogin(data:FormGroup){
+   
     this._AuthService.login(data.value).subscribe({
       next:(res:Auth.ILoginRes)=>{
        console.log("res",res);
