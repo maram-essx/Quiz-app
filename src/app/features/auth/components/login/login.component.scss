@@ -1,0 +1,23 @@
+@use '../../../../../assets/styles/abstracts/variables' as *;
+.active{
+    box-sizing: border-box;
+    border:4px solid  $primary-color;
+    mat-icon{
+     color:  $primary-color;
+    }
+   
+}
+.de-active {
+    mat-icon{
+        color:white;
+       }
+}
+.dark{
+    padding: 0.7rem 2rem;
+    span{
+        font-size: 25px;
+    }
+    mat-icon{
+        font-size: 40px;
+    }
+}

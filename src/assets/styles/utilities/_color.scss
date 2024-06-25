@@ -1,0 +1,7 @@
+@use '../abstracts/' as *;
+.primary-color{
+    color: $primary-color;
+}
+.dark-color{
+    color: $dark-color;
+}

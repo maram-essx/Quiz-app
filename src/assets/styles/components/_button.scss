@@ -1,12 +1,12 @@
 @use '../abstracts/' as *;
 button{
  border: none;
- border-radius: 10px;
  transition: $main-transtion;
  &.white {
+    border-radius: 10px;
     background-color: #fff;
     color: $dark-color;
-    padding: 0.7rem 0.5rem;
+    padding: 0.7rem 0.9rem;
     border: $border-style transparent;
     .icon-circle{
         color: white;
@@ -22,4 +22,67 @@ button{
     }
     }
   }
+
+  &.dark{
+    border-radius: 10px;
+    background-color: #333333;
+  }
+
+
+  &.grey {
+    width: 10.6rem;
+    height: 7.5rem;
+    background-color: $grey-color;
+    border: $border-style transparent;
+    .icon{
+        color: white;
+        background-color: $dark-color;
+        border-radius: 50%;
+        font-size: 62px;
+      }
+
+    &:hover {
+      border: $border-style $primary-color;
+      .icon{
+        color:  $primary-color;
+        background-color: #fff;
+
+    }
+    }
+
+    &--selected {
+      width: 10.6rem;
+      height: 7.5rem;
+      background-color: $grey-color;
+      border: $border-style $primary-color;
+      .icon{
+        color:  $primary-color;
+        background-color: #fff;
+        font-size: 62px;
+    }
+    }
+
+    @media screen and (max-width:768px) {
+      width: 5rem;
+      height: 4rem;
+      .icon {
+        font-size: 28px;
+      }
+
+      &--selected {
+        width: 5rem;
+        height: 4rem;
+        .icon {
+          font-size: 28px;
+        }
+      }
+    }
+
+  }
+
 }
+
+
+
+
+

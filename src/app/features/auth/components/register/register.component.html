@@ -1,1 +1,180 @@
-<p>register works!</p>
+<section>
+  <div class="mt-4 me-4">
+    <h4 class="">Create your account and start using QuizWiz!</h4>
+    <div class="row">
+      <div class="col-md-6 col-sm-4 col-6">
+        <button
+          class="grey d-flex flex-column align-items-center justify-content-center"
+          (click)="login()"
+        >
+          <i class="icon fa-solid fa-user-tie bg-transparent"></i>
+          <span class="text-white">Sign in</span>
+        </button>
+      </div>
+
+      <div class="col-md-6 col-sm-4 col-6">
+        <button
+          class="grey--selected d-flex flex-column align-items-center justify-content-center"
+        >
+          <i class="icon fa-solid fa-user-plus bg-transparent"></i>
+          <span class="text-white">Sign in</span>
+        </button>
+      </div>
+    </div>
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register(registerForm)"
+      class="my-3"
+    >
+      <div class="row">
+        <div class="col-md-6">
+          <label for="">Your first name</label>
+          <div class="input-group my-2 text-white">
+            <span
+              class="input-group-text bg-transparent text-white border-end-0"
+              id="basic-addon1"
+            >
+              <i class="fa fa-id-card"></i>
+            </span>
+            <input
+              formControlName="firstName"
+              type="text"
+              class="form-control bg-transparent text-white border-start-0"
+              placeholder="Type your first name"
+              aria-label="firstName"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Your last name</label>
+          <div class="input-group my-2 text-white">
+            <span
+              class="input-group-text bg-transparent text-white border-end-0"
+              id="basic-addon1"
+            >
+              <i class="fa fa-id-card"></i>
+            </span>
+            <input
+              formControlName="lastName"
+              type="text"
+              class="form-control bg-transparent text-white border-start-0"
+              placeholder="Your last name"
+              aria-label="lastName"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label>Your email address</label>
+          <div class="input-group my-2 text-white">
+            <span
+              class="input-group-text bg-transparent text-white border-end-0"
+              id="basic-addon1"
+              ><i class="fa-solid fa-envelope"></i
+            ></span>
+            <input
+              formControlName="email"
+              type="email"
+              class="form-control bg-transparent text-white border-start-0"
+              placeholder="Your email address"
+              aria-label="email"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </div>
+        <!-- <div>
+          <label>Your role</label>
+          <div class="input-group my-2 text-white">
+            <span
+              class="input-group-text bg-transparent text-white border-end-0"
+              id="basic-addon1"
+              ><i class="fa-solid fa-envelope"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control bg-transparent text-white border-end-0 border-start-0"
+              placeholder="Your role"
+              aria-label="role"
+              aria-describedby="basic-addon1"
+            />
+            <span
+              class="input-group-text bg-transparent text-white border-start-0"
+              id="basic-addon1"
+              ><i class="fa-solid fa-arrow-down"></i></span>
+          </div>
+        </div> -->
+
+        <div>
+          <label>Your role</label>
+          <div class="input-group my-2 text-white">
+            <span
+              class="input-group-text bg-transparent text-white border-end-0"
+              id="basic-addon1"
+            >
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <select
+              formControlName="role"
+              class="form-control bg-transparent text-white border-end-0 border-start-0"
+              aria-label="role"
+              aria-describedby="basic-addon1"
+              (change)="onRoleChange($event)"
+            >
+              <option class="bg-dark text-white" value="" disabled selected>
+                Choose your role
+              </option>
+              <option
+                *ngFor="let role of roles"
+                class="bg-dark text-white"
+                [value]="role"
+              >
+                {{ role }}
+              </option>
+            </select>
+            <span
+              class="input-group-text bg-transparent text-white border-start-0"
+              id="basic-addon1"
+            >
+              <i class="fa-solid fa-arrow-down"></i>
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <label>Password</label>
+          <div class="input-group my-2 text-white">
+            <span
+              class="input-group-text bg-transparent text-white border-end-0"
+              id="basic-addon1"
+              ><i class="fa-solid fa-key"></i
+            ></span>
+            <input
+              formControlName="password"
+              [type]="hidePassword ? 'password' : 'text'"
+              class="form-control bg-transparent text-white border-start-0 border-end-0"
+              placeholder="Password"
+              aria-label="password"
+              aria-describedby="basic-addon1"
+            />
+            <span
+              class="input-group-text bg-transparent text-white border-start-0"
+              id="basic-addon1"
+            >
+              <i (click)="hidePassword = !hidePassword"
+              class="fa-regular"
+              [class]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </span>
+          </div>
+        </div>
+        <button [disabled]="registerForm.invalid" class="white fw-bold my-3">
+          Sign Up
+          <span class="icon-circle mx-1"
+            ><i class="fa-solid fa-check p-1"></i
+          ></span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -6,12 +6,18 @@ import { SharedComponent } from './shared.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
-    SharedComponent
+    SharedComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -19,13 +25,23 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports:[
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule
+
+    FormsModule,
+    ReactiveFormsModule,
+
+    SidebarComponent,
+
+
+    MatSnackBarModule,
+
   ]
 })
 export class SharedModule { }
