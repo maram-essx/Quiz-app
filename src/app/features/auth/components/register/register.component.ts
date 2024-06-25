@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Auth} from '../../model/Auth';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +15,27 @@ export class RegisterComponent implements OnInit {
   roles: string[] = ['Instructor', 'Student'];
   hidePassword:boolean=true;
   registerForm!: FormGroup;
+  response: Auth.IRegisterRes = {
+    message: '',
+    data: {
+      first_name: '',
+      last_name: '',
+      email: '',
+      status: '',
+      role: '',
+      _id: '',
+      updatedAt: '',
+      createdAt: '',
+      __v: 0
+    }
+  }
 
   constructor(private _AuthService: AuthService, private _Router: Router) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      first_name: new FormControl('', [Validators.required]),
+      last_name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       role: new FormControl('', [Validators.required]),
       password: new FormControl('', [
@@ -36,25 +51,25 @@ export class RegisterComponent implements OnInit {
 
   onRoleChange(event: any) {
     this.selectedRole = event.target.value;
-    console.log('Selected role:', this.selectedRole);
+    // console.log('Selected role:', this.selectedRole);
   }
 
-  register(data: FormGroup): void {
-    if (data.valid) {
-      // this._AuthService.register(data.value).subscribe({
-      //   next: (res) => {
-      //     console.log(res);
-      //   },
-      //   error: (err) => {
-      //     console.log(err.error.message);
-      //   },
-      //   complete: () => {
-      //     this.login();
-      //   }
-      // });
-
-      console.log(data.value);
-
+  register(registerForm: FormGroup): void {
+    if (registerForm.valid) {
+      console.log('Registering with data:', registerForm.value);
+      this._AuthService.register(registerForm.value).subscribe({
+        next: (res: Auth.IRegisterRes) => {
+          console.log(res);
+          this.response = res;
+        },
+        error: (err) => {
+          console.error('Registration error:', err);
+        },
+        complete: () => {
+          this.login();
+        }
+      });
     }
   }
+
 }

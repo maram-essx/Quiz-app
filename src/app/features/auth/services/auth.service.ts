@@ -26,13 +26,14 @@ export class AuthService {
 
 
 
-  
+
 login(loginData:Auth.ILoginReq):Observable<Auth.ILoginRes>{
   return this._HttpClient.post<Auth.ILoginRes>(HttpEndPoints.Auth.login,loginData)
  }
 
-  register(userData:FormData){
-    // return this._HttpClient.post<any>('auth/register',userData)
+  register(userData: Auth.IRegister):Observable<Auth.IRegisterRes>{
+    console.log("USER DATA", userData);
+    return this._HttpClient.post<Auth.IRegisterRes>('auth/register',userData)
   }
 
 resetPassword(data:Auth.IResetPasswordReq):Observable<Auth.IResetPasswordRes>{
