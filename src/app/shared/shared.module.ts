@@ -7,6 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     SharedRoutingModule,
     ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports:[
     MatIconModule,
@@ -27,7 +29,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }
