@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import {Auth} from '../model/Auth'
 
@@ -16,10 +17,16 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   role: string = '';
+
+  constructor(private _HttpClient:HttpClient) { }
+  forgotPass(evalue:string):Observable<any>{
+    return this._HttpClient.post('auth/forgot-password',{email:evalue})
+  }
+
   // constructor(private _HttpClient:HttpClient, private _Router:Router,) { }
 
 
-  constructor(private _HttpClient:HttpClient) { }
+
   
 login(loginData:Auth.ILoginReq):Observable<Auth.ILoginRes>{
   return this._HttpClient.post<Auth.ILoginRes>(HttpEndPoints.Auth.login,loginData)
@@ -32,4 +39,5 @@ login(loginData:Auth.ILoginReq):Observable<Auth.ILoginRes>{
 resetPassword(data:Auth.IResetPasswordReq):Observable<Auth.IResetPasswordRes>{
   return this._HttpClient.post<Auth.IResetPasswordRes>(`auth/reset-password` , data)
 }
+
 }

@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,8 +30,13 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     CommonModule,
     SharedModule,
     AuthRoutingModule,
+
+
+  ]
+
     HttpClientModule
   ],
   providers:[AuthService]
+
 })
 export class AuthModule { }
