@@ -1,0 +1,12 @@
+.auth {
+  input::placeholder {
+    color: white;
+  }
+  .valided {
+    color: red;
+  }
+  .form-control:focus {
+    border-color: #fff;
+    box-shadow: none;
+  }
+}
