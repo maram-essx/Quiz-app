@@ -34,6 +34,7 @@ button{
     height: 7.5rem;
     background-color: $grey-color;
     border: $border-style transparent;
+    border-radius: 10px;
     .icon{
         color: white;
         background-color: $dark-color;
@@ -55,6 +56,7 @@ button{
       height: 7.5rem;
       background-color: $grey-color;
       border: $border-style $primary-color;
+      border-radius: 10px;
       .icon{
         color:  $primary-color;
         background-color: #fff;
