@@ -66,6 +66,14 @@
                 aria-describedby="basic-addon1"
               />
             </div>
+            <ng-container
+            *ngIf="(first_name?.touched || first_name?.value) && first_name?.errors"
+            class="invalid"
+          >
+            <p class="text-danger" *ngIf="first_name?.getError('required')">
+              First name is required
+            </p>
+          </ng-container>
           </div>
         </div>
         <div class="col-md-6">
@@ -82,11 +90,19 @@
                 formControlName="last_name"
                 type="text"
                 class="form-control bg-transparent text-white border-start-0"
-                placeholder="Your last name"
+                placeholder="Your last "
                 aria-label="last_name"
                 aria-describedby="basic-addon1"
               />
             </div>
+            <ng-container
+            *ngIf="(last_name?.touched || last_name?.value) && last_name?.errors"
+            class="invalid"
+          >
+            <p class="text-danger" *ngIf="last_name?.getError('required')">
+              Last name is required
+            </p>
+          </ng-container>
           </div>
         </div>
 
@@ -107,6 +123,17 @@
               aria-describedby="basic-addon1"
             />
           </div>
+          <ng-container
+            *ngIf="(email?.touched || email?.value) && email?.errors"
+            class="invalid"
+          >
+            <p class="text-danger" *ngIf="email?.getError('required')">
+              Email is required
+            </p>
+            <p class="text-danger" *ngIf="email?.getError('email')">
+              Invalid email
+            </p>
+          </ng-container>
         </div>
         <!-- <div>
           <label>Your role</label>
@@ -164,6 +191,14 @@
               <i class="fa-solid fa-arrow-down"></i>
             </span>
           </div>
+          <ng-container
+            *ngIf="(role?.touched || role?.value) && role?.errors"
+            class="invalid"
+          >
+            <p class="text-danger" *ngIf="role?.getError('required')">
+              Role is required
+            </p>
+          </ng-container>
         </div>
 
         <div>
@@ -193,6 +228,19 @@
               ></i>
             </span>
           </div>
+
+          <ng-container
+            *ngIf="(password?.touched || password?.value) && password?.errors"
+            class="invalid"
+          >
+            <p class="text-danger" *ngIf="password?.getError('required')">
+              Password is required
+            </p>
+            <p class="text-danger" *ngIf="password?.getError('pattern')">
+              Invalid password
+            </p>
+            <!-- Password must be between 3 and 30 characters long -->
+          </ng-container>
         </div>
         <button [disabled]="registerForm.invalid" class="white fw-bold my-3">
           Sign Up

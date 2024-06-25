@@ -72,4 +72,21 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  get first_name() {
+    return this.registerForm.get('first_name');
+  }
+  get last_name() {
+    return this.registerForm.get('last_name');
+  }
+  get role() {
+    return this.registerForm.get('role');
+  }
+  get email() {
+    return this.registerForm.get('email');
+  }
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+
 }
