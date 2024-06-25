@@ -49,7 +49,7 @@ export class LoginComponent {
         this._ToastrService.openSnackBar(errMes, 'Close');
       },
       complete:()=>{
-       
+        this._Router.navigate(['/dashboard']);
       }
     })
    }
