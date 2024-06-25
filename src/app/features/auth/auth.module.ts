@@ -9,6 +9,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
   imports: [
     CommonModule,
     SharedModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+
   ]
 })
 export class AuthModule { }
