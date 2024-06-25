@@ -7,11 +7,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-    SharedComponent
+    SharedComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+
+    SidebarComponent,
+
+
+    MatSnackBarModule,
+
   ]
 })
 export class SharedModule { }

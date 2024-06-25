@@ -39,6 +39,7 @@ export class LoginComponent {
    
     this._AuthService.login(data.value).subscribe({
       next:(res:Auth.ILoginRes)=>{
+        localStorage.setItem('userToken' , res.data.profile.role)
        console.log("res",res);
        this._ToastrService.openSnackBar('Login successful!', 'Success');
       },
