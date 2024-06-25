@@ -2,59 +2,111 @@
   <div class="mt-4 me-4">
     <h4 class="">Continue your learning journey with QuizWiz!</h4>
     <div class="my-5">
-      <button class="me-5 dark" [ngClass]="{'active': !isActiveSignUp,'de-active':isActiveSignUp}" (click)="toggleSignButton()">
-        
-          <span class="d-block ">
-            <mat-icon matPrefix class=" w-100 h-100"> person</mat-icon>
-          </span>
-          <span class="text-white">sign in</span>
-       
-        
+      <button
+        class="me-5 dark"
+        type="button"
+        [ngClass]="{ active: !isActiveSignUp, 'de-active': isActiveSignUp }"
+      >
+        <span class="d-block">
+          <mat-icon matPrefix class="w-100 h-100"> person</mat-icon>
+        </span>
+        <span class="text-white">sign in</span>
       </button>
-      <button class="dark "(click)="toggleSignButton()"  [ngClass]="{'active': isActiveSignUp,'de-active':!isActiveSignUp}">
+      <button
+        class="dark"
+        type="button"
+        (click)="register()"
+        [ngClass]="{ active: isActiveSignUp, 'de-active': !isActiveSignUp }"
+      >
         <span>
-          <mat-icon matPrefix class=" w-100 h-100"> person_add</mat-icon>
+          <mat-icon matPrefix class="w-100 h-100"> person_add</mat-icon>
         </span>
 
         <span class="d-block text-white">sign up</span>
       </button>
     </div>
-    <form action="" class="my-3" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)">
-      <label for="">Registered email address</label>
-      <div class="input-group my-2 text-white">
-        <span
-          class="input-group-text bg-transparent text-white"
-          id="basic-addon1"
+    <form
+      action=""
+      class="my-3"
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin(loginForm)"
+    >
+      <div>
+        <label for="">Registered email address</label>
+        <div class="input-group my-2 text-white">
+          <span
+            class="input-group-text bg-transparent text-white"
+            id="basic-addon1"
+          >
+            <i class="fa fa-envelope"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control bg-transparent text-white"
+            formControlName="email"
+            placeholder="Enter your E-mail"
+            aria-label="email"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+        <ng-container
+          *ngIf="(email?.touched || email?.value) && email?.errors"
+          class="invalid"
         >
-          <i class="fa fa-envelope"></i>
-        </span>
-        <input
-          type="text"
-          class="form-control bg-transparent text-white"
-          formControlName="email"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
+          <p class="text-danger" *ngIf="email?.getError('required')">
+            Email is Required
+          </p>
+          <p class="text-danger" *ngIf="email?.getError('email')">
+             Invalid email
+          </p>
+        </ng-container>
+      </div>
+      <div>
+        <label>Password</label>
+        <div class="input-group my-2 text-white">
+          <span
+            class="input-group-text bg-transparent text-white border-end-0"
+            id="basic-addon1"
+            ><i class="fa-solid fa-key"></i
+          ></span>
+          <input
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            class="form-control bg-transparent text-white border-start-0 border-end-0"
+            placeholder="Password"
+            aria-label="password"
+            aria-describedby="basic-addon1"
+          />
+          <span
+            class="input-group-text bg-transparent text-white border-start-0"
+            id="basic-addon1"
+          >
+            <i
+              (click)="hidePassword = !hidePassword"
+              class="fa-regular"
+              [class]="hidePassword ? 'fa-eye-slash' : 'fa-eye'"
+            ></i>
+          </span>
+        </div>
+
+        <ng-container
+        *ngIf="(password?.touched || password?.value) && password?.errors"
+        class="invalid"
+      >
+        <p class="text-danger" *ngIf="password?.getError('required')">
+          password is Required
+        </p>
+        <p class="text-danger" *ngIf="password?.getError('pattern')">
+           Invalid password
+        </p>
+      </ng-container>
       </div>
 
-      <label>Password</label>
-      <div class="input-group my-2 text-white">
-        <span
-          class="input-group-text bg-transparent text-white"
-          id="basic-addon1"
-          ><i class="fa-solid fa-key"></i
-        ></span>
-        <input
-          type="text"
-          class="form-control bg-transparent text-white"
-          formControlName="password"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-      <button class="white fw-bold my-3">
+      <button
+        class="white w-100 fw-bold my-3"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      >
         Sign In
         <span class="icon-circle mx-1"
           ><i class="fa-solid fa-check p-1"></i
