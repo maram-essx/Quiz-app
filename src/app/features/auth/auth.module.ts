@@ -9,7 +9,6 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -30,12 +29,11 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     SharedModule,
     AuthRoutingModule,
-
+HttpClientModule
 
   ]
-
-    HttpClientModule
-  ],
+,
+  
   providers:[AuthService]
 
 })

@@ -9,7 +9,6 @@ import { HttpEndPoints } from 'src/app/settings/httpsEndPoints';
 
 
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 
 @Injectable({
