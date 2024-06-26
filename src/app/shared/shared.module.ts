@@ -19,7 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SharedComponent,
     SidebarComponent,
     NavbarComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -30,7 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SharedRoutingModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    
+
   ],
   exports:[
     MatIconModule,
@@ -39,6 +39,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
     SidebarComponent,
+    NavbarComponent,
     MatSnackBarModule,
 
   ],
