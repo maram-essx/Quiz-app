@@ -30,7 +30,7 @@ export class NavbarComponent {
   getUser() {
     this.userFirstName = localStorage.getItem('first_name');
     this.userLastName = localStorage.getItem('last_name');
-    this.userRole = localStorage.getItem('userToken');
+    this.userRole = localStorage.getItem('role');
   }
 
   openChangePassDialog() {}

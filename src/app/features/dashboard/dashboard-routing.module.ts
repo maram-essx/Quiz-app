@@ -5,9 +5,9 @@ import { InstuctorDashboardComponent } from '../instructor/components/instuctor-
 
 const routes: Routes = [{ path: '', component: DashboardComponent, children: [
 {path:'', redirectTo:'instructor',pathMatch:'full'},
-  { path: 'instructor', loadChildren: () => import('../instructor/instructor.module').then(m => m.InstructorModule) }, 
+  { path: 'instructor', loadChildren: () => import('../instructor//instructor.module').then(m => m.InstructorModule) },
   { path: 'student', loadChildren: () => import('../students/students.module').then(m => m.StudentsModule) },
-  
+
 ]}
 
 ];

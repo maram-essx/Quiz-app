@@ -43,7 +43,7 @@ export class LoginComponent {
 
       this.userData=res
 
-        localStorage.setItem('userToken' , res.data.profile.role);
+        localStorage.setItem('role' , res.data.profile.role);
         localStorage.setItem('first_name' , res.data.profile.first_name);
         localStorage.setItem('last_name' , res.data.profile.last_name);
 
