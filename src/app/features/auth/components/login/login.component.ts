@@ -37,10 +37,16 @@ export class LoginComponent {
    this._Router.navigate(['/auth/register']);
   }
   onLogin(data:FormGroup){
-   
+
     this._AuthService.login(data.value).subscribe({
       next:(res:Auth.ILoginRes)=>{
+
       this.userData=res
+
+        localStorage.setItem('userToken' , res.data.profile.role);
+        localStorage.setItem('first_name' , res.data.profile.first_name);
+        localStorage.setItem('last_name' , res.data.profile.last_name);
+
        console.log("res",res);
       //  this._ToastrService.Success('Login successful!');
       },
