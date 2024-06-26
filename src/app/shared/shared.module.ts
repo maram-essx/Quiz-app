@@ -11,12 +11,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     SharedComponent,
     SidebarComponent,
+    NavbarComponent,
     
   ],
   imports: [
