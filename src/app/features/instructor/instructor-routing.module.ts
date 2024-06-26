@@ -10,6 +10,7 @@ const routes: Routes = [
 
 
   ] },
+  { path: 'groups', loadChildren: () => import('./groups/groups.module').then(m => m.GroupsModule) },
 
 ];
 
