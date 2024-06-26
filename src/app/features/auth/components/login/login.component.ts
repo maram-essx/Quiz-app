@@ -12,6 +12,7 @@ import { ToastrService } from 'src/app/common/helper-services/toastr.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  userData!:Auth.ILoginRes;
   isActiveSignUp:boolean=false;
   hidePassword:boolean=true;
   loginForm:FormGroup=new FormGroup({
@@ -39,7 +40,7 @@ export class LoginComponent {
    
     this._AuthService.login(data.value).subscribe({
       next:(res:Auth.ILoginRes)=>{
-        localStorage.setItem('userToken' , res.data.profile.role)
+      this.userData=res
        console.log("res",res);
        this._ToastrService.openSnackBar('Login successful!', 'Success');
       },
@@ -49,7 +50,9 @@ export class LoginComponent {
         this._ToastrService.openSnackBar(errMes, 'Close');
       },
       complete:()=>{
-       
+        localStorage.setItem('userToken' , this.userData.data.accessToken)
+        localStorage.setItem('role' , this.userData.data.profile.role)
+this._Router.navigate(['/dashboard/instructor'])
       }
     })
    }
