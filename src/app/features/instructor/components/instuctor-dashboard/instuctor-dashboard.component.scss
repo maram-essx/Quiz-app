@@ -3,6 +3,10 @@ $dark-blue-color: #0D1321;
 $light-yellow-color: #C5D86D;
 $main-white-color: #fff;
 $main-border-color:gainsboro;
+.brd{
+  border: 1px solid $main-border-color;
+    border-radius: 10px;
+}
 article {
     border: 1px solid $main-border-color;
     border-radius: 10px;
@@ -21,7 +25,9 @@ article {
         justify-content: center;
       }
     }
-  
+    .main-border {
+      border: 1px solid $main-border-color;
+    }
     .card-icon {
       i {
         background-color: $dark-blue-color;
