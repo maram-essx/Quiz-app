@@ -42,17 +42,21 @@ export class LoginComponent {
       next:(res:Auth.ILoginRes)=>{
       this.userData=res
        console.log("res",res);
-       this._ToastrService.openSnackBar('Login successful!', 'Success');
+      //  this._ToastrService.Success('Login successful!');
       },
       error:(error:HttpErrorResponse)=>{
         const errMes=error.error.message;
         console.log("error",error);
-        this._ToastrService.openSnackBar(errMes, 'Close');
+        this._ToastrService.ServerError(errMes);
       },
       complete:()=>{
+
         localStorage.setItem('userToken' , this.userData.data.accessToken)
         localStorage.setItem('role' , this.userData.data.profile.role)
 this._Router.navigate(['/dashboard/instructor'])
+
+        this._Router.navigate(['/dashboard']);
+
       }
     })
    }
