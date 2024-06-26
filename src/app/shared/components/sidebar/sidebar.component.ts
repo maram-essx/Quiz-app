@@ -10,11 +10,11 @@ import { IMenu } from 'src/app/core/model/global';
 
 export class SidebarComponent {
   isInstructor():boolean{
-    return localStorage.getItem('userToken') == Role.Instructor? true : false ;
+    return localStorage.getItem('role') == Role.Instructor? true : false ;
    }
    
    isStudent():boolean{
-     return localStorage.getItem('userToken') == Role.Student? true : false ;
+     return localStorage.getItem('role') == Role.Student? true : false ;
     }
    
 
@@ -22,7 +22,7 @@ export class SidebarComponent {
     {
       text: 'Dashboard',
       icon: 'bi bi-house-door',
-      link: '/dashboard/home',
+      link: '/dashboard/instructor/home',
       isActive: this.isInstructor() || this.isStudent() 
     },
     {

@@ -18,11 +18,10 @@ export class GlobalInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const baseUrl: string = 'https://upskilling-egypt.com:3005/api/';
-    const token: string = localStorage.getItem('userToken')||'';
+    const token: string = localStorage.getItem('userToken') ?? '';
     const modifiedReq = request.clone({
-      setHeaders: { Authorization: `Bearer ${token}` }, 
       url: baseUrl + request.url,
-
+      setHeaders: { Authorization: `Bearer ${token}` },
     });
     return next.handle(modifiedReq);
   }
