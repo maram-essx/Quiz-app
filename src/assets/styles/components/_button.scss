@@ -89,5 +89,14 @@ button {
     border-radius: 30px;
     border: 1px solid $grey-color;
     opacity: 0px;
+    &:hover {
+      background-color: $dark-color;
+      color: #fff;
+      border: $border-style #fff;
+      .icon {
+        fill: #fff;
+        // background-color: $dark-color;
+      }
+    }
   }
 }

@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   role: string = '';
+  first_name: string = '';
+  last_name: string = '';
 
   constructor(private _HttpClient:HttpClient) { }
   forgotPass(evalue:string):Observable<any>{
@@ -24,7 +26,19 @@ export class AuthService {
 
   // constructor(private _HttpClient:HttpClient, private _Router:Router,) { }
 
+  getRole() {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('userToken');
+    const first_name = localStorage.getItem('first_name');
+    const last_name = localStorage.getItem('last_name');
 
+    if (token !== null && role !== null && first_name !== null && last_name !== null) {
+      this.role = role;
+      this.first_name = first_name;
+      this.last_name = last_name;
+    } else {
+    }
+  }
 
 
 login(loginData:Auth.ILoginReq):Observable<Auth.ILoginRes>{
