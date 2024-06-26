@@ -1,33 +1,33 @@
-@use '../abstracts/' as *;
-button{
- border: none;
- transition: $main-transtion;
- &.white {
+@use "../abstracts/" as *;
+button {
+  border: none;
+  transition: $main-transtion;
+  &.white {
     border-radius: 10px;
     background-color: #fff;
     color: $dark-color;
     padding: 0.7rem 0.9rem;
     border: $border-style transparent;
-    .icon-circle{
-        color: white;
-        background-color: $dark-color;
-        border-radius: 50%;}
+    .icon-circle {
+      color: white;
+      background-color: $dark-color;
+      border-radius: 50%;
+    }
     &:hover {
       background-color: transparent;
       color: #fff;
       border: $border-style #fff;
-      .icon-circle{
-        color:  $dark-color;
+      .icon-circle {
+        color: $dark-color;
         background-color: #fff;
-    }
+      }
     }
   }
 
-  &.dark{
+  &.dark {
     border-radius: 10px;
     background-color: #333333;
   }
-
 
   &.grey {
     width: 10.6rem;
@@ -35,20 +35,19 @@ button{
     background-color: $grey-color;
     border: $border-style transparent;
     border-radius: 10px;
-    .icon{
-        color: white;
-        background-color: $dark-color;
-        border-radius: 50%;
-        font-size: 62px;
-      }
+    .icon {
+      color: white;
+      background-color: $dark-color;
+      border-radius: 50%;
+      font-size: 62px;
+    }
 
     &:hover {
       border: $border-style $primary-color;
-      .icon{
-        color:  $primary-color;
+      .icon {
+        color: $primary-color;
         background-color: #fff;
-
-    }
+      }
     }
 
     &--selected {
@@ -57,14 +56,14 @@ button{
       background-color: $grey-color;
       border: $border-style $primary-color;
       border-radius: 10px;
-      .icon{
-        color:  $primary-color;
+      .icon {
+        color: $primary-color;
         background-color: #fff;
         font-size: 62px;
-    }
+      }
     }
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
       width: 5rem;
       height: 4rem;
       .icon {
@@ -79,12 +78,16 @@ button{
         }
       }
     }
-
   }
 
+  &.quiz-outline { //adjust to rmove the fixed stuff later
+    width: 150px;
+    height: 40px;
+    top: 25px;
+    left: 810px;
+    gap: 0px;
+    border-radius: 30px;
+    border: 1px solid $grey-color;
+    opacity: 0px;
+  }
 }
-
-
-
-
-

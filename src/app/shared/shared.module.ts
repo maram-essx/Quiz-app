@@ -6,12 +6,14 @@ import { SharedComponent } from './shared.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -30,6 +32,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SharedRoutingModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatMenuModule,
+
 
   ],
   exports:[
@@ -41,6 +46,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SidebarComponent,
     NavbarComponent,
     MatSnackBarModule,
+    MatDialogModule,
+    MatMenuModule,
 
   ],
 })
