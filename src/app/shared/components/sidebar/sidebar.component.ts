@@ -40,7 +40,7 @@ export class SidebarComponent {
       {
         text:'Results' ,
         icon: 'bi bi-journal-richtext' ,
-        link:'/dashboard/instructor/result',
+        link:'/dashboard/instructor/results',
         isActive: this.isInstructor() || this.isStudent() 
         } ,
         {
