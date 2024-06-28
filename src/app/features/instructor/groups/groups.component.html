@@ -1,1 +1,23 @@
-<p>groups works!</p>
+<div class="container brd">
+    <div class="header">
+        <h1>Groups list</h1>
+        <button class="add-group dark">+ Add Group</button>
+    </div>
+    <div class="groups-list ">
+         <div *ngFor="let group of groupList" >
+        <div class="group">
+            <h2>Group : {{group.name}}</h2>
+            <p>No. of students : {{group.students.length}}</p>
+            <div class="actions">
+                <button class="edit">✏️</button>
+                <button class="delete">🗑️</button>
+            </div>
+        </div>
+       
+    </div>
+    </div>
+   
+    <div class="pagination ">
+        <span>... 1 2 3 ...</span>
+    </div>
+</div>
