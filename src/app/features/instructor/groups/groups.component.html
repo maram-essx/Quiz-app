@@ -1,7 +1,7 @@
 <div class="container brd">
     <div class="header">
         <h1>Groups list</h1>
-        <button class="add-group dark">+ Add Group</button>
+        <button class="add-group dark" (click)="openAddDialog(true)">+ Add Group</button>
     </div>
     <div class="groups-list ">
          <div *ngFor="let group of groupList" >
@@ -9,7 +9,7 @@
             <h2>Group : {{group.name}}</h2>
             <p>No. of students : {{group.students.length}}</p>
             <div class="actions">
-                <button class="edit">✏️</button>
+                <button class="edit" (click)="openEditDailog(group._id , true)">✏️</button>
                 <button class="delete">🗑️</button>
             </div>
         </div>

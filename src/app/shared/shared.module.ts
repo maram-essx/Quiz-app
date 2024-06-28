@@ -8,6 +8,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 
+import {MatSelectModule} from '@angular/material/select';
+
+import { MatPaginatorModule} from '@angular/material/paginator';
+
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -35,6 +39,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatMenuModule,
 
+MatSelectModule,
+
+    MatPaginatorModule,
+
+
 
   ],
   exports:[
@@ -48,6 +57,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSnackBarModule,
     MatDialogModule,
     MatMenuModule,
+
+MatSelectModule,
+
+    MatPaginatorModule,
+
 
   ],
 })

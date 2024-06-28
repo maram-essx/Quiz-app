@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IQuiz, IStudent } from '../models/instructor';
+import { IAllStudents, IQuiz, IStudent } from '../models/instructor';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -16,5 +16,9 @@ export class InstructorService {
 
   topFiveStudents(): Observable<IStudent[]> {
     return this._HttpClient.get<IStudent[]>('student/top-five')
+  }
+
+  allStudents(): Observable<IAllStudents[]> {
+    return this._HttpClient.get<IAllStudents[]>('student')
   }
 }
