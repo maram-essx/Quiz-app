@@ -1,3 +1,4 @@
+import { SharedModule } from './../../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,8 @@ import { AddEditComponent } from './components/add-edit/add-edit.component';
   ],
   imports: [
     CommonModule,
-    GroupsRoutingModule
+    GroupsRoutingModule,
+    SharedModule
   ]
 })
 export class GroupsModule { }
