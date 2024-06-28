@@ -1,0 +1,18 @@
+<div class="all">
+  <table class="table text-center mt-4">
+      <thead class="text-start">
+          <th class="py-2 th1 border-2 rounded-start-2">Question Title</th>
+          <th class="py-2 border-white border-2">Question description</th>
+          <th class="py-2 border-white border-2">Question difficulty level</th>
+          <th class="py-2 th2 border-2 rounded-end-2">Actions</th>
+      </thead>
+      <tbody class="text-start">
+          <tr class="mt-4" *ngFor="let item of allQuestions">
+              <td class="border-2 tdd">{{item.title}}</td>
+              <td class="border-2 tdd">{{item.description}}</td>
+              <td class="border-2 tdd">{{item.difficulty}}</td>
+              <td class="border-2 tdd"><span class="rounded-4 py-1 px-4 cursor-pointer view">Edit | Delete</span></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
