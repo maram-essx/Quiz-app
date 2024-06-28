@@ -18,6 +18,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteComponent } from './components/delete/delete.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedComponent,
     SidebarComponent,
     NavbarComponent,
+    DeleteComponent,
 
   ],
   imports: [
