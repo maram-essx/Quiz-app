@@ -1,0 +1,189 @@
+<form [formGroup]="addEditForm" (ngSubmit)="onSubmit(addEditForm)">
+  <div class="contianer">
+    <div
+      class="caption d-flex justify-content-between align-items-center border-bottom"
+    >
+      <div class="p-3">
+        <h5 class="m-0 p-0" *ngIf="data.add">Set up a new question</h5>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div
+          class="d-inline check p-4 border-start d-flex justify-content-center align-items-center"
+        >
+          <button
+            type="submit"
+            class="btn border-0 p-0"
+            [disabled]="addEditForm.invalid"
+          >
+            <span class="mx-1"> <i class="fa-solid fa-check"></i> </span>
+          </button>
+        </div>
+        <div
+          (click)="onNoClick()"
+          class="d-inline p-4 close border-start d-flex justify-content-center align-items-center"
+        >
+          <span class="mx-1"> <i class="fa-solid fa-xmark"></i> </span>
+        </div>
+      </div>
+    </div>
+    <div class="row p-3 m-0">
+      <p class="fw-bold">Details:</p>
+      <div class="input-group col-12 my-2">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Title</span
+        >
+        <input
+          type="text"
+          [value]="questionDetails.title"
+          formControlName="title"
+          class="form-control p-2"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+
+      <div class="input-group col-12 my-2">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Description</span
+        >
+        <input
+          type="text"
+          [value]="questionDetails.description"
+          formControlName="description"
+          class="form-control p-2"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+
+      <!-- <div class="row"> -->
+        <div class="input-group col-md-6 my-2">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >A</span
+          >
+          <input
+            type="text"
+            [value]="questionDetails.options.A"
+            formControlName="A"
+            class="form-control p-2"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+
+        <div class="input-group col-md-6 my-2">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >B</span
+          >
+          <input
+            type="text"
+            [value]="questionDetails.options.B"
+            formControlName="B"
+            class="form-control p-2"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+
+        <div class="input-group col-md-6 my-2">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >C</span
+          >
+          <input
+            type="text"
+            [value]="questionDetails.options.C"
+            formControlName="C"
+            class="form-control p-2"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+
+        <div class="input-group col-md-6 my-2">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >D</span
+          >
+          <input
+            type="text"
+            [value]="questionDetails.options.D"
+            formControlName="D"
+            class="form-control p-2"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      <!-- </div> -->
+
+
+      <div class="input-group col-12 my-2">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Answer</span
+        >
+        <input
+          type="text"
+          [value]="questionDetails.answer"
+          formControlName="answer"
+          class="form-control p-2"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+
+      <div class="input-group col-12 my-2">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Type</span
+        >
+        <input
+          type="text"
+          [value]="questionDetails.type"
+          formControlName="type"
+          class="form-control p-2"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+
+      <!-- <div class="input-group col-12 my-2">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >List Student</span
+        >
+
+        <mat-select
+          *ngIf="data.edit"
+          multiple
+          formControlName="students"
+          class="form-control"
+        >
+          <mat-option
+            [value]="student._id"
+            *ngFor="let student of allStudentForUpdatingGroup"
+          >
+            {{ student.first_name }} {{ student.last_name }}</mat-option
+          >
+        </mat-select>
+
+        <mat-select
+          *ngIf="data.add"
+          formControlName="students"
+          multiple
+          class="form-control"
+        >
+          <mat-option
+            ng-selected
+            *ngFor="let student of allStudentForAddNewGroup"
+            value="{{ student._id }}"
+          >
+            {{ student.first_name }} {{ student.last_name }}</mat-option
+          >
+        </mat-select>
+      </div> -->
+    </div>
+  </div>
+</form>

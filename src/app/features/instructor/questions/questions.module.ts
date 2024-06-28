@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { QuestionsRoutingModule } from './questions-routing.module';
 import { QuestionsComponent } from './questions.component';
+import { AddEditQuestionComponent } from './components/add-edit-question/add-edit-question.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    QuestionsComponent
+    QuestionsComponent,
+    AddEditQuestionComponent
   ],
   imports: [
     CommonModule,
-    QuestionsRoutingModule
+    QuestionsRoutingModule,
+    SharedModule
   ]
 })
 export class QuestionsModule { }
