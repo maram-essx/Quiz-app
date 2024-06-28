@@ -28,7 +28,7 @@ export class SidebarComponent {
     {
     text:'Groups' ,
     icon: 'bi bi-people' ,
-    link:'/dashboard/instructor/group',
+    link:'/dashboard/instructor/groups',
     isActive: this.isInstructor() ,
     } ,
     {
