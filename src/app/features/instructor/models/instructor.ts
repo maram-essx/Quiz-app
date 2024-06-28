@@ -62,7 +62,8 @@ export interface IGroup {
 
   //All Students
 
-  export type IAllStudents = IStudentData[]
+  
+
 
 export interface IStudentData {
   _id: string
@@ -71,7 +72,7 @@ export interface IStudentData {
   email: string
   status: string
   role: string
-  group?: IGroup
+  group: IGroup
   avg_score?: number
 }
 

@@ -1,79 +1,86 @@
-
-<div class="py-5 ">
-  <div class="row  brd ">
-    <div class="col-md-6  brd">
-      <div class="p-3 main-border rounded-3">
-        <div class="d-flex flex-column gap-2 ">
-          <div class="d-flex align-items-center justify-content-between">
-              <h2 class='mb-3'>Upcoming 5 Quizzes</h2>
-              <p role="button" class=" d-flex gap-2 align-items-center m-0"> Quiz Directory <span><i class=" fa-solid fa-arrow-right"></i></span> </p>
-            </div>
+<div class="py-5">
+  <div class="row ">
+    <div class="col-md-6 p-3 ">
+      <div class="p-3 brd rounded-3">
+        <div class="d-flex flex-column gap-2">
+          <div class="mb-3 d-flex align-items-center justify-content-between">
+            <h2 class="m-0">Upcoming 5 Quizzes</h2>
+            <p role="button" class="d-flex gap-2 align-items-center m-0">
+              Quiz Directory
+              <span><i class="fa-solid fa-arrow-right"></i></span>
+            </p>
+          </div>
           <div *ngFor="let quiz of upcomingQuizzes" class="w-100">
-            <article class="d-flex align-items-center gap-3 overflow-hidden w-100">
+            <article
+              class=" d-flex align-items-center gap-3 overflow-hidden w-100"
+            >
               <figure class="h-100 m-0 rounded-2">
-                <img [src]="" class="w-100" alt="">
+                <img [src]="" class="w-100" alt="" />
               </figure>
-              <div class="d-flex align-items-center gap-4 w-100 pe-3 ">
-                <div  class="d-flex flex-column gap-3 p-3 w-100">
+              <div class="d-flex align-items-center gap-4 w-100 pe-3">
+                <div class="d-flex flex-column gap-3 p-3 w-100">
                   <div class="card-main-header">
-                    <h4 class="m-0"> {{quiz.title}}</h4>
+                    <h4 class="m-0">{{ quiz.title }}</h4>
                     <div class="card-details d-flex align-items-center gap-3">
-                     <span>{{quiz.schadule |date}} </span>
+                      <span>{{ quiz.schadule | date }} </span>
                     </div>
                   </div>
-                  <div class="card-student d-flex align-items-center justify-content-between" >
-                    <p class="m-0 fw-bold"> No. of student’s enrolled: 3</p>
+                  <div
+                    class="card-student d-flex align-items-center justify-content-between"
+                  >
+                    <p class="m-0 fw-bold">No. of student’s enrolled: 3</p>
                     <div class="d-flex gap-2 align-items-center" role="button">
                       <p class="m-0 fw-semibold">Open</p>
                       <i class="fa-solid fa-chevron-right"></i>
                     </div>
                   </div>
                 </div>
-            
               </div>
             </article>
           </div>
         </div>
-        </div>
-</div>
-
-<div class="col-md-6 ">
-  <div class="d-flex flex-column gap-2">
-    <div class="p-3 main-border rounded-3">
-      <div class="d-flex align-items-center justify-content-between">
-        <h2 class='mb-3'>Top 5 Students</h2>
-        <p role="button" class="d-flex gap-2 align-items-center m-0"> All Students Directory <span><i class="fa-solid fa-arrow-right"></i></span> </p>
       </div>
-   <div *ngFor="let student of topFiveStudents"   class="w-100">
-     <article class="d-flex align-items-center gap-3 overflow-hidden w-100">
-       <figure class="h-100 m-0 rounded-2">
-         <img [src]="" class="w-100" alt="">
-       </figure>
-       <div class="d-flex align-items-center gap-4 w-100 pe-3 ">
-         <div class="d-flex flex-column gap-3 p-3 w-100"   >
-           <div class="card-main-header">
-             <h4 class="m-0">{{student.first_name}}</h4>
-             <div class="card-details d-flex align-items-center gap-3">
-               <span> Class rank: {{student.group.max_students}}th</span>
-               <span> | </span>
-               <span>  Average score: {{student.avg_score}}</span>
-             </div>
-           </div>
-           
-         </div>
-         <div class="card-icon" >
-           <i class="fa-solid fa-chevron-right"></i>
-           
-         </div>
-       </div>
-     </article>
-   </div>
- </div>
+    </div>
+
+    <div class="col-md-6 p-3">
+      <div class="d-flex flex-column gap-2">
+        <div class="p-3 brd rounded-3">
+          <div class="mb-3 d-flex align-items-center justify-content-between">
+            <h2 class="m-0">Top 5 Students</h2>
+            <p role="button" class="d-flex gap-2 align-items-center m-0">
+              All Students Directory
+              <span><i class="fa-solid fa-arrow-right"></i></span>
+            </p>
+          </div>
+          <div *ngFor="let student of topFiveStudents" class="w-100 my-2">
+            <article
+              class="d-flex align-items-center gap-3 overflow-hidden w-100"
+            >
+              <figure class="h-100 m-0 rounded-2">
+                <img [src]="" class="w-100" alt="" />
+              </figure>
+              <div class="d-flex align-items-center gap-4 w-100 pe-3">
+                <div class="d-flex flex-column gap-3 p-3 w-100">
+                  <div class="card-main-header">
+                    <h4 class="m-0">{{ student.first_name }}</h4>
+                    <div class="card-details d-flex align-items-center gap-3">
+                      <span>
+                        Class rank: {{ student.group.max_students }}th</span
+                      >
+                      <span> | </span>
+                      <span> Average score: {{ student.avg_score }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-icon">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-</div>
-</div>
-
-
-
-  

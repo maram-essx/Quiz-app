@@ -1,4 +1,4 @@
-<div class="py-5 container-fluid">
+<!-- <div class="py-5 container-fluid">
   <div class="row brd">
     <div class="row">
       <div class="d-flex flex-column gap-2">
@@ -29,48 +29,51 @@
               Add student
             </button>
           </div>
-          <div class="col-md-6">
-            <div *ngFor="let student of allStudents" class="w-100">
-              <article
-                class="d-flex align-items-center gap-3 overflow-hidden w-100"
-              >
-                <figure class="h-100 m-0 rounded-2">
-                  <img [src]="" class="w-100" alt="" />
-                </figure>
-                <div class="d-flex align-items-center gap-4 w-100 pe-3">
-                  <div class="d-flex flex-column gap-3 p-3 w-100">
-                    <div class="card-main-header">
-                      <!-- <h4 class="m-0">{{ student.first_name }} {{ student.last_name }}</h4> -->
-                      <div class="card-details d-flex align-items-center gap-3">
-                        <!-- <span>
-                          Class rank: {{ student.group.max_students }}th</span
-                        > -->
-                        <span> | </span>
-                        <!-- <span> Average score: {{ student.avg_score }}</span> -->
+
+   
+
+          <div class="col-md-6 p-3">
+            <div class="d-flex flex-column gap-2">
+              <div class="p-3 brd rounded-3">
+                <div class="mb-3 d-flex align-items-center justify-content-between">
+                  <h2 class="m-0">Students List</h2>
+                
+                </div>
+                <div *ngFor="let student of allStudents" class="w-100">
+                  <article
+                    class="d-flex align-items-center gap-3 overflow-hidden w-100"
+                  >
+                    <figure class="h-100 m-0 rounded-2">
+                      <img [src]="" class="w-100" alt="" />
+                    </figure>
+                    <div class="d-flex align-items-center gap-4 w-100 pe-3">
+                      <div class="d-flex flex-column gap-3 p-3 w-100">
+                        <div class="card-main-header">
+                          <h4 class="m-0">{{ student.first_name }} {{ student.last_name }}</h4>
+                          <div class="card-details d-flex align-items-center gap-3">
+                           <span> {{ student.status }}</span> 
+                            <span> | </span>
+                            <span>
+                               {{ student.role }}</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-icon">
+                        <i class="fa-solid fa-chevron-right"></i>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-icon">
-                    <i class="fa-solid fa-chevron-right"></i>
-                  </div>
+                  </article>
                 </div>
-              </article>
-              <div class="  bg-transparent">
-                <!-- ? paginator -->
-                <!-- <mat-paginator *ngIf="allStudents.length > 0"
-                  #paginator class="demo-paginator  bg-transparent"
-                 (page)="handlePageEvent($event)"
-                  [length]="allStudents.totalNumberOfRecords"
-                  [pageSize]="pageSize"
-                  [pageIndex]="pageNumber"
-                  [pageSizeOptions]="[5, 10, 25 , 50]"
-                  aria-label="Select page">
-                </mat-paginator> -->
+              
               </div>
             </div>
           </div>
+
+
+         
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
