@@ -19,7 +19,7 @@ export class AuthService {
   first_name: string = '';
   last_name: string = '';
 
-  constructor(private _HttpClient:HttpClient) { }
+  constructor(private _HttpClient:HttpClient, private _Router:Router) { }
   forgotPass(evalue:string):Observable<any>{
     return this._HttpClient.post('auth/forgot-password',{email:evalue})
   }
@@ -52,6 +52,12 @@ login(loginData:Auth.ILoginReq):Observable<Auth.ILoginRes>{
 
 resetPassword(data:Auth.IResetPasswordReq):Observable<Auth.IResetPasswordRes>{
   return this._HttpClient.post<Auth.IResetPasswordRes>(`auth/reset-password` , data)
+}
+
+logout(): void {
+  localStorage.clear();
+  sessionStorage.clear();
+  this._Router.navigate(['/auth/login'])
 }
 
 }
