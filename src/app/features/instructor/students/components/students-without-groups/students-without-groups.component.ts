@@ -28,9 +28,7 @@ export class StudentsWithoutGroupsComponent {
         this.totalRecords = res.length;
        
       },
-      error: (error: HttpErrorResponse) => {
-        
-      }
+      error: (error: HttpErrorResponse) => {}
     });
   }
 }

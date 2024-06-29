@@ -18,7 +18,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import { PaginatorModule } from 'primeng/paginator';
+
 import { DeleteComponent } from './components/delete/delete.component';
+
 
 
 @NgModule({
@@ -26,7 +31,12 @@ import { DeleteComponent } from './components/delete/delete.component';
     SharedComponent,
     SidebarComponent,
     NavbarComponent,
+
+    PaginatorComponent,
+    
+
     DeleteComponent,
+
 
   ],
   imports: [
@@ -45,7 +55,7 @@ MatSelectModule,
 
     MatPaginatorModule,
 
-
+    PaginatorModule,
 
   ],
   exports:[
@@ -63,6 +73,8 @@ MatSelectModule,
 MatSelectModule,
 
     MatPaginatorModule,
+    PaginatorModule,
+    PaginatorComponent,
 
 
   ],

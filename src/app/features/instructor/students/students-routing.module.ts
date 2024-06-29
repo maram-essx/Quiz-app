@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'students-list', component:StudentsListComponent },
   { path: 'groups', component:GroupsComponent },
   { path: 'students-list', component:StudentsListComponent },
+  { path: 'students-without-group', component:StudentsListComponent },
+
 
 
 

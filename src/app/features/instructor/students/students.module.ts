@@ -6,6 +6,8 @@ import { StudentsComponent } from './students.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { StudentsWithoutGroupsComponent } from './components/students-without-groups/students-without-groups.component';
+import { AddStudentGroupComponent } from './components/add-student-group/add-student-group.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,11 +15,14 @@ import { StudentsWithoutGroupsComponent } from './components/students-without-gr
     StudentsComponent,
     StudentsListComponent,
     GroupsComponent,
-    StudentsWithoutGroupsComponent
+    StudentsWithoutGroupsComponent,
+    AddStudentGroupComponent
+
   ],
   imports: [
     CommonModule,
-    StudentsRoutingModule
+    StudentsRoutingModule,
+    SharedModule
   ]
 })
 export class StudentsModule { }

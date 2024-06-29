@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IGroupsListRes, IGroupDetailsRes, IUpdateOrAddGroup, IUdateGroupRes, IAllStudents, IStudentWithoutGroup } from '../models/group';
+import { IGroupsListRes, IGroupDetailsRes, IUpdateOrAddGroup, IUdateGroupRes, IAllStudents, IStudentWithoutGroup, IGroupsListRes2 } from '../models/group';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,9 @@ export class GroupService {
 
   getAllGroups(): Observable<IGroupsListRes> {
     return this._HttpClient.get<IGroupsListRes>(`group`)
+  }
+  onGetAllGroups(): Observable<IGroupsListRes2[]> {
+    return this._HttpClient.get<IGroupsListRes2[]>('group')
   }
 
   getGroupById(id:string):Observable<IGroupDetailsRes>{
