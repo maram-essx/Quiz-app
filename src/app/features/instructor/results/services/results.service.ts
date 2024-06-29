@@ -12,4 +12,5 @@ export class ResultsService {
   getAllResults():Observable<any>{
     return this._HttpClient.get('quiz/result')
   }
+
 }

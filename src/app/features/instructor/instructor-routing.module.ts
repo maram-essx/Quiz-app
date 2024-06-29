@@ -4,24 +4,36 @@ import { InstructorComponent } from './instructor.component';
 import { InstuctorDashboardComponent } from './components/instuctor-dashboard/instuctor-dashboard.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: InstructorComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: InstuctorDashboardComponent },
-    ],
-  },
-  {
-    path: 'groups',
-    loadChildren: () =>
-      import('./groups/groups.module').then((m) => m.GroupsModule),
-  },
-  {
-    path: 'results',
-    loadChildren: () =>
-      import('./results/results.module').then((m) => m.ResultsModule),
-  },
+  { path: '', component: InstructorComponent ,children:[
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component:InstuctorDashboardComponent},
+
+
+  ] },
+  { path: 'groups', loadChildren: () => import('./groups/groups.module').then(m => m.GroupsModule) },
+  { path: 'results', loadChildren: () => import('./results/results.module').then(m => m.ResultsModule) },
+
+  { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
+  { path: 'questions', loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule) },
+
+//   {
+//     path: '',
+//     component: InstructorComponent,
+//     children: [
+//       { path: '', redirectTo: 'home', pathMatch: 'full' },
+//       { path: 'home', component: InstuctorDashboardComponent },
+//     ],
+//   },
+//   {
+//     path: 'groups',
+//     loadChildren: () =>
+//       import('./groups/groups.module').then((m) => m.GroupsModule),
+//   },
+//   {
+//     path: 'results',
+//     loadChildren: () =>
+//       import('./results/results.module').then((m) => m.ResultsModule),
+//   },
 
   {
     path: 'students',

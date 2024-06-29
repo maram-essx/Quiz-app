@@ -1,0 +1,37 @@
+@import '../abstracts/variables';
+
+
+th{
+  background-color: $dark-color;
+  color: white;
+  vertical-align: middle;
+}
+td{
+  vertical-align: middle;
+}
+.th1{
+  border-inline-start-color: black;
+      border-block-color: white;
+      border-inline-end-color: white;
+
+}
+.th2{
+  border-inline-end-color: black;
+  border-inline-start-color: white;
+  border-block-color: white;
+}
+table{
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+.tdd{
+  border-color: $grey-color;
+}
+.view{
+  background-color: rgba(197, 216, 109, 1);
+  font-weight: 700;
+}
+
+.icons{
+  color: #FB7C19;
+}
