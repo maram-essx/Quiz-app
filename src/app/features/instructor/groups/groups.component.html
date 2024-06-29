@@ -10,7 +10,7 @@
             <p>No. of students : {{group.students.length}}</p>
             <div class="actions">
                 <button class="edit" (click)="openEditDailog(group._id , true)">✏️</button>
-                <button class="delete">🗑️</button>
+                <button class="delete" (click)="openDeleteDailog(group._id)">🗑️</button>
             </div>
         </div>
        

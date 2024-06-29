@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditComponent } from './components/add-edit/add-edit.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
+import { DeleteComponent } from 'src/app/shared/components/delete/delete.component';
 
 @Component({
   selector: 'app-groups',
@@ -105,7 +106,36 @@ editGroup(id: string, data: IUpdateOrAddGroup) {
       this.onAllGroups();
       this._ToastrService.Success('Group Updated sucessfully')
     }
+  })
+}
 
+openDeleteDailog(id: string): void {
+
+  const dialogRef = this.dialog.open(DeleteComponent, {
+    width: '550px',
+    height: '300px',
+    data: {id: id,}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    // console.log('The delete  was closed');
+    //console.log(result);
+    if (result) {
+      this.deleteGroup(result)
+    }
+  });
+}
+deleteGroup(id: string) {
+  this._GroupService.deleteGroup(id).subscribe({
+    next: (res) => {
+      // console.log(res);
+    },
+    error: (error) => {
+      this._ToastrService.Error(error.error.message)
+    },
+    complete: () => {
+      this.onAllGroups();
+      this._ToastrService.Success('Group deleted sucessfully')
+    }
   })
 }
 
