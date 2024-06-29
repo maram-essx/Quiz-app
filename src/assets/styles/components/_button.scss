@@ -4,22 +4,22 @@ button {
   transition: $main-transtion;
   &.white {
     border-radius: 10px;
-    background-color: #fff;
+    background-color: $white-color;
     color: $dark-color;
     padding: 0.7rem 0.9rem;
     border: $border-style transparent;
     .icon-circle {
-      color: white;
+      color: $white-color;
       background-color: $dark-color;
       border-radius: 50%;
     }
     &:hover {
       background-color: transparent;
-      color: #fff;
-      border: $border-style #fff;
+      color: $white-color;
+      border: $border-style $white-color;
       .icon-circle {
         color: $dark-color;
-        background-color: #fff;
+        background-color: $white-color;
       }
     }
   }
@@ -36,7 +36,7 @@ button {
     border: $border-style transparent;
     border-radius: 10px;
     .icon {
-      color: white;
+      color: $white-color;
       background-color: $dark-color;
       border-radius: 50%;
       font-size: 62px;
@@ -45,8 +45,8 @@ button {
     &:hover {
       border: $border-style $primary-color;
       .icon {
-        color: #fff;
-        background-color: #fff;
+        color: $white-color;
+        background-color: $white-color;
       }
     }
 
@@ -58,7 +58,7 @@ button {
       border-radius: 10px;
       .icon {
         color: $primary-color;
-        background-color: #fff;
+        background-color: $white-color;
         font-size: 62px;
       }
     }
@@ -91,11 +91,11 @@ button {
     opacity: 0px;
     &:hover {
       background-color: $dark-color;
-      color: #fff;
-      border: $border-style #fff;
+      color: $white-color;
+      border: $border-style $white-color;
       .icon {
-        fill: #fff;
-        color: #fff;
+        fill: $white-color;
+        color: $white-color;
         // background-color: $dark-color;
       }
     }
