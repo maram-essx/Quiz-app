@@ -35,5 +35,7 @@ export class NavbarComponent {
 
   openChangePassDialog() {}
 
-  logout() {}
+  logout() {
+    this._AuthService.logout();
+  }
 }

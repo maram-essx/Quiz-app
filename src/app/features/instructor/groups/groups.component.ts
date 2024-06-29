@@ -1,13 +1,18 @@
-import { IGroupsListRes2 ,IGroupsListRes} from './models/group';
+import { IGroupsListRes2 ,IGroupsListRes, IUpdateOrAddGroup, IGroupDetailsRes} from './models/group';
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from './services/group.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AddEditComponent } from './components/add-edit/add-edit.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'src/app/common/helper-services/toastr.service';
+
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
+ 
  
   IGroupsListRes2: IGroupsListRes2 = {
     _id: '',
@@ -19,23 +24,90 @@ export class GroupsComponent implements OnInit {
   }
   groupList: IGroupsListRes2[] = [this.IGroupsListRes2];
 
-  constructor(private _GroupService:GroupService)
-{
-
-}
+  constructor(private _GroupService:GroupService, public dialog: MatDialog ,
+    private _ToastrService:ToastrService
+  ){}
 ngOnInit(): void {
   this.onAllGroups();
-
-
 }
+
+
   onAllGroups() {
     this._GroupService.getAllGroups().subscribe({
       next: (res: IGroupsListRes) => {
         this.groupList = res;
-        console.log(this.groupList)
+       // console.log(this.groupList)
         
       }, error: (err: HttpErrorResponse) => {
       }
     })
   }
+
+  openAddDialog(add:boolean): void {
+    const dialogRef = this.dialog.open(AddEditComponent, {
+      width:'550px',
+      height:'300px' ,
+      data: {
+        add:add
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // console.log(result);
+    if (result) {
+      this.addGroups(result);
+    }
+    });
+  }
+  addGroups(addNewGroup:IUpdateOrAddGroup) {
+    this._GroupService.AddNewGroup(addNewGroup).subscribe({
+      next:(res)=>{
+      //  console.log(res)
+      },
+      error:(err)=>{
+      // console.log(err.error.message); 
+       this._ToastrService.Error( err.error.message) 
+      },
+      complete:()=>{  
+        this.onAllGroups();
+        this._ToastrService.Success('Group added sucessfully')
+      }
+    })
+  }
+
+  openEditDailog(id: string, edit: boolean): void {
+    const dialogRef = this.dialog.open(AddEditComponent, {
+      width: '550px',
+      height: '300px',
+      data: {
+        id: id,
+        edit: edit
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The update  was closed');
+      //console.log(result);
+      if (result) {
+        this.editGroup(id, result)
+      }
+    }
+    )
+}
+editGroup(id: string, data: IUpdateOrAddGroup) {
+  this._GroupService.editGroup(id, data).subscribe({
+    next: (res) => {
+      // console.log(res)
+    },
+    error: (error) => {
+      this._ToastrService.Error(error.error.message)
+    },
+    complete: () => {
+      this.onAllGroups();
+      this._ToastrService.Success('Group Updated sucessfully')
+    }
+
+  })
+}
+
+
 }
