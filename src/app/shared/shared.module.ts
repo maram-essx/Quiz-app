@@ -18,6 +18,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedComponent,
     SidebarComponent,
     NavbarComponent,
+    PaginatorComponent,
+    
 
   ],
   imports: [
@@ -43,7 +47,7 @@ MatSelectModule,
 
     MatPaginatorModule,
 
-
+    PaginatorModule,
 
   ],
   exports:[
@@ -61,6 +65,8 @@ MatSelectModule,
 MatSelectModule,
 
     MatPaginatorModule,
+    PaginatorModule,
+    PaginatorComponent
 
 
   ],
