@@ -1,0 +1,31 @@
+<div class="row justify-content-start m-3">
+    <h1 class="mb-3">Quizzes <i class="fa-solid fa-chevron-right fa-sm ms-2"></i><i class="fa-solid fa-chevron-right fa-sm me-2"></i> {{group.name}} quiz one</h1>
+    <div class="col-md-8 rounded-3 px-4 py-2">
+        <h1 class="text-black h2 fw-semibold mt-3 my-0 mb-0 p-0">Results</h1>
+        <div class="all">
+            <table class="table text-center mt-4">
+                <thead>
+                    <th class="py-2 th1 border-2 rounded-start-2">Student name</th>
+                    <th class="py-2 border-white border-2">Score</th>
+                    <th class="py-2 border-white border-2">Average</th>
+                    <th class="py-2 border-white border-2 rounded-end-2">Time submitted</th>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let item of group.students;let i = index">
+                    <tr class="mt-4">
+                        <td class="border-2 tdd">{{item.first_name+' '+item.last_name}}</td>
+                        <td class="border-2 tdd"><span *ngFor="let itemm of single.participants">{{itemm.score}}</span></td>
+                        <td class="border-2 tdd"><span *ngFor="let itemm2 of single.participants">{{itemm2.score}}</span></td>
+                        <td class="border-2 tdd">{{single.quiz.duration+' min'}}</td>
+                    </tr>
+                  </ng-container>
+                  
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #name>
+    noData Scored
+</ng-template>

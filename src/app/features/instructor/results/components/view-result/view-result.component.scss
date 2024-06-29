@@ -1,0 +1,36 @@
+th{
+    background-color: rgba(13, 19, 33, 1);
+    color: white;
+    vertical-align: middle;
+}
+td{
+    vertical-align: middle;
+}
+.th1{
+    border-inline-start-color: black;
+        border-block-color: white;
+        border-inline-end-color: white;
+
+}
+.th2{
+    border-inline-end-color: black;
+    border-inline-start-color: white;
+    border-block-color: white;
+}
+table{
+    border-collapse: separate;
+    border-spacing: 0 5px;
+}
+.tdd{
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.view{
+    background-color: rgba(197, 216, 109, 1);
+    font-weight: 700;
+}
+.col-md-8{
+    border: 2px rgba(0, 0, 0, 0.2) solid;
+}
+i{
+    color: rgba(197, 216, 109, 1) !important;
+}
