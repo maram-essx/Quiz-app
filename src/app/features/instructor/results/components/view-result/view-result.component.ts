@@ -37,7 +37,7 @@ getAllres(){
       this.allres = res
       console.log(this.allres);
       for(let i = 0;i<this.allres.length;i++){
-        if(this.id = this.allres[i].quiz.group){
+        if(this.id == this.allres[i].quiz.group){
           this.single = this.allres[i]
           console.log('after',this.single);
           break
