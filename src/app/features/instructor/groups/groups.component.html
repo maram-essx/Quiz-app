@@ -1,7 +1,10 @@
 <div class="container brd">
     <div class="header">
         <h1>Groups list</h1>
-        <button class="add-group dark" (click)="openAddDialog(true)">+ Add Group</button>
+        <button (click)="openAddDialog(true)"
+        class="quiz-outline fw-bold d-flex justify-content-center align-items-center me-3 gap-1 m-3"
+      > + Add Group</button>
+
     </div>
     <div class="groups-list ">
          <div *ngFor="let group of groupList" >
