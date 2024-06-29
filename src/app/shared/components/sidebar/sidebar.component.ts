@@ -37,6 +37,13 @@ export class SidebarComponent {
       link:'/dashboard/instructor/quiz',
       isActive: this.isInstructor() || this.isStudent() 
       } ,
+      
+      {
+        text:'Students' ,
+        icon: 'bi bi-people' ,
+        link:'/dashboard/instructor/students/students-list',
+        isActive: this.isInstructor() || this.isStudent() 
+        } ,
       {
         text:'Results' ,
         icon: 'bi bi-journal-richtext' ,
