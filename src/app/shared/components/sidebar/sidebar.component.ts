@@ -34,7 +34,7 @@ export class SidebarComponent {
     {
       text:'Quizzes' ,
       icon: 'bi bi-alarm' ,
-      link:'/dashboard/instructor/quiz',
+      link:'/dashboard/instructor/quizzes',
       isActive: this.isInstructor() || this.isStudent()
       } ,
 
