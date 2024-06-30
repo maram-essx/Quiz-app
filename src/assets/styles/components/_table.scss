@@ -2,7 +2,7 @@
 
 
 th{
-  background-color: $dark-color;
+  background-color: rgba(13, 19, 33, 1);
   color: white;
   vertical-align: middle;
 }
@@ -25,7 +25,7 @@ table{
   border-spacing: 0 5px;
 }
 .tdd{
-  border-color: $grey-color;
+  border-color: rgba(0, 0, 0, 0.2);
 }
 .view{
   background-color: rgba(197, 216, 109, 1);
@@ -33,5 +33,6 @@ table{
 }
 
 .icons{
-  color: #FB7C19;
+  color: $orange-color;
+  background-color: transparent;
 }
