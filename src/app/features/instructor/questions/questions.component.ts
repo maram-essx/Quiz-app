@@ -13,10 +13,13 @@ import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 })
 export class QuestionsComponent {
   allQuestions: IQuestions[] = [];
-  questionList: any[]=[];
+  questionList: any[] = [];
 
-  constructor(private _QuestionsService: QuestionsService, public dialog: MatDialog ,
-    private _ToastrService:ToastrService) {}
+  constructor(
+    private _QuestionsService: QuestionsService,
+    public dialog: MatDialog,
+    private _ToastrService: ToastrService
+  ) {}
   ngOnInit(): void {
     this.getResults();
   }
@@ -33,47 +36,46 @@ export class QuestionsComponent {
     });
   }
 
-  openAddDialog(add:boolean): void {
+  openAddDialog(add: boolean): void {
     const dialogRef = this.dialog.open(AddEditQuestionComponent, {
-      width:'75%',
-      height:'75%' ,
+      width: '75%',
+      height: '75%',
       data: {
-        add:add
+        add: add,
       },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-    console.log(result);
-    if (result) {
-      this.addQuestion(result);
-    }
+      console.log(result);
+      if (result) {
+        this.onAllQuestion();
+      }
     });
   }
 
-  addQuestion(addNewQuestion:any) {
+  addQuestion(addNewQuestion: any) {
     this._QuestionsService.AddNewQuestion(addNewQuestion).subscribe({
-      next:(res)=>{
-       console.log(res)
+      next: (res) => {
+        console.log(res);
       },
-      error:(err)=>{
-      console.log(err.error.message);
-       this._ToastrService.Error( err.error.message)
+      error: (err) => {
+        console.log(err.error.message);
+        this._ToastrService.Error(err.error.message);
       },
-      complete:()=>{
+      complete: () => {
         this.onAllQuestion();
-        this._ToastrService.Success('Quesion added sucessfully')
-      }
-    })
+        this._ToastrService.Success('Quesion added sucessfully');
+      },
+    });
   }
 
   onAllQuestion() {
     this._QuestionsService.getAllQuestions().subscribe({
       next: (res: any) => {
         this.questionList = res;
-       console.log(this.questionList)
-
-      }, error: (err: any) => {
-      }
-    })
+        console.log(this.questionList);
+      },
+      error: (err: any) => {},
+    });
   }
 }

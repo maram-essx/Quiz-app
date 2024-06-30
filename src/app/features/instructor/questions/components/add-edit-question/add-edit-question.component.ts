@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddEditComponent } from '../../../groups/components/add-edit/add-edit.component';
 import { IQuestions, IOptions, IQuestionsRes } from '../../models/questions';
 import { QuestionsService } from '../../services/questions.service';
+import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 
 @Component({
   selector: 'app-add-edit-question',
@@ -45,7 +46,8 @@ export class AddEditQuestionComponent {
   constructor(
     private _QuestionsService: QuestionsService,
     public dialogRef: MatDialogRef<AddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _ToastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -97,9 +99,11 @@ export class AddEditQuestionComponent {
         },
         error: (err) => {
           console.error('Question error:', err);
+          this._ToastrService.Error(err.error.message);
         },
         complete: () => {
           this.onNoClick();
+          this._ToastrService.Success('Quesion added sucessfully');
         }
       });
     }
