@@ -2,10 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddEditComponent } from '../../../groups/components/add-edit/add-edit.component';
-import { IGroupDetailsRes } from '../../../groups/models/group';
-import { GroupService } from '../../../groups/services/group.service';
-import { IStudent } from '../../../models/instructor';
-import { IQuestions, IOptions } from '../../models/questions';
+import { IQuestions, IOptions, IQuestionsRes } from '../../models/questions';
 import { QuestionsService } from '../../services/questions.service';
 
 @Component({
@@ -14,8 +11,6 @@ import { QuestionsService } from '../../services/questions.service';
   styleUrls: ['./add-edit-question.component.scss'],
 })
 export class AddEditQuestionComponent {
-  selectedStudents: string[] = [];
-  studentsGroup: IStudent[] = [];
   questionDetails: IQuestions = {
     _id: '',
     title: '',
@@ -34,9 +29,19 @@ export class AddEditQuestionComponent {
     status: '',
   instructor: '',
   };
-  allStudentForAddNewGroup!: any;
-  allStudentForUpdatingGroup: any;
+  allQuestionsForAddNewQuestion!: any;
+  allQuestionsForUpdatingQuestion: any;
   addEditForm!: FormGroup;
+
+  selectedAnswer: string = '';
+  answers: string[] = ['A', 'B', 'C', 'D'];
+
+  selectedCategory: string = '';
+  categories: string[] = ['FE', 'BE', 'DO'];
+
+  selectedDifficulty: string = '';
+  difficulties: string[] = ['easy', 'medium', 'hard'];
+
   constructor(
     private _QuestionsService: QuestionsService,
     public dialogRef: MatDialogRef<AddEditComponent>,
@@ -45,29 +50,28 @@ export class AddEditQuestionComponent {
 
   ngOnInit(): void {
     if (this.data.id != null) {
-      this.veiwQuestion(this.data.id);
+      this.viewQuestion(this.data.id);
     }
 
-    this.getAllStudents();
+    this.getAllQuestions();
 
-    this.selectedStudents = this.studentsGroup.map(
-      (student) => student.first_name
-    );
+
 
     this.addEditForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      // options: new FormControl('', [Validators.required]),
-      A: new FormControl('', [Validators.required]),
-      B: new FormControl('', [Validators.required]),
-      C: new FormControl('', [Validators.required]),
-      D: new FormControl('', [Validators.required]),
+      options: new FormGroup({
+        A: new FormControl('', [Validators.required]),
+        B: new FormControl('', [Validators.required]),
+        C: new FormControl('', [Validators.required]),
+        D: new FormControl('', [Validators.required])
+      }),
       answer: new FormControl('', [Validators.required]),
       difficulty: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
     });
   }
-  veiwQuestion(id: string) {
+  viewQuestion(id: string) {
     this._QuestionsService.getQuestionById(id).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -80,19 +84,53 @@ export class AddEditQuestionComponent {
   }
   onSubmit(addEditForm: FormGroup) {
     this.dialogRef.close(addEditForm.value);
-    console.log(addEditForm.value);
+    this.addQuestion(addEditForm);
+    this.getAllQuestions();
   }
+
+  addQuestion(addEditForm: FormGroup): void {
+    if (addEditForm.valid) {
+      console.log('Question data:', addEditForm.value);
+      this._QuestionsService.AddNewQuestion(addEditForm.value).subscribe({
+        next: (res: IQuestionsRes) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.error('Question error:', err);
+        },
+        complete: () => {
+          this.onNoClick();
+        }
+      });
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  getAllStudents() {
+  getAllQuestions() {
     this._QuestionsService.getAllQuestions().subscribe({
       next: (res) => {
-        console.log(res);
-        this.allStudentForUpdatingGroup = res;
-        console.log(this.allStudentForUpdatingGroup);
+        console.log('getAllQuestions: ', res);
+        this.allQuestionsForUpdatingQuestion = res;
+        console.log(this.allQuestionsForUpdatingQuestion);
       },
     });
+  }
+
+  onAnswerChange(event: any) {
+    this.selectedAnswer = event.target.value;
+    console.log('Selected answer:', this.selectedAnswer);
+  }
+
+  onCategoryChange(event: any) {
+    this.selectedCategory = event.target.value;
+    console.log('Selected category:', this.selectedCategory);
+  }
+
+  onDifficultyChange(event: any) {
+    this.selectedDifficulty = event.target.value;
+    console.log('Selected difficulty:', this.selectedDifficulty);
   }
 }

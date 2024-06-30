@@ -20,3 +20,8 @@ export interface IOptions {
   D: string
   _id: string
 }
+
+export interface IQuestionsRes {
+  message: string
+  timestamp: string
+}
