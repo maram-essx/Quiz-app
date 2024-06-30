@@ -23,6 +23,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { PaginatorModule } from 'primeng/paginator';
 
 import { DeleteComponent } from './components/delete/delete.component';
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 
 
@@ -36,6 +37,7 @@ import { DeleteComponent } from './components/delete/delete.component';
     
 
     DeleteComponent,
+            ViewProfileComponent,
 
 
   ],
