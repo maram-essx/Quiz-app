@@ -1,5 +1,5 @@
 <form [formGroup]="addEditForm" (ngSubmit)="onSubmit(addEditForm)">
-  <div class="contianer">
+  <div class="container">
     <div
       class="caption d-flex justify-content-between align-items-center border-bottom"
     >
@@ -15,35 +15,32 @@
             class="btn border-0 p-0"
             [disabled]="addEditForm.invalid"
           >
-            <span class="mx-1"> <i class="fa-solid fa-check"></i> </span>
+            <span class="mx-1"><i class="fa-solid fa-check"></i></span>
           </button>
         </div>
         <div
           (click)="onNoClick()"
           class="d-inline p-4 close border-start d-flex justify-content-center align-items-center"
         >
-          <span class="mx-1"> <i class="fa-solid fa-xmark"></i> </span>
+          <span class="mx-1"><i class="fa-solid fa-xmark"></i></span>
         </div>
       </div>
     </div>
     <div class="row p-3 m-0">
       <p class="fw-bold">Details:</p>
-      <div class="input-group col-12 my-2">
-        <span class="input-group-text fw-bold" id="basic-addon1"
-          >Title</span
-        >
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1">Title</span>
         <input
           type="text"
           [value]="questionDetails.title"
           formControlName="title"
           class="form-control p-2"
-          aria-label="Username"
+          aria-label="Title"
           aria-describedby="basic-addon1"
         />
       </div>
 
-
-      <div class="input-group col-12 my-2">
+      <div class="input-group col-12 my-2 px-1">
         <span class="input-group-text fw-bold py-4" id="basic-addon1"
           >Description</span
         >
@@ -52,80 +49,17 @@
           [value]="questionDetails.description"
           formControlName="description"
           class="form-control p-2"
-          aria-label="Username"
+          aria-label="Description"
           aria-describedby="basic-addon1"
         />
       </div>
 
-
-      <!-- <div class="row"> -->
-        <!-- <div class="input-group col-md-6 my-2">
-          <span class="input-group-text fw-bold" id="basic-addon1"
-            >A</span
-          >
-          <input
-            type="text"
-            [value]="questionDetails.options.A"
-            formControlName="A"
-            class="form-control p-2"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </div>
-
-
-        <div class="input-group col-md-6 my-2">
-          <span class="input-group-text fw-bold" id="basic-addon1"
-            >B</span
-          >
-          <input
-            type="text"
-            [value]="questionDetails.options.B"
-            formControlName="B"
-            class="form-control p-2"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </div>
-
-
-        <div class="input-group col-md-6 my-2">
-          <span class="input-group-text fw-bold" id="basic-addon1"
-            >C</span
-          >
-          <input
-            type="text"
-            [value]="questionDetails.options.C"
-            formControlName="C"
-            class="form-control p-2"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </div>
-
-
-        <div class="input-group col-md-6 my-2">
-          <span class="input-group-text fw-bold" id="basic-addon1"
-            >D</span
-          >
-          <input
-            type="text"
-            [value]="questionDetails.options.D"
-            formControlName="D"
-            class="form-control p-2"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </div> -->
-      <!-- </div> -->
-
-      <!-- <div class="row"> -->
-        <div class="col-md-6 col-12 my-2 ">
+      <div formGroupName="options" class="row p-0 m-0">
+        <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
             <span class="input-group-text fw-bold" id="basic-addon1">A</span>
             <input
               type="text"
-              [value]="questionDetails.options.A"
               formControlName="A"
               class="form-control p-2"
               aria-label="Option A"
@@ -133,13 +67,11 @@
             />
           </div>
         </div>
-
-        <div class="col-md-6 col-12 my-2 ">
+        <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
             <span class="input-group-text fw-bold" id="basic-addon1">B</span>
             <input
               type="text"
-              [value]="questionDetails.options.B"
               formControlName="B"
               class="form-control p-2"
               aria-label="Option B"
@@ -147,13 +79,11 @@
             />
           </div>
         </div>
-
-        <div class="col-md-6 col-12 my-2 ">
+        <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
             <span class="input-group-text fw-bold" id="basic-addon1">C</span>
             <input
               type="text"
-              [value]="questionDetails.options.C"
               formControlName="C"
               class="form-control p-2"
               aria-label="Option C"
@@ -161,13 +91,11 @@
             />
           </div>
         </div>
-
-        <div class="col-md-6 col-12 my-2 ">
+        <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
             <span class="input-group-text fw-bold" id="basic-addon1">D</span>
             <input
               type="text"
-              [value]="questionDetails.options.D"
               formControlName="D"
               class="form-control p-2"
               aria-label="Option D"
@@ -175,45 +103,44 @@
             />
           </div>
         </div>
-      <!-- </div> -->
+      </div>
 
-
-
-      <div class="col-md-6 col-12 my-2 ">
-          <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">Right answer</span>
-            <input
-              type="text"
-              [value]="questionDetails.answer"
-              formControlName="answer"
-              class="form-control p-2"
-              aria-label="Answer"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-        </div>
-
-      <div class="col-md-6 col-12 my-2">
-        <div class="input-group my-2 text-white">
-          <span class="input-group-text fw-bold" id="basic-addon1"
-          >Category type</span
-        >
-          <span
-            class="input-group-text bg-transparent text-white border-end-0"
-            id="basic-addon1"
+      <div class="col-md-6 col-12">
+        <div class="input-group my-2 w-75 px-1 text-black">
+          <span class="input-group-text fw-bold" id="basic-addon1">Answer</span>
+          <select
+            formControlName="answer"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
+            aria-label="Answer"
+            aria-describedby="basic-addon1"
+            (change)="onAnswerChange($event)"
           >
-            <i class="fa-solid fa-envelope"></i>
+            <option
+              *ngFor="let answer of answers"
+              class="text-black"
+              [value]="answer"
+            >
+              {{ answer }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-arrow-down"></i>
           </span>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="input-group my-2 w-75 px-1 text-black">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >Category type</span
+          >
           <select
             formControlName="type"
             class="form-control bg-transparent text-black border-end-0 border-start-0"
-            aria-label="type"
+            aria-label="Type"
             aria-describedby="basic-addon1"
             (change)="onCategoryChange($event)"
           >
-            <option class="text-black" value="" disabled selected>
-              Category type
-            </option>
             <option
               *ngFor="let category of categories"
               class="text-black"
@@ -222,51 +149,37 @@
               {{ category }}
             </option>
           </select>
-          <span
-            class="input-group-text border-start-0"
-            id="basic-addon1"
-          >
+          <span class="input-group-text border-start-0" id="basic-addon1">
             <i class="fa-solid fa-arrow-down"></i>
           </span>
         </div>
       </div>
 
-
-
-      <!-- <div class="input-group col-12 my-2">
-        <span class="input-group-text fw-bold" id="basic-addon1"
-          >List Student</span
-        >
-
-        <mat-select
-          *ngIf="data.edit"
-          multiple
-          formControlName="students"
-          class="form-control"
-        >
-          <mat-option
-            [value]="student._id"
-            *ngFor="let student of allStudentForUpdatingGroup"
+      <div class="col-md-6 col-12">
+        <div class="input-group my-2 w-75 px-1 text-black">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >Difficulty</span
           >
-            {{ student.first_name }} {{ student.last_name }}</mat-option
+          <select
+            formControlName="difficulty"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
+            aria-label="Difficulty"
+            aria-describedby="basic-addon1"
+            (change)="onDifficultyChange($event)"
           >
-        </mat-select>
-
-        <mat-select
-          *ngIf="data.add"
-          formControlName="students"
-          multiple
-          class="form-control"
-        >
-          <mat-option
-            ng-selected
-            *ngFor="let student of allStudentForAddNewGroup"
-            value="{{ student._id }}"
-          >
-            {{ student.first_name }} {{ student.last_name }}</mat-option
-          >
-        </mat-select>
-      </div> -->
+            <option
+              *ngFor="let difficulty of difficulties"
+              class="text-black"
+              [value]="difficulty"
+            >
+              {{ difficulty }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-arrow-down"></i>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </form>

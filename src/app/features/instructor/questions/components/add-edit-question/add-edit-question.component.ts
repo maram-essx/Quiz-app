@@ -38,8 +38,14 @@ export class AddEditQuestionComponent {
   allStudentForUpdatingGroup: any;
   addEditForm!: FormGroup;
 
+  selectedAnswer: string = '';
+  answers: string[] = ['A', 'B', 'C', 'D'];
+
   selectedCategory: string = '';
   categories: string[] = ['FE', 'BE', 'DO'];
+
+  selectedDifficulty: string = '';
+  difficulties: string[] = ['easy', 'medium', 'hard'];
 
   constructor(
     private _QuestionsService: QuestionsService,
@@ -49,7 +55,7 @@ export class AddEditQuestionComponent {
 
   ngOnInit(): void {
     if (this.data.id != null) {
-      this.veiwQuestion(this.data.id);
+      this.viewQuestion(this.data.id);
     }
 
     this.getAllStudents();
@@ -61,17 +67,18 @@ export class AddEditQuestionComponent {
     this.addEditForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      // options: new FormControl('', [Validators.required]),
-      A: new FormControl('', [Validators.required]),
-      B: new FormControl('', [Validators.required]),
-      C: new FormControl('', [Validators.required]),
-      D: new FormControl('', [Validators.required]),
+      options: new FormGroup({
+        A: new FormControl('', [Validators.required]),
+        B: new FormControl('', [Validators.required]),
+        C: new FormControl('', [Validators.required]),
+        D: new FormControl('', [Validators.required])
+      }),
       answer: new FormControl('', [Validators.required]),
       difficulty: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
     });
   }
-  veiwQuestion(id: string) {
+  viewQuestion(id: string) {
     this._QuestionsService.getQuestionById(id).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -84,8 +91,27 @@ export class AddEditQuestionComponent {
   }
   onSubmit(addEditForm: FormGroup) {
     this.dialogRef.close(addEditForm.value);
-    console.log(addEditForm.value);
+    this.addQuestion(addEditForm);
+    this.viewQuestion(this.data.id);
   }
+
+  addQuestion(addEditForm: FormGroup): void {
+    if (addEditForm.valid) {
+      console.log('Registering with data:', addEditForm.value);
+      this._QuestionsService.AddNewQuestion(addEditForm.value).subscribe({
+        next: (res: any) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.error('Registration error:', err);
+        },
+        complete: () => {
+          this.onNoClick();
+        }
+      });
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -93,15 +119,25 @@ export class AddEditQuestionComponent {
   getAllStudents() {
     this._QuestionsService.getAllQuestions().subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.allStudentForUpdatingGroup = res;
-        console.log(this.allStudentForUpdatingGroup);
+        // console.log(this.allStudentForUpdatingGroup);
       },
     });
+  }
+
+  onAnswerChange(event: any) {
+    this.selectedAnswer = event.target.value;
+    console.log('Selected answer:', this.selectedAnswer);
   }
 
   onCategoryChange(event: any) {
     this.selectedCategory = event.target.value;
     console.log('Selected category:', this.selectedCategory);
+  }
+
+  onDifficultyChange(event: any) {
+    this.selectedDifficulty = event.target.value;
+    console.log('Selected difficulty:', this.selectedDifficulty);
   }
 }
