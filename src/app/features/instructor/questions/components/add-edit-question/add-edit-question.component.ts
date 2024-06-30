@@ -2,10 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddEditComponent } from '../../../groups/components/add-edit/add-edit.component';
-import { IGroupDetailsRes } from '../../../groups/models/group';
-import { GroupService } from '../../../groups/services/group.service';
-import { IStudent } from '../../../models/instructor';
-import { IQuestions, IOptions } from '../../models/questions';
+import { IQuestions, IOptions, IQuestionsRes } from '../../models/questions';
 import { QuestionsService } from '../../services/questions.service';
 
 @Component({
@@ -14,8 +11,6 @@ import { QuestionsService } from '../../services/questions.service';
   styleUrls: ['./add-edit-question.component.scss'],
 })
 export class AddEditQuestionComponent {
-  selectedStudents: string[] = [];
-  studentsGroup: IStudent[] = [];
   questionDetails: IQuestions = {
     _id: '',
     title: '',
@@ -34,8 +29,8 @@ export class AddEditQuestionComponent {
     status: '',
   instructor: '',
   };
-  allStudentForAddNewGroup!: any;
-  allStudentForUpdatingGroup: any;
+  allQuestionsForAddNewQuestion!: any;
+  allQuestionsForUpdatingQuestion: any;
   addEditForm!: FormGroup;
 
   selectedAnswer: string = '';
@@ -58,11 +53,9 @@ export class AddEditQuestionComponent {
       this.viewQuestion(this.data.id);
     }
 
-    this.getAllStudents();
+    this.getAllQuestions();
 
-    this.selectedStudents = this.studentsGroup.map(
-      (student) => student.first_name
-    );
+
 
     this.addEditForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -92,18 +85,18 @@ export class AddEditQuestionComponent {
   onSubmit(addEditForm: FormGroup) {
     this.dialogRef.close(addEditForm.value);
     this.addQuestion(addEditForm);
-    this.viewQuestion(this.data.id);
+    this.getAllQuestions();
   }
 
   addQuestion(addEditForm: FormGroup): void {
     if (addEditForm.valid) {
-      console.log('Registering with data:', addEditForm.value);
+      console.log('Question data:', addEditForm.value);
       this._QuestionsService.AddNewQuestion(addEditForm.value).subscribe({
-        next: (res: any) => {
+        next: (res: IQuestionsRes) => {
           console.log(res);
         },
         error: (err) => {
-          console.error('Registration error:', err);
+          console.error('Question error:', err);
         },
         complete: () => {
           this.onNoClick();
@@ -116,12 +109,12 @@ export class AddEditQuestionComponent {
     this.dialogRef.close();
   }
 
-  getAllStudents() {
+  getAllQuestions() {
     this._QuestionsService.getAllQuestions().subscribe({
       next: (res) => {
-        // console.log(res);
-        this.allStudentForUpdatingGroup = res;
-        // console.log(this.allStudentForUpdatingGroup);
+        console.log('getAllQuestions: ', res);
+        this.allQuestionsForUpdatingQuestion = res;
+        console.log(this.allQuestionsForUpdatingQuestion);
       },
     });
   }
