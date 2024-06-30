@@ -37,6 +37,10 @@ export class AddEditQuestionComponent {
   allStudentForAddNewGroup!: any;
   allStudentForUpdatingGroup: any;
   addEditForm!: FormGroup;
+
+  selectedCategory: string = '';
+  categories: string[] = ['FE', 'BE', 'DO'];
+
   constructor(
     private _QuestionsService: QuestionsService,
     public dialogRef: MatDialogRef<AddEditComponent>,
@@ -94,5 +98,10 @@ export class AddEditQuestionComponent {
         console.log(this.allStudentForUpdatingGroup);
       },
     });
+  }
+
+  onCategoryChange(event: any) {
+    this.selectedCategory = event.target.value;
+    console.log('Selected category:', this.selectedCategory);
   }
 }
