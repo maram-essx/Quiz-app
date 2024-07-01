@@ -22,6 +22,7 @@ export class QuestionsComponent {
   ) {}
   ngOnInit(): void {
     this.getResults();
+    this.onAllQuestion();
   }
 
   getResults() {
