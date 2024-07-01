@@ -80,7 +80,8 @@ button {
     }
   }
 
-  &.quiz-outline { //adjust to rmove the fixed stuff later
+  &.quiz-outline {
+    //adjust to rmove the fixed stuff later
     width: 150px;
     height: 40px;
     top: 25px;
@@ -98,6 +99,24 @@ button {
         color: $white-color;
         // background-color: $dark-color;
       }
+    svg {
+      path {
+      fill: white;
+      background-color: $dark-color;
+      }
+    }
+    }
+
+
+    &.large {
+      width: 200px;
+      height: 150px;
+      top: 100px;
+      left: 220px;
+      gap: 0px;
+      border-radius: 10px 10px 10px 10px;
+      border: 1px 0px 0px 0px;
+      opacity: 0px;
     }
   }
 }
