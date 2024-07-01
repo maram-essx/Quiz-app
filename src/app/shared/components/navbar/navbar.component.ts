@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { NavbarService } from '../../services/navbar.service';
+import { AddQuizComponent } from 'src/app/features/instructor/quizzes/components/add-quiz/add-quiz.component';
 
 @Component({
   selector: 'app-navbar',
@@ -37,5 +38,21 @@ export class NavbarComponent {
 
   logout() {
     this._AuthService.logout();
+  }
+
+  openAddDialog(add: boolean): void {
+    const dialogRef = this.dialog.open(AddQuizComponent, {
+      width: '75%',
+      height: '75%',
+      data: {
+        add: add,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+      }
+    });
   }
 }

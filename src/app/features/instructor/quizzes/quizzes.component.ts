@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IQuizzes } from './models/iQuizzes';
 import { QuizzesService } from './services/quizzes.service';
 import { IQuiz } from '../models/instructor';
+import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'src/app/common/helper-services/toastr.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quizzes',
@@ -16,7 +20,11 @@ export class QuizzesComponent {
   upcomingQuizzes: IQuiz[] = [];
   defaultImg: string = '../../../../assets/images/Default-img.svg'
 
-  constructor(private _QuizzesService: QuizzesService) {}
+  constructor(private _QuizzesService: QuizzesService,
+    public dialog: MatDialog,
+    private _ToastrService: ToastrService,
+    private _Router: Router
+  ) {}
 
   ngOnInit() {
     this.upComingExams();
@@ -46,6 +54,23 @@ export class QuizzesComponent {
 
         this.completedQuizList = data.filter(item => item.status === 'closed');
         console.log('COMPLETED QUIZ LIST' , this.completedQuizList);
+    });
+  }
+
+  openAddDialog(add: boolean): void {
+    const dialogRef = this.dialog.open(AddQuizComponent, {
+      width: '75%',
+      height: '75%',
+      data: {
+        add: add,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.onAllQuizzes();
+      }
     });
   }
 
