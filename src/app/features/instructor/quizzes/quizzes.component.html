@@ -66,7 +66,7 @@
               <th class="py-2 th2 border-2 rounded-end-2">Date</th>
             </thead>
             <tbody class="text-start">
-              <tr class="mt-4" *ngFor="let item of allQuizzes">
+              <tr class="mt-4" *ngFor="let item of quizList.slice(0, 4)">
                 <td class="border-2 tdd">{{ item.title }}</td>
                 <td class="border-2 tdd">{{ item.group }}</td>
                 <td class="border-2 tdd">{{ item.participants }}</td>
@@ -80,9 +80,55 @@
       </div>
     </div>
     <div class="col-md-7">
-      <div class="brd">Upcoming Quizzes Cards</div>
       <div class="brd me-3 my-3">
-        <div class="all p-3 my-4 rounded-3">
+        <div class="p-3 brd rounded-3">
+          <div class="d-flex flex-column gap-2">
+            <div class="mb-3 d-flex align-items-center justify-content-between">
+              <h4 class="fw-bold">Upcoming quizzes</h4>
+            </div>
+            <div *ngFor="let quiz of upcomingQuizzes.slice(0, 2)" class="w-100">
+              <article class="d-flex align-items-center gap-3 overflow-hidden">
+                <figure
+                  class="h-100 m-0 rounded-2 flex-shrink-0"
+                  style="width: 150px"
+                >
+                  <img
+                    [src]="defaultImg"
+                    class="w-100 h-100 object-fit-cover rounded-2 quiz-bg"
+                    alt=""
+                  />
+                </figure>
+                <div class="d-flex align-items-center gap-4 w-100 pe-3">
+                  <div class="d-flex flex-column gap-3 p-3 w-100">
+                    <div class="card-main-header">
+                      <h4 class="m-0">{{ quiz.title }}</h4>
+                      <div class="card-details d-flex align-items-center gap-3">
+                        <span>{{ quiz.schadule | date }} </span>
+                      </div>
+                    </div>
+                    <div
+                      class="card-student d-flex align-items-center justify-content-between"
+                    >
+                      <p class="m-0 fw-bold">
+                        No. of students enrolled: {{ quiz.participants }}
+                      </p>
+                      <div
+                        class="d-flex gap-2 align-items-center"
+                        role="button"
+                      >
+                        <p class="m-0 fw-semibold">Open</p>
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="brd me-3 my-3">
+        <div class="all pb-1 px-3 my-4 rounded-3">
           <div class="d-flex align-items-center justify-content-between">
             <h4 class="fw-bold">Completed Quizzes</h4>
           </div>
@@ -96,7 +142,7 @@
               <th class="py-2 th2 border-2 rounded-end-2">Date</th>
             </thead>
             <tbody class="text-start">
-              <tr class="mt-4" *ngFor="let item of allQuizzes">
+              <tr class="mt-4" *ngFor="let item of completedQuizList.slice(0, 3)">
                 <td class="border-2 tdd">{{ item.title }}</td>
                 <td class="border-2 tdd">{{ item.group }}</td>
                 <td class="border-2 tdd">{{ item.participants }}</td>
