@@ -51,11 +51,63 @@
           Question Bank
         </button>
       </div>
-      <div class="brd">All Quizzes (getAll)</div>
+      <div class="brd me-3 my-3">
+        <div class="all p-3 my-4 rounded-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h4 class="fw-bold">All Quizzes</h4>
+          </div>
+          <table class="table text-center mt-4">
+            <thead class="text-start">
+              <th class="py-2 th1 border-2 rounded-start-2">Title</th>
+              <th class="py-2 border-white border-2">Group name</th>
+              <th class="py-2 border-white border-2">
+                No. of persons in group
+              </th>
+              <th class="py-2 th2 border-2 rounded-end-2">Date</th>
+            </thead>
+            <tbody class="text-start">
+              <tr class="mt-4" *ngFor="let item of allQuizzes">
+                <td class="border-2 tdd">{{ item.title }}</td>
+                <td class="border-2 tdd">{{ item.group }}</td>
+                <td class="border-2 tdd">{{ item.participants }}</td>
+                <td class="border-2 tdd">
+                  {{ item.schadule | date : "dd/mm/yyyy" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <div class="col-md-7">
       <div class="brd">Upcoming Quizzes Cards</div>
-      <div class="brd">Completed Quizzes Table</div>
+      <div class="brd me-3 my-3">
+        <div class="all p-3 my-4 rounded-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h4 class="fw-bold">Completed Quizzes</h4>
+          </div>
+          <table class="table text-center mt-4">
+            <thead class="text-start">
+              <th class="py-2 th1 border-2 rounded-start-2">Title</th>
+              <th class="py-2 border-white border-2">Group name</th>
+              <th class="py-2 border-white border-2">
+                No. of persons in group
+              </th>
+              <th class="py-2 th2 border-2 rounded-end-2">Date</th>
+            </thead>
+            <tbody class="text-start">
+              <tr class="mt-4" *ngFor="let item of allQuizzes">
+                <td class="border-2 tdd">{{ item.title }}</td>
+                <td class="border-2 tdd">{{ item.group }}</td>
+                <td class="border-2 tdd">{{ item.participants }}</td>
+                <td class="border-2 tdd">
+                  {{ item.schadule | date : "dd/mm/yyyy" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </section>
