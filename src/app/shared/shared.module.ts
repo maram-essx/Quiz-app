@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 
 import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -34,7 +35,7 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
     NavbarComponent,
 
     PaginatorComponent,
-    
+
 
     DeleteComponent,
             ViewProfileComponent,
@@ -58,6 +59,7 @@ MatSelectModule,
     MatPaginatorModule,
 
     PaginatorModule,
+    MatDatepickerModule,
 
   ],
   exports:[
@@ -77,6 +79,7 @@ MatSelectModule,
     MatPaginatorModule,
     PaginatorModule,
     PaginatorComponent,
+    MatDatepickerModule,
 
 
   ],

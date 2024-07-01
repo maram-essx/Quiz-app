@@ -5,6 +5,11 @@ import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 import { AddEditComponent } from '../../../groups/components/add-edit/add-edit.component';
 import { IQuestions, IQuestionsRes } from '../../../questions/models/questions';
 import { QuestionsService } from '../../../questions/services/questions.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+import { IQuizzes, IQuizQuestion } from '../../models/iQuizzes';
 
 @Component({
   selector: 'app-add-quiz',
@@ -12,23 +17,26 @@ import { QuestionsService } from '../../../questions/services/questions.service'
   styleUrls: ['./add-quiz.component.scss']
 })
 export class AddQuizComponent {
-  questionDetails: IQuestions = {
+  quizDetails: IQuizzes = {
     _id: '',
+    code: '',
     title: '',
     description: '',
-    options: {
-      A: '',
-      B: '',
-      C: '',
-      D: '',
-      _id: '',
-    },
-    answer: '',
-    difficulty: '',
-    points: 0,
-    type: '',
     status: '',
-  instructor: '',
+    instructor: '',
+    group: '',
+    questions_number: 0,
+    questions: [],
+    schadule: '',
+    duration: 0,
+    score_per_question: 0,
+    type: '',
+    difficulty: '',
+    updatedAt: '',
+    createdAt: '',
+    __v: 0,
+    closed_at: '',
+    participants: 0,
   };
   allQuestionsForAddNewQuestion!: any;
   allQuestionsForUpdatingQuestion: any;
@@ -77,7 +85,7 @@ export class AddQuizComponent {
     this._QuestionsService.getQuestionById(id).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.questionDetails = res;
+        this.quizDetails = res;
       },
       error: (err) => {
         //console.log(err)

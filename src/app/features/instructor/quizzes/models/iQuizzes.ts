@@ -7,7 +7,7 @@ export interface IQuizzes {
   instructor: string
   group: string
   questions_number: number
-  questions: string[]
+  questions: IQuizQuestion[]
   schadule: string
   duration: number
   score_per_question: number
@@ -18,4 +18,10 @@ export interface IQuizzes {
   __v: number
   closed_at?: string
   participants: number
+}
+
+
+export interface IQuizQuestion {
+  answer : string,
+  question: string
 }

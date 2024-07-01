@@ -4,7 +4,7 @@
       class="caption d-flex justify-content-between align-items-center border-bottom"
     >
       <div class="p-3">
-        <h5 class="m-0 p-0" *ngIf="data.add">Set up a new question</h5>
+        <h5 class="m-0 p-0" *ngIf="data.add">Set up a new quiz</h5>
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <div
@@ -32,7 +32,7 @@
         <span class="input-group-text fw-bold" id="basic-addon1">Title</span>
         <input
           type="text"
-          [value]="questionDetails.title"
+          [value]="quizDetails.title"
           formControlName="title"
           class="form-control p-2"
           aria-label="Title"
@@ -40,74 +40,11 @@
         />
       </div>
 
-      <div class="input-group col-12 my-2 px-1">
-        <span class="input-group-text fw-bold py-4" id="basic-addon1"
-          >Description</span
-        >
-        <input
-          type="text"
-          [value]="questionDetails.description"
-          formControlName="description"
-          class="form-control p-2"
-          aria-label="Description"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-
-      <div formGroupName="options" class="row p-0 m-0">
-        <div class="col-md-6 col-12 my-2 px-1">
-          <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">A</span>
-            <input
-              type="text"
-              formControlName="A"
-              class="form-control p-2"
-              aria-label="Option A"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-        </div>
-        <div class="col-md-6 col-12 my-2 px-1">
-          <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">B</span>
-            <input
-              type="text"
-              formControlName="B"
-              class="form-control p-2"
-              aria-label="Option B"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-        </div>
-        <div class="col-md-6 col-12 my-2 px-1">
-          <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">C</span>
-            <input
-              type="text"
-              formControlName="C"
-              class="form-control p-2"
-              aria-label="Option C"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-        </div>
-        <div class="col-md-6 col-12 my-2 px-1">
-          <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">D</span>
-            <input
-              type="text"
-              formControlName="D"
-              class="form-control p-2"
-              aria-label="Option D"
-              aria-describedby="basic-addon1"
-            />
-          </div>
-        </div>
-      </div>
-
       <div class="col-md-4 col-12">
         <div class="input-group my-2 px-1 text-black">
-          <span class="input-group-text fw-bold" id="basic-addon1">Answer</span>
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >Duration (in minutes)</span
+          >
           <select
             formControlName="answer"
             class="form-control bg-transparent text-black border-end-0 border-start-0"
@@ -121,6 +58,112 @@
               [value]="answer"
             >
               {{ answer }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-arrow-down"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class="input-group my-2 px-1 text-black">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >No. of questions</span
+          >
+          <select
+            formControlName="type"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
+            aria-label="Type"
+            aria-describedby="basic-addon1"
+            (change)="onCategoryChange($event)"
+          >
+            <option
+              *ngFor="let category of categories"
+              class="text-black"
+              [value]="category"
+            >
+              {{ category }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-arrow-down"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <div class="input-group my-2 px-1 text-black">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >Score per question</span
+          >
+          <select
+            formControlName="difficulty"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
+            aria-label="Difficulty"
+            aria-describedby="basic-addon1"
+            (change)="onDifficultyChange($event)"
+          >
+            <option
+              *ngFor="let difficulty of difficulties"
+              class="text-black"
+              [value]="difficulty"
+            >
+              {{ difficulty }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-arrow-down"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold py-4" id="basic-addon1"
+          >Description</span
+        >
+        <input
+          type="text"
+          [value]="quizDetails.description"
+          formControlName="description"
+          class="form-control p-2"
+          aria-label="Description"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <!-- <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1">Schedule</span>
+        <input
+          formControlName="description"
+          class="form-control p-2"
+          aria-label="Description"
+          aria-describedby="basic-addon1"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div> -->
+
+      <div class="col-md-4 col-12">
+        <div class="input-group my-2 px-1 text-black">
+          <span class="input-group-text fw-bold" id="basic-addon1"
+            >Difficulty</span
+          >
+          <select
+            formControlName="difficulty"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
+            aria-label="Difficulty"
+            aria-describedby="basic-addon1"
+            (change)="onDifficultyChange($event)"
+          >
+            <option
+              *ngFor="let difficulty of difficulties"
+              class="text-black"
+              [value]="difficulty"
+            >
+              {{ difficulty }}
             </option>
           </select>
           <span class="input-group-text border-start-0" id="basic-addon1">
@@ -158,21 +201,21 @@
       <div class="col-md-4 col-12">
         <div class="input-group my-2 px-1 text-black">
           <span class="input-group-text fw-bold" id="basic-addon1"
-            >Difficulty</span
+            >Group name</span
           >
           <select
-            formControlName="difficulty"
+            formControlName="answer"
             class="form-control bg-transparent text-black border-end-0 border-start-0"
-            aria-label="Difficulty"
+            aria-label="Answer"
             aria-describedby="basic-addon1"
-            (change)="onDifficultyChange($event)"
+            (change)="onAnswerChange($event)"
           >
             <option
-              *ngFor="let difficulty of difficulties"
+              *ngFor="let answer of answers"
               class="text-black"
-              [value]="difficulty"
+              [value]="answer"
             >
-              {{ difficulty }}
+              {{ answer }}
             </option>
           </select>
           <span class="input-group-text border-start-0" id="basic-addon1">
