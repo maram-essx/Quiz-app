@@ -25,6 +25,7 @@ import { PaginatorModule } from 'primeng/paginator';
 
 import { DeleteComponent } from './components/delete/delete.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 
 
@@ -39,6 +40,7 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 
     DeleteComponent,
             ViewProfileComponent,
+            NoDataComponent,
 
 
   ],
@@ -80,6 +82,7 @@ MatSelectModule,
     PaginatorModule,
     PaginatorComponent,
     MatDatepickerModule,
+    NoDataComponent,
 
 
   ],
