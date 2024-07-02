@@ -59,5 +59,7 @@ logout(): void {
   sessionStorage.clear();
   this._Router.navigate(['/auth/login'])
 }
-
+changePassword(data:any):Observable<any>{
+  return this._HttpClient.post('auth/change-password',data)
+}
 }
