@@ -9,6 +9,10 @@ import { IMenu } from 'src/app/core/model/global';
 })
 
 export class SidebarComponent {
+  @Output() isOpenedValue = new EventEmitter<boolean>();
+  isOpened:boolean = true;
+
+
   isInstructor():boolean{
     return localStorage.getItem('role') == Role.Instructor? true : false ;
    }
@@ -64,6 +68,13 @@ export class SidebarComponent {
           isActive: this.isInstructor() || this.isStudent()
           } ,
   ]
+
+  onClicked() {
+    this.isOpened = !this.isOpened;
+    this.isOpenedValue.emit(this.isOpened);
+    console.log(this.isOpened)
+  }
+  
 
 
 }

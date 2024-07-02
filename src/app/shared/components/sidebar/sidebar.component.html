@@ -1,14 +1,22 @@
 <section id="sidebar" class="bg-white position-fixed top-0 z-2 h-100">
     <div class="container-fluid">
         <div class="row">
-            <div class="side-links pt-3">
+
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="text-center" (click)="isOpened=!isOpened">
+                    <i class="fa-solid fa-bars bar-icon"></i>
+                  </div>
+          
+            </div>
+
+            <div class="side-links">
                 <ul class="ps-0 list-unstyled">
                         <ng-container *ngFor="let item of menu">
                             <li *ngIf="item.isActive" class="list">
                                 <a [routerLink]="item.link" 
                                 routerLinkActive="active-ul" class="text-decoration-none dark-color">
                                 <i [class]="item.icon" class="dark-color rounded-2 main-color p-2"></i>
-                                <span class="ms-2">{{item.text}}</span>
+                                <span class="ms-2" [class]="isOpened?'':'d-none'">{{item.text}}</span>
                             </a>
                         </li>
                     </ng-container>

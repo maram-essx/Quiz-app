@@ -1,10 +1,10 @@
 <section class="dashboard">
     <div class="container-fluid ">
       <div class="row">
-          <div  class="col-md-2 px-0">
+          <div  class="px-0" [class]="sideBar?.isOpened?'col-2':'col-1'">
              <app-sidebar></app-sidebar>
           </div>
-          <div  class="col-md-10">
+          <div  class="" [class]="sideBar?.isOpened?'col-10 ':'col-11 '">
             <app-navbar></app-navbar>
             <router-outlet></router-outlet>
           </div>
