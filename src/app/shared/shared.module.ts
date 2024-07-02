@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 
 import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -24,6 +25,7 @@ import { PaginatorModule } from 'primeng/paginator';
 
 import { DeleteComponent } from './components/delete/delete.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 
 
@@ -34,10 +36,11 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
     NavbarComponent,
 
     PaginatorComponent,
-    
+
 
     DeleteComponent,
             ViewProfileComponent,
+            NoDataComponent,
 
 
   ],
@@ -58,6 +61,7 @@ MatSelectModule,
     MatPaginatorModule,
 
     PaginatorModule,
+    MatDatepickerModule,
 
   ],
   exports:[
@@ -77,6 +81,8 @@ MatSelectModule,
     MatPaginatorModule,
     PaginatorModule,
     PaginatorComponent,
+    MatDatepickerModule,
+    NoDataComponent,
 
 
   ],

@@ -10,3 +10,46 @@
     box-shadow: none;
   }
 }
+
+
+.caption {
+  h5,
+     i {
+         color:#0D1321;
+         font-size: 1.2rem;
+         font-weight: 700;
+         transition: 0.3s;
+     }
+
+     .close:hover {
+         background-color:rgb(187, 14, 14);;
+         i {
+             color: #fff;
+         }
+         cursor: pointer;
+     }
+     .check:hover{
+         background-color: #C5D86D;
+         cursor: pointer;
+         i {
+             color: #fff;
+         }
+         }
+ }
+ .form-control {
+     font-size: 1.1rem;
+     font-weight: 500;
+     color: #0D1321;
+ }
+
+ .input-group-text {
+     background-color: #FFEDDF;
+ }
+
+ .form-control {
+     background-color: #fff;
+ }
+ .form-control:focus{
+     border-color:#dee2e6;
+     box-shadow: none;
+ }
