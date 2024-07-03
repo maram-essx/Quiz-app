@@ -1,0 +1,8 @@
+.side-section{
+    // transition: 0.5s;
+    overflow: hidden;
+  }
+  .opened > div{
+    transition: all 0.3s ease-in-out;
+  }
+ 
