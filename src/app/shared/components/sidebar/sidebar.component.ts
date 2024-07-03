@@ -25,45 +25,45 @@ export class SidebarComponent {
   menu:IMenu[] = [
     {
       text: 'Dashboard',
-      icon: 'bi bi-house-door',
+      icon: '../../../../assets/images/Dashboard-con.svg',
       link: '/dashboard/instructor/home',
       isActive: this.isInstructor() || this.isStudent()
     },
     {
     text:'Groups' ,
-    icon: 'bi bi-people' ,
+    icon: '../../../../assets/images/Students-icon.svg' ,
     link:'/dashboard/instructor/groups',
     isActive: this.isInstructor() ,
     } ,
     {
       text:'Quizzes' ,
-      icon: 'bi bi-alarm' ,
+      icon: '../../../../assets/images/Quiz-icon.svg' ,
       link:'/dashboard/instructor/quizzes',
       isActive: this.isInstructor() || this.isStudent()
       } ,
 
       {
         text:'Students' ,
-        icon: 'bi bi-people' ,
+        icon: '../../../../assets/images/Students-icon.svg' ,
         link:'/dashboard/instructor/students',
         isActive: this.isInstructor() || this.isStudent()
         } ,
 
         {
           text:'Questions' ,
-          icon: 'bi bi-clipboard2-check' ,
+          icon: '../../../../assets/images/Quiz-icon.svg' ,
           link:'/dashboard/instructor/questions',
           isActive: this.isInstructor()
           } ,
       {
         text:'Results' ,
-        icon: 'bi bi-journal-richtext' ,
+        icon: '../../../../assets/images/Results-icon.svg' ,
         link:'/dashboard/instructor/results',
         isActive: this.isInstructor() || this.isStudent()
         } ,
         {
           text:'Help' ,
-          icon: 'bi bi-question-circle' ,
+          icon: '../../../../assets/images/question-mark-icon.svg' ,
           link:'/dashboard/instructor/help',
           isActive: this.isInstructor() || this.isStudent()
           } ,
