@@ -24,15 +24,14 @@ export class StudentService {
   }
 
   //delete student from group
-  deleteStudGroup(data: IAddStudToGroupReq): Observable<IAddStudToGroupRes> {
-    return this._HttpClient.delete<IAddStudToGroupRes>(`student/${data.student_id}/${data.group_id}`);
+  deleteStudGroup(stId: string, groupId: string): Observable<IAddStudToGroupRes> {
+    return this._HttpClient.delete<IAddStudToGroupRes>(`student/${stId}/${groupId}`);
   }
 
   //update student group   =>not work
-  updateStudGroup(data: IAddStudToGroupReq , data2:any): Observable<IAddStudToGroupRes> {
-    return this._HttpClient.put<IAddStudToGroupRes>(`student/${data.student_id}/${data.group_id}` , data2);
+  updateStudGroup(student_id:string ,group_id:string): Observable<any> {
+    return this._HttpClient.put<any>(`student/${student_id}/${group_id}` , group_id);
   }
-
   studentsWithoutGroup(): Observable<Root> {
     return this._HttpClient.get<Root>('student/without-group')
   }

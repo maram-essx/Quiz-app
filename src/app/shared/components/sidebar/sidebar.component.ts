@@ -43,12 +43,21 @@ export class SidebarComponent {
   //     isActive: this.isInstructor() || this.isStudent()
   //     } ,
 
+
   //     {
   //       text:'Students' ,
   //       icon: 'bi bi-people' ,
   //       link:'/dashboard/instructor/students/students-list',
   //       isActive: this.isInstructor() || this.isStudent()
   //       } ,
+
+      {
+        text:'Students' ,
+        icon: 'bi bi-people' ,
+        link:'/dashboard/instructor/students',
+        isActive: this.isInstructor() || this.isStudent()
+        } ,
+
 
   //       {
   //         text:'Questions' ,

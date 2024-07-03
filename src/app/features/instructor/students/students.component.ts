@@ -9,6 +9,10 @@ import { IGroupsListRes2 } from '../groups/models/group';
 import { IAddStudToGroupReq, IAddStudToGroupRes } from './models/student';
 import { StudentService } from './services/student.service';
 import { GroupService } from '../groups/services/group.service';
+import { MenuItem } from 'primeng/api';
+import { ToastrService } from 'src/app/common/helper-services/toastr.service';
+import { AddEditComponent } from '../groups/components/add-edit/add-edit.component';
+import { AddStudentGroupComponent } from './components/add-student-group/add-student-group.component';
 
 interface IStudentsRouting {
   label: string;
@@ -22,7 +26,7 @@ interface IStudentsRouting {
 })
 export class StudentsComponent {
 
-
+  items: MenuItem[] = [];
 
   allGroups: IGroupsListRes2[] = [];
 
@@ -46,9 +50,12 @@ export class StudentsComponent {
   };
 
   constructor(
+
     private _StudentsService: StudentService,
     private _GroupsService: GroupService,
-    private _Router: Router
+    private _Router: Router,
+     public dialog: MatDialog ,
+    private _ToastrService:ToastrService
   ) {}
   
   ngOnInit(): void {
@@ -59,12 +66,20 @@ export class StudentsComponent {
     this._GroupsService.onGetAllGroups().subscribe({
       next: (res: IGroupsListRes2[]) => {
         this.allGroups = res;
-      
+      this.groupsItem()
       }
     });
   }
 
-
+  groupsItem(): void {
+    this.items = this.allGroups.map(group => ({
+      label: group.name,
+      icon: 'pi pi-users',
+      command: () => {
+        this._Router.navigate([`/dashboard/instructor/students/groups/${group._id}`])
+      }
+    }));
+  }
   // add student to group
   addStudToGroup(data: IAddStudToGroupReq) {
     this._StudentsService.addStudToGroup(data).subscribe({
@@ -76,51 +91,41 @@ export class StudentsComponent {
         // call getallstudents function
       },
     });
+ 
+
+
+
+  //   openEditDailog(id: string, edit: boolean): void {
+  //     const dialogRef = this.dialog.open(AddEditComponent, {
+  //       width: '550px',
+  //       height: '300px',
+  //       data: {
+  //         id: id,
+  //         edit: edit
+  //       }
+  //     });
+  //     dialogRef.afterClosed().subscribe(result => {
+  //       // console.log('The update  was closed');
+  //       //console.log(result);
+  //       if (result) {
+  //         this.editGroup(id, result)
+  //       }
+  //     }
+  //     )
+  // }
+
+    
   }
 
+  openAddDailog(
+  
+  ): void {
+    this.dialog.open(AddStudentGroupComponent, {
+      width: '550px',
+      height: '300px',
+      
+    });
+  }
 
-
-  // allStudents:IStudentData[] = [];
-
-  // constructor(private _InstructorService: InstructorService) {}
-
-  // ngOnInit(): void {
-  //   // this.upComingExams();
-
-  //   this.getAllStudents();
-  // }
-  // // upComingExams(): void {
-  // //   this._InstructorService.upComingFive().subscribe((quizzes) => {
-  // //     this.upcomingQuizzes = quizzes;
-  // //     console.log(this.upcomingQuizzes);
-
-  // //   });
-  // // }
-
-  // getAllStudents(): void {
-  //   this._InstructorService.allStudents().subscribe((students) => {
-  //     this.allStudents = students;
-  //     console.log(this.allStudents);
-  //   });
-
-  // }
-
-  //  // Handle Paginator ...
-  //  pageSizeOptions = [5, 10, 25];
-  //  hidePageSize = false;
-  //  showPageSizeOptions = true;
-  //  showFirstLastButtons = true;
-  //  disabled = false;
-
-  //  pageNumber: number = 0;
-  //  pageSize: number = 10;
-  //  pageEvent!: PageEvent;
-
-  //  handlePageEvent(e: PageEvent) {
-  //    this.pageEvent = e;
-  //    this.pageSize = e.pageSize;
-  //    this.pageNumber = e.pageIndex;
-  //    this.getAllStudents()
-  //  }
 
 }
