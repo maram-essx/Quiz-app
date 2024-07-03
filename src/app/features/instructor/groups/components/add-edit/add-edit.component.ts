@@ -57,9 +57,7 @@ onSubmit(addEditForm:FormGroup) {
   this.dialogRef.close(addEditForm.value);
   console.log(addEditForm.value)
 }
-onNoClick(): void {
-  this.dialogRef.close();
-}
+
 
 getAllStudentsWithoutGroup(){
   this._GroupService.getAllStudentsForAddGroup().subscribe({
@@ -79,6 +77,8 @@ getAllStudentsWithoutGroup(){
    }
    })
  }
-
+ onNoClick(): void {
+  this.dialogRef.close();
+}
 
 }

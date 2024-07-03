@@ -8,6 +8,7 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { StudentsWithoutGroupsComponent } from './components/students-without-groups/students-without-groups.component';
 import { AddStudentGroupComponent } from './components/add-student-group/add-student-group.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DeleteStudentComponent } from './components/delete-student/delete-student.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     StudentsListComponent,
     GroupsComponent,
     StudentsWithoutGroupsComponent,
-    AddStudentGroupComponent
+    AddStudentGroupComponent,
+    DeleteStudentComponent
 
   ],
   imports: [
