@@ -1,1 +1,83 @@
-<p>view-quiz works!</p>
+<section class="container-fluid">
+  <div class="d-flex flex-row py-3">
+    <h5
+      class="point fw-bold"
+      [routerLink]="['/dashboard/instructor/quizzes']"
+    >
+      Quizzes
+    </h5>
+    <h5 class="px-1 fw-bold">
+      <i class="fa-solid fa-chevron-right fa-sm ms-2"></i
+      ><i class="fa-solid fa-chevron-right fa-sm me-2"></i>
+      {{ quizzes[0].title }}
+    </h5>
+  </div>
+
+  <div class="me-3 my-3 row caption">
+    <div class="brd col-md-5 col-12" *ngFor="let quiz of quizzes">
+      <div class="col-12 my-2 px-1">
+        <h3 class="fw-bold p-2">{{ quiz.title }}</h3>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1">Schedule</span>
+        <div class="form-control p-2">
+          {{ quiz.schadule | date : "dd MMMM, yyyy - hh:mm a" }}
+        </div>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold py-4" id="basic-addon1"
+          >Description</span
+        >
+        <div class="form-control p-2">{{ quiz.description }}</div>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Number of questions</span
+        >
+        <div class="form-control p-2">{{ quiz.questions_number }}</div>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1">Duration</span>
+        <div class="form-control p-2">{{ quiz.duration }}</div>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Difficulty</span
+        >
+        <div class="form-control p-2">{{ quiz.difficulty }}</div>
+      </div>
+
+      <div class="input-group col-12 my-2 px-1">
+        <span class="input-group-text fw-bold" id="basic-addon1"
+          >Quiz type</span
+        >
+        <div class="form-control p-2">{{ quiz.type }}</div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button
+          class="quiz-outline fw-bold d-flex justify-content-center align-items-center me-3 gap-1 m-3"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="#0D1321"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.5593 4.43846L14.1186 5.87914C13.9717 6.02602 13.7342 6.02602 13.5873 5.87914L10.1184 2.41025C9.97153 2.26337 9.97153 2.02586 10.1184 1.87898L11.5591 0.438299C12.1435 -0.1461 13.0935 -0.1461 13.6811 0.438299L15.5593 2.3165C16.1468 2.9009 16.1468 3.85093 15.5593 4.43846ZM8.88086 3.11653L0.674286 11.3231L0.01176 15.1201C-0.0788686 15.6327 0.368024 16.0764 0.880544 15.9889L4.67757 15.3233L12.8841 7.11669C13.031 6.96981 13.031 6.7323 12.8841 6.58542L9.41526 3.11653C9.26525 2.96965 9.02774 2.96965 8.88086 3.11653ZM3.87754 10.62C3.70566 10.4481 3.70566 10.1731 3.87754 10.0012L8.69023 5.18849C8.86211 5.01661 9.13712 5.01661 9.309 5.18849C9.48088 5.36037 9.48088 5.63538 9.309 5.80726L4.49631 10.62C4.32443 10.7918 4.04942 10.7918 3.87754 10.62ZM2.74937 13.2482H4.24943V14.3826L2.23372 14.7357L1.26181 13.7638L1.61495 11.7481H2.74937V13.2482Z"
+              fill="#0D1321"
+            />
+          </svg>
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -74,7 +74,7 @@ export class SidebarComponent {
     this.isOpenedValue.emit(this.isOpened);
     console.log(this.isOpened)
   }
-  
+
 
 
 }

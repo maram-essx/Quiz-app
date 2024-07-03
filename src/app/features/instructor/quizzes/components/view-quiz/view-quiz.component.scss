@@ -1,0 +1,16 @@
+@import '../../../../../../assets/styles/layout/cards';
+@import '../../../../../../assets/styles/components/table';
+@import '../../../../../../assets/styles/abstracts/variables';
+
+.point {
+  cursor: pointer;
+}
+
+.active {
+  cursor: default;
+}
+
+.fa-chevron-right {
+  color: $primary-color;
+}
+
