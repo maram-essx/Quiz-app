@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IQuiz } from '../../models/instructor';
-import { IQuizzes } from '../models/iQuizzes';
+import { IQuizResponse, IQuizzes } from '../models/iQuizzes';
 
 @Injectable({
   providedIn: 'root',
@@ -17,4 +17,6 @@ export class QuizzesService {
   allQuizzes(): Observable<IQuizzes[]> {
     return this._HttpClient.get<IQuizzes[]>('quiz');
   }
+
+  // addQuiz(): Observable<IQuizResponse> {}
 }
