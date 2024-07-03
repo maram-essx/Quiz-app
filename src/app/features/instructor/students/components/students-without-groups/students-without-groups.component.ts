@@ -31,4 +31,23 @@ export class StudentsWithoutGroupsComponent {
       error: (error: HttpErrorResponse) => {}
     });
   }
+
+  updatePaginatedData(): void {
+    const start = this.first;
+    const end = this.first + this.rows;
+    this.paginatedStudentData = this.studentsWithoutGroup.slice(start, end);
+  }
+
+  onPageSizeChange(size: number): void {
+    this.rows = size;
+    this.first = 0;
+    this.updatePaginatedData();
+  }
+
+  onPageNumberChange(page: number): void {
+    this.first = (page - 1) * this.rows;
+    this.updatePaginatedData();
+  }
+
+
 }

@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IGroupsListRes } from '../../../groups/models/group';
 import { Root, IAddStudToGroupRes } from '../../models/student';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 
 @Component({
   selector: 'app-add-student-group',
@@ -14,7 +16,7 @@ import { Root, IAddStudToGroupRes } from '../../models/student';
 export class AddStudentGroupComponent {
   studentsList:Root=[];
   groupsList:IGroupsListRes=[];
-  constructor(private _GroupsService:GroupService,private _StudentsService:StudentService 
+  constructor(private _GroupsService:GroupService, private _ToastrService:ToastrService,private _StudentsService:StudentService , public dialogRef: MatDialogRef<AddStudentGroupComponent>
  ) { }
 
   ngOnInit(): void {
@@ -30,9 +32,14 @@ export class AddStudentGroupComponent {
   addStudToGroup(data: FormGroup) {
     this._StudentsService.addStudToGroup(data.value).subscribe({
       next: (res: IAddStudToGroupRes) => {
-      
+      console.log(res);
       }, error: (err: HttpErrorResponse) => {
       }, complete: () => {
+         this.onNoClick();
+        this._ToastrService.Success('Student Added sucessfully')
+
+       
+
       }
     })
   }
@@ -61,6 +68,9 @@ export class AddStudentGroupComponent {
 
 
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 
 

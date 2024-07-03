@@ -41,7 +41,7 @@ export class SidebarComponent {
       {
         text:'Students' ,
         icon: 'bi bi-people' ,
-        link:'/dashboard/instructor/students/students-list',
+        link:'/dashboard/instructor/students',
         isActive: this.isInstructor() || this.isStudent()
         } ,
 
