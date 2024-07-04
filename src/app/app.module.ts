@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GlobalInterceptor } from './core/interceptors/global.interceptor';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxSpinnerModule,
+
   ],
   providers: [
 
@@ -29,11 +32,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       useClass: GlobalInterceptor,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: SpinnerInterceptor,
-      multi: true,
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
