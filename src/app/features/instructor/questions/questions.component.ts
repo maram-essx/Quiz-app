@@ -5,6 +5,7 @@ import { QuestionsService } from './services/questions.service';
 import { AddEditQuestionComponent } from './components/add-edit-question/add-edit-question.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
+import { DeleteComponent } from 'src/app/shared/components/delete/delete.component';
 
 @Component({
   selector: 'app-questions',
@@ -39,8 +40,6 @@ export class QuestionsComponent {
 
   openAddDialog(add: boolean): void {
     const dialogRef = this.dialog.open(AddEditQuestionComponent, {
-      width: '75%',
-      height: '75%',
       data: {
         add: add,
       },
@@ -79,4 +78,41 @@ export class QuestionsComponent {
       error: (err: any) => {},
     });
   }
+
+  deleteQuestion(id:string):void{
+    this._QuestionsService.deleteQuestion(id).subscribe({
+      next: (res) => {
+        // console.log(res)
+        this._ToastrService.Success(res.message)
+
+      },
+      error: (err) => {
+        this._ToastrService.Error(err.error.message)
+
+
+      },
+      complete: () => {
+        this.getResults();
+      }
+
+    })
+  }
+
+  openDeleteDialog(id:string,name:string,componentName:string): void {
+    const dialo =this.dialog.open(DeleteComponent, {
+      width: '500px',
+
+      data:{
+        comp:componentName,
+        id:id,
+        name:name
+      }
+    });
+    dialo.afterClosed().subscribe(res=>{
+      if(res){
+       this.deleteQuestion(res)
+      }
+    })
+  }
+
 }
