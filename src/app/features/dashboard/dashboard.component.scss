@@ -1,8 +1,38 @@
 .side-section{
-    // transition: 0.5s;
-    overflow: hidden;
-  }
+  padding: 0;
+  border-right: 1px solid #00000033;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.toggle-icon{
+  cursor: pointer;
+}
+
+.sidebar-header{
+  border-bottom: 1px solid #00000033;
+}
+
+
   .opened > div{
-    transition: all 0.3s ease-in-out;
+      transition: all .3s ease-in-out;
+    }
+
+    @media screen and (max-width: 767px) {
+      .sidebar-header{
+        display: none !important;
+      }
+      .side-section{
+        border-right: none !important;
+      }
+      .group{
+        display: flex;
+      }
+      .side-section {
+          width: 60px;
+      }
+      .content{
+        width: calc(100% - 60px);
+      }
+  
   }
- 

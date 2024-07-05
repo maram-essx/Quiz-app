@@ -7,5 +7,13 @@ import { SidebarComponent } from 'src/app/shared/components/sidebar/sidebar.comp
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  @ViewChild(SidebarComponent) sideBar: SidebarComponent | undefined
+  // @ViewChild(SidebarComponent) sideBar: SidebarComponent | undefined
+
+  isOpened: boolean = true
+  
+  toggleSidebar():void{
+    this.isOpened = !this.isOpened
+  }
+
+
 }
