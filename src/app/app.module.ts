@@ -9,11 +9,14 @@ import { GlobalInterceptor } from './core/interceptors/global.interceptor';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     MatSnackBarModule,
     NgxSpinnerModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
 
   ],
   providers: [
