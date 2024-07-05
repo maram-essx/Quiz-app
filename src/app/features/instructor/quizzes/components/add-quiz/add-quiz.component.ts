@@ -1,15 +1,17 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 import { AddEditComponent } from '../../../groups/components/add-edit/add-edit.component';
 import { IQuestions, IQuestionsRes } from '../../../questions/models/questions';
 import { QuestionsService } from '../../../questions/services/questions.service';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
-import { IQuizzes, IQuizQuestion } from '../../models/iQuizzes';
+import { IQuizzes, IQuizQuestion, IGroups, IGroup } from '../../models/iQuizzes';
+import { QuizzesService } from '../../services/quizzes.service';
+import { QuizCodeComponent } from '../quiz-code/quiz-code.component';
 
 @Component({
   selector: 'app-add-quiz',
@@ -38,102 +40,131 @@ export class AddQuizComponent {
     closed_at: '',
     participants: 0,
   };
-  allQuestionsForAddNewQuestion!: any;
-  allQuestionsForUpdatingQuestion: any;
-  addEditForm!: FormGroup;
 
-  selectedAnswer: string = '';
-  answers: string[] = ['A', 'B', 'C', 'D'];
+  // allQuestionsForUpdatingQuestion: any;
+  quizForm!: FormGroup;
 
+  selectedDuration: string = '';
+  durations: string[] = ['5', '10', '15', '20', '25', '30', '40', '50', '60', '90', '100', '120'];
+  numberOfQuestions: string = '';
   selectedCategory: string = '';
   categories: string[] = ['FE', 'BE', 'DO'];
+  allGroups!: IGroup;
+  selectedGroup: string | null = null;
 
   selectedDifficulty: string = '';
   difficulties: string[] = ['easy', 'medium', 'hard'];
+  date: Date | null = null;
+  time: string | null = null;
 
   constructor(
-    private _QuestionsService: QuestionsService,
+    private _QuizzesService: QuizzesService,
     public dialogRef: MatDialogRef<AddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _ToastrService: ToastrService
-  ) {}
+    private _ToastrService: ToastrService,
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+  ) {
+    this.quizForm = this.fb.group({
+      group: [''],
+      schedule: ['']
+    });
+  }
 
   ngOnInit(): void {
-    if (this.data.id != null) {
-      this.viewQuestion(this.data.id);
-    }
-
-    this.getAllQuestions();
-
+    // if (this.data.id != null) {
+    //   this.viewQuestion(this.data.id);
+    // }
+    this.getGroups()
 
 
-    this.addEditForm = new FormGroup({
+
+    this.quizForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      options: new FormGroup({
-        A: new FormControl('', [Validators.required]),
-        B: new FormControl('', [Validators.required]),
-        C: new FormControl('', [Validators.required]),
-        D: new FormControl('', [Validators.required])
-      }),
-      answer: new FormControl('', [Validators.required]),
+      group: new FormControl('', [Validators.required]),
+      questions_number: new FormControl('', [Validators.required]),
       difficulty: new FormControl('', [Validators.required]),
+      schadule: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
+      duration: new FormControl('', [Validators.required]),
+      score_per_question: new FormControl('', [Validators.required]),
     });
   }
-  viewQuestion(id: string) {
-    this._QuestionsService.getQuestionById(id).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.quizDetails = res;
-      },
-      error: (err) => {
-        //console.log(err)
-      },
-    });
-  }
-  onSubmit(addEditForm: FormGroup) {
-    this.dialogRef.close(addEditForm.value);
-    this.addQuestion(addEditForm);
-    this.getAllQuestions();
+  // viewQuestion(id: string) {
+  //   this._QuestionsService.getQuestionById(id).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res);
+  //       this.quizDetails = res;
+  //     },
+  //     error: (err) => {
+  //       //console.log(err)
+  //     },
+  //   });
+  // }
+  onSubmit(quizForm: FormGroup) {
+    console.log('ADD QUIZ FORM',quizForm);
+
+    this.dialogRef.close(quizForm.value);
+    this.addQuiz(quizForm);
   }
 
-  addQuestion(addEditForm: FormGroup): void {
-    if (addEditForm.valid) {
-      console.log('Question data:', addEditForm.value);
-      this._QuestionsService.AddNewQuestion(addEditForm.value).subscribe({
-        next: (res: IQuestionsRes) => {
-          console.log(res);
+  addQuiz(quizForm: FormGroup): void {
+
+    var code: string = '';
+
+    if (quizForm.valid) {
+      console.log('Quiz data:', quizForm.value);
+      this._QuizzesService.addQuiz(quizForm.value).subscribe({
+        next: (res: any) => {
+          console.log('RESPONSE CODE: ',res.data.code);
+          code = res.data.code;
+
+          this.openQuizCodeDialog(code);
+
         },
         error: (err) => {
-          console.error('Question error:', err);
+          console.error('Quiz error:', err);
           this._ToastrService.Error(err.error.message);
         },
         complete: () => {
           this.onNoClick();
-          this._ToastrService.Success('Quesion added sucessfully');
+          this._ToastrService.Success('Quiz added sucessfully');
         }
       });
     }
+  }
+
+  openQuizCodeDialog(code: string) {
+    const dialogRef = this.dialog.open(QuizCodeComponent, {
+      width: '450px',
+      height: '300px',
+      data: { code: code },
+    });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  getAllQuestions() {
-    this._QuestionsService.getAllQuestions().subscribe({
+  getGroups() {
+    this._QuizzesService.allGroups().subscribe({
       next: (res) => {
-        console.log('getAllQuestions: ', res);
-        this.allQuestionsForUpdatingQuestion = res;
-        console.log(this.allQuestionsForUpdatingQuestion);
+        console.log('allGroups: ', res);
+        this.allGroups = res;
+        console.log(this.allGroups);
       },
     });
   }
 
-  onAnswerChange(event: any) {
-    this.selectedAnswer = event.target.value;
-    console.log('Selected answer:', this.selectedAnswer);
+  onGroupChange(event: any) {
+    this.selectedGroup = event.target.value;
+    console.log('Selected Group ID:', this.selectedGroup);
+  }
+
+  onDurationChange(event: any) {
+    this.selectedDuration = event.target.value;
+    console.log('Selected Duration:', this.selectedDuration);
   }
 
   onCategoryChange(event: any) {
@@ -144,6 +175,34 @@ export class AddQuizComponent {
   onDifficultyChange(event: any) {
     this.selectedDifficulty = event.target.value;
     console.log('Selected difficulty:', this.selectedDifficulty);
+  }
+
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.date = event.value;
+    console.log('Date Change: ', this.date);
+    this.updateSchedule();
+
+  }
+
+  onTimeChange(event: any) {
+    this.time = event.target.value;
+    console.log('Time Change: ', this.time);
+    this.updateSchedule();
+  }
+
+  updateSchedule() {
+    if (this.date && this.time) {
+      console.log('Schedule Change: ', this.date, this.time);
+      const date = new Date(this.date);
+      const [hours, minutes] = this.time.split(':').map(Number);
+      date.setHours(hours, minutes);
+
+      this.quizForm.patchValue({
+        schadule: date.toISOString()
+      });
+
+      console.log('Schedule:', this.quizForm.value.schadule);
+    }
   }
 
 }
