@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 import { AddEditComponent } from '../../../groups/components/add-edit/add-edit.component';
 import { IQuestions, IQuestionsRes } from '../../../questions/models/questions';
@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 import { IQuizzes, IQuizQuestion, IGroups, IGroup } from '../../models/iQuizzes';
 import { QuizzesService } from '../../services/quizzes.service';
+import { QuizCodeComponent } from '../quiz-code/quiz-code.component';
 
 @Component({
   selector: 'app-add-quiz',
@@ -61,7 +62,8 @@ export class AddQuizComponent {
     public dialogRef: MatDialogRef<AddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _ToastrService: ToastrService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog,
   ) {
     this.quizForm = this.fb.group({
       group: [''],
@@ -108,11 +110,18 @@ export class AddQuizComponent {
   }
 
   addQuiz(quizForm: FormGroup): void {
+
+    var code: string = '';
+
     if (quizForm.valid) {
       console.log('Quiz data:', quizForm.value);
       this._QuizzesService.addQuiz(quizForm.value).subscribe({
         next: (res: any) => {
-          console.log(res);
+          console.log('RESPONSE CODE: ',res.data.code);
+          code = res.data.code;
+
+          this.openQuizCodeDialog(code);
+
         },
         error: (err) => {
           console.error('Quiz error:', err);
@@ -124,6 +133,14 @@ export class AddQuizComponent {
         }
       });
     }
+  }
+
+  openQuizCodeDialog(code: string) {
+    const dialogRef = this.dialog.open(QuizCodeComponent, {
+      width: '450px',
+      height: '300px',
+      data: { code: code },
+    });
   }
 
   onNoClick(): void {
