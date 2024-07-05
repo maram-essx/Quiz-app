@@ -50,3 +50,27 @@ export interface IQuizResponseData {
   createdAt: string
   __v: number
 }
+
+
+export interface ICreateQuiz {
+  title: string
+  description: string
+  group: string
+  questions_number: number
+  difficulty: string
+  type: string
+  schadule: string
+  duration: string
+  score_per_question: string
+}
+
+export type IGroup = IGroups[]
+
+export interface IGroups {
+  _id: string
+  name: string
+  status: string
+  instructor: string
+  students: string[]
+  max_students: number
+}

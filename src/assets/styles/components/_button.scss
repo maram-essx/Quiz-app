@@ -29,6 +29,17 @@ button {
     background-color: #333333;
   }
 
+  &.primary {
+    background-color: $primary-color;
+    width: 150px;
+    height: 35px;
+    top: 442px;
+    left: 594px;
+    gap: 0px;
+    border-radius: 20px 0px 0px 0px;
+    opacity: 0px;
+  }
+
   &.grey {
     width: 10.6rem;
     height: 7.5rem;
@@ -99,14 +110,13 @@ button {
         color: $white-color;
         // background-color: $dark-color;
       }
-    svg {
-      path {
-      fill: white;
-      background-color: $dark-color;
+      svg {
+        path {
+          fill: white;
+          background-color: $dark-color;
+        }
       }
     }
-    }
-
 
     &.large {
       width: 200px;

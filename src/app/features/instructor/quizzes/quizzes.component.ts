@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IQuizzes } from './models/iQuizzes';
+import { IGroup, IQuizzes } from './models/iQuizzes';
 import { QuizzesService } from './services/quizzes.service';
 import { IQuiz } from '../models/instructor';
 import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
@@ -19,6 +19,7 @@ export class QuizzesComponent {
   openQuizList: any[] =[];
   upcomingQuizzes: IQuiz[] = [];
   defaultImg: string = '../../../../assets/images/Default-img.svg'
+  allGroups!: IGroup;
 
   constructor(private _QuizzesService: QuizzesService,
     public dialog: MatDialog,
@@ -30,6 +31,7 @@ export class QuizzesComponent {
     this.upComingExams();
     this.onAllQuizzes();
     this.completedQuizzes();
+    this.getGroups();
   }
 
   upComingExams(): void {
@@ -71,6 +73,16 @@ export class QuizzesComponent {
       if (result) {
         this.onAllQuizzes();
       }
+    });
+  }
+
+  getGroups() {
+    this._QuizzesService.allGroups().subscribe({
+      next: (res) => {
+        console.log('allGroups: ', res);
+        this.allGroups = res;
+        console.log(this.allGroups);
+      },
     });
   }
 
