@@ -25,6 +25,7 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 import { NoDataComponent } from './components/no-data/no-data.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+
 @NgModule({
   declarations: [
     SharedComponent,
