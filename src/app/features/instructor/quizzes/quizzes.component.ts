@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IGroup, IQuizzes } from './models/iQuizzes';
 import { QuizzesService } from './services/quizzes.service';
 import { IQuiz } from '../models/instructor';
-import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
+import { AddEditQuizComponent } from './components/add-quiz/add-edit-quiz.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 import { Router } from '@angular/router';
@@ -60,7 +60,7 @@ export class QuizzesComponent {
   }
 
   openAddDialog(add: boolean): void {
-    const dialogRef = this.dialog.open(AddQuizComponent, {
+    const dialogRef = this.dialog.open(AddEditQuizComponent, {
       width: '75%',
       height: '75%',
       data: {

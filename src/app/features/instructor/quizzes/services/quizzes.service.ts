@@ -27,4 +27,8 @@ export class QuizzesService {
 
     return this._HttpClient.post('quiz', quizData);
   }
+  getQuizById(id:string):Observable<IQuizzes>{
+    return this._HttpClient.get<IQuizzes>(`quiz/${id}` ) 
+  }
+
 }

@@ -1,0 +1,33 @@
+
+   <div class="all">
+    <div class="card p-3 rounded-3 mt-3">
+      <h2 class="fw-semibold">All quizes</h2>
+      <table class="table text-center mt-4">
+        <thead>
+            <th class="py-2 th1 border-2 rounded-start-2">Title</th>
+            <th class="py-2 border-white border-2">Description</th>
+            <th class="py-2 border-white border-2">Status</th>
+            <th class="py-2 border-white border-2">Participants</th>
+            <th class="py-2 border-white border-2">Duration</th>
+            <th class="py-2 border-white border-2">Difficulty</th>
+            <th class="py-2 border-white border-2">Date</th>
+            <th class="py-2 th2 border-2 rounded-end-2">Actions</th>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of  quizList; let i = index">
+            <tr class="mt-4">
+                <td class="border-2 tdd">{{item.title}}</td>
+                <td class="border-2 tdd">{{ item.description }}</td>
+                <td class="border-2 tdd">{{ item.status }}</td>
+                <td class="border-2 tdd">{{item.participants}} </td>
+                <td class="border-2 tdd">{{item.duration}} </td>
+                <td class="border-2 tdd">{{item.difficulty}} </td>
+                <td class="border-2 tdd">  {{ item.schadule | date : "dd/mm/yyyy" }}</td>
+                <td class="border-2 tdd"><span [routerLink]="['/dashboard/instructor/quizzes/view-quiz',item._id]" class="rounded-4 py-1 px-4 cursor-pointer view" >view</span></td>
+            </tr>
+          </ng-container>
+          
+        </tbody>
+    </table>
+    </div>
+  </div>
