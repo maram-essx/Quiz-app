@@ -5,9 +5,9 @@
         <div class="d-flex flex-column gap-2">
           <div class="mb-3 d-flex align-items-center justify-content-between">
             <h2 class="m-0">Upcoming 5 Quizzes</h2>
-            <p role="button" class="d-flex gap-2 align-items-center m-0">
+            <p role="button" class="d-flex gap-2 align-items-center m-0"  routerLink="/dashboard/instructor/quizzes">
               Quiz Directory
-              <span><i class="fa-solid fa-arrow-right" routerLink="/dashboard/instructor/quizzes"></i></span>
+              <span><i class="fa-solid fa-arrow-right"  routerLink="/dashboard/instructor/quizzes"></i></span>
             </p>
           </div>
           <div *ngFor="let quiz of upcomingQuizzes" class="w-100">
@@ -30,8 +30,8 @@
                   >
                     <p class="m-0 fw-bold">No. of student’s enrolled: 3</p>
                     <div class="d-flex gap-2 align-items-center" role="button">
-                      <p class="m-0 fw-semibold">Open</p>
-                      <i class="fa-solid fa-arrow-right " routerLink=""></i>
+                      <p class="m-0 fw-semibold" routerLink="/dashboard/instructor/quizzes/view-quiz">Open</p>
+                      <i class="fa-solid fa-arrow-right " routerLink="/dashboard/instructor/quizzes/view-quiz"></i>
                     </div>
                   </div>
                 </div>
@@ -47,9 +47,9 @@
         <div class="p-3 brd rounded-3">
           <div class="mb-3 d-flex align-items-center justify-content-between">
             <h2 class="m-0">Top 5 Students</h2>
-            <p role="button" class="d-flex gap-2 align-items-center m-0">
+            <p role="button" class="d-flex gap-2 align-items-center m-0" routerLink="/dashboard/instructor/students">
               All Students Directory
-              <span><i class="fa-solid fa-arrow-right"></i></span>
+              <span><i class="fa-solid fa-arrow-right" routerLink="/dashboard/instructor/students"> </i></span>
             </p>
           </div>
           <div *ngFor="let student of topFiveStudents" class="w-100 my-2">
