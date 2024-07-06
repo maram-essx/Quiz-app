@@ -28,4 +28,8 @@ export class QuestionsService {
   AddNewQuestion(addNewQuestion:IQuestions):Observable<any>{
     return this._HttpClient.post<any>(`question`,addNewQuestion)
   }
+  deleteQuestion(id: string):Observable<any>{
+    return this._HttpClient.delete(`question/${id}`)
+  }
+
 }
