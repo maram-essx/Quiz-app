@@ -10,12 +10,14 @@ import { AddEditQuizComponent } from 'src/app/features/instructor/quizzes/compon
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  @Input() mainTextHeader: string = 'Dashboard';
+  // @Input() mainTextHeader: string = 'Dashboard';
 
   userFirstName: any;
   userLastName: any;
   userRole: any;
 
+  mainTextHeader: string = 'Dashboard';
+  
   constructor(
     private _AuthService: AuthService,
     private _NavbarService: NavbarService,
@@ -24,8 +26,13 @@ export class NavbarComponent {
     this.ngOnInit();
   }
 
+
+
   ngOnInit() {
     this.getUser();
+    this._NavbarService.currentPageTitle.subscribe(title => {
+      this.mainTextHeader = title;
+    });
   }
 
   getUser() {

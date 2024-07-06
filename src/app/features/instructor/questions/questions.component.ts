@@ -5,6 +5,7 @@ import { QuestionsService } from './services/questions.service';
 import { AddEditQuestionComponent } from './components/add-edit-question/add-edit-question.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
+import { DeleteComponent } from 'src/app/shared/components/delete/delete.component';
 
 @Component({
   selector: 'app-questions',
@@ -21,62 +22,72 @@ export class QuestionsComponent {
     private _ToastrService: ToastrService
   ) {}
   ngOnInit(): void {
-    this.getResults();
-    this.onAllQuestion();
+    this.getAllQuestions();
+    // this.onAllQuestion();
   }
 
-  getResults() {
+  getAllQuestions() {
     this._QuestionsService.getAllQuestions().subscribe({
       next: (res) => {
-        console.log(res);
+       // console.log(res);
         this.allQuestions = res;
       },
       error: (err) => {
-        console.log(err);
+      //  console.log(err);
       },
     });
   }
 
-  openAddDialog(add: boolean): void {
+  // onAllQuestion() {
+  //   this._QuestionsService.getAllQuestions().subscribe({
+  //     next: (res: any) => {
+  //       this.questionList = res;
+  //       console.log(this.questionList);
+  //     },
+  //     error: (err: any) => {},
+  //   });
+  // }
+
+  openAddEditDialog(id?:string,view?:boolean): void {
     const dialogRef = this.dialog.open(AddEditQuestionComponent, {
-      width: '75%',
-      height: '75%',
       data: {
-        add: add,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
-      if (result) {
-        this.onAllQuestion();
-      }
+        id: id,
+        view: view,
+      }   
+     });
+    dialogRef.afterClosed().subscribe(result => { 
+      this.getAllQuestions()
     });
   }
+openDeleteDialog(id:string,name:string,componentName:string): void {
+  const dialo =this.dialog.open(DeleteComponent, {
+    width: '500px',
 
-  addQuestion(addNewQuestion: any) {
-    this._QuestionsService.AddNewQuestion(addNewQuestion).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err.error.message);
-        this._ToastrService.Error(err.error.message);
-      },
-      complete: () => {
-        this.onAllQuestion();
-        this._ToastrService.Success('Quesion added sucessfully');
-      },
-    });
-  }
+    data:{
+      comp:componentName,
+      id:id,
+      name:name
+    }
+  });
+  dialo.afterClosed().subscribe(res=>{
+    if(res){
+      this.deleteQuestion(res)
+    }
+  })
+}
+deleteQuestion(id:string):void{
+  this._QuestionsService.deleteQuestion(id).subscribe({
+    next: (res) => {
+      this._ToastrService.Success(res.message)
+    },
+    error: (err) => {
+      this._ToastrService.Error(err.error.message)
+    },
+    complete: () => {
+      this.getAllQuestions();
+    }
+  })
+}
+  
 
-  onAllQuestion() {
-    this._QuestionsService.getAllQuestions().subscribe({
-      next: (res: any) => {
-        this.questionList = res;
-        console.log(this.questionList);
-      },
-      error: (err: any) => {},
-    });
-  }
 }

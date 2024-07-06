@@ -23,6 +23,8 @@ import { MenuModule } from 'primeng/menu';
 import { DeleteComponent } from './components/delete/delete.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     DeleteComponent,
     ViewProfileComponent,
     NoDataComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@
     <h2 class="my-3 fw-bold">Bank of questions</h2>
     <button
       class="quiz-outline fw-bold d-flex justify-content-center align-items-center me-3 gap-1 m-3"
-      (click)="openAddDialog(true)"
+      (click)="openAddEditDialog()"
     >
       <svg
         width="20"
@@ -40,10 +40,10 @@
         <td class="border-2 tdd">{{ item.description }}</td>
         <td class="border-2 tdd">{{ item.difficulty }}</td>
         <td class="border-2 tdd">
-          <span class="rounded-4 py-1 px-4 cursor-pointer">
-            <button class="icons"><i class="fa-solid fa-eye"></i></button>
-            <button class="icons"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="icons"><i class="fa-solid fa-trash-can"></i></button>
+          <span class="rounded-4 py-1 px-3 cursor-pointer d-flex align-items-center justify-content-center">
+            <button class="icons"  (click)="openAddEditDialog(item._id,true)"><i class="fa-solid fa-eye pe-2"></i></button>
+            <button class="icons"  (click)="openAddEditDialog(item._id)"><i class="fa-solid fa-pen-to-square pe-2"></i></button>
+            <button class="icons" (click)="openDeleteDialog(item._id,item.title,'question')"><i class="fa-solid fa-trash-can pe-2"></i></button>
           </span>
         </td>
       </tr>
