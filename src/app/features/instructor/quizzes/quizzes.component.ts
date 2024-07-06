@@ -6,6 +6,9 @@ import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 import { Router } from '@angular/router';
+import { NavbarService } from 'src/app/shared/services/navbar.service';
+// import { NavbarService } from 'src/app/shared/services/navbar.service';
+// import { NavbarService } from './../../../shared/services/navbar.service';
 
 @Component({
   selector: 'app-quizzes',
@@ -24,7 +27,8 @@ export class QuizzesComponent {
   constructor(private _QuizzesService: QuizzesService,
     public dialog: MatDialog,
     private _ToastrService: ToastrService,
-    private _Router: Router
+    private _Router: Router,
+    private _NavbarService: NavbarService
   ) {}
 
   ngOnInit() {
@@ -84,6 +88,10 @@ export class QuizzesComponent {
         console.log(this.allGroups);
       },
     });
+  }
+
+  updatePageTitle(title: string) {
+    this._NavbarService.changePageTitle(title);
   }
 
 }
