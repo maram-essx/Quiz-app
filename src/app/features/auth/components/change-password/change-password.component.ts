@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +15,12 @@ export class ChangePasswordComponent {
   hidePassword1:boolean=true;
   hidePassword2:boolean=true;
 
-  constructor(private _AuthService:AuthService,private _ToastrService:ToastrService,private _FormBuilder:FormBuilder,private _Router:Router){}
+  isInstructor: boolean = true;
+
+  constructor(private _AuthService:AuthService,private _ToastrService:ToastrService,private _FormBuilder:FormBuilder,private _Router:Router){
+
+    this.getRole();
+  }
 
   changeForm:FormGroup = this._FormBuilder.group({
     password:['',[Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/)]],
@@ -23,7 +28,7 @@ export class ChangePasswordComponent {
   })
   changePass():void{
     console.log(this.changeForm.value);
-    
+
     this._AuthService.changePassword(this.changeForm.value).subscribe({
       next:res=>{
         console.log(res);
@@ -31,11 +36,19 @@ export class ChangePasswordComponent {
 
         this._Router.navigate(['/dashboard'])
 
-        
+
       },error:err=>{
         console.log(err);
         this._ToastrService.Error(err.error.message)
       }
     })
   }
+
+  getRole() {
+    const role = localStorage.getItem('role');
+    if(role == 'Student'){
+      this.isInstructor = false;
+    }
+  }
+
 }
