@@ -1,13 +1,16 @@
+import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QuizzesComponent } from './quizzes.component';
-import { AddQuizComponent } from './components/add-quiz/add-quiz.component';
 import { ViewQuizComponent } from './components/view-quiz/view-quiz.component';
 
+
 const routes: Routes = [
-  { path: '', redirectTo: 'quizzes', pathMatch: 'full' },
-  { path: 'quizzes', component: QuizzesComponent, title: 'Quizzes' },
-  { path: 'view-quiz', component: ViewQuizComponent, data: { title: 'View Quiz' } },
+ 
+  { path: '', component: QuizzesComponent, title: 'Quizzes', },
+  { path: 'view-quiz/:id', component: ViewQuizComponent, title: 'View Quiz'},
+  { path: 'quiz-list', component: QuizListComponent, title: 'Quiz list'},
+
 ];
 
 @NgModule({

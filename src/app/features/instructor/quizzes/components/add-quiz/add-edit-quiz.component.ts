@@ -14,32 +14,12 @@ import { QuizzesService } from '../../services/quizzes.service';
 import { QuizCodeComponent } from '../quiz-code/quiz-code.component';
 
 @Component({
-  selector: 'app-add-quiz',
-  templateUrl: './add-quiz.component.html',
-  styleUrls: ['./add-quiz.component.scss']
+  selector: 'app-add-edit-quiz',
+  templateUrl: './add-edit-quiz.component.html',
+  styleUrls: ['./add-edit-quiz.component.scss']
 })
-export class AddQuizComponent {
-  quizDetails: IQuizzes = {
-    _id: '',
-    code: '',
-    title: '',
-    description: '',
-    status: '',
-    instructor: '',
-    group: '',
-    questions_number: 0,
-    questions: [],
-    schadule: '',
-    duration: 0,
-    score_per_question: 0,
-    type: '',
-    difficulty: '',
-    updatedAt: '',
-    createdAt: '',
-    __v: 0,
-    closed_at: '',
-    participants: 0,
-  };
+export class AddEditQuizComponent {
+ 
 
   // allQuestionsForUpdatingQuestion: any;
   quizForm!: FormGroup;
@@ -59,8 +39,8 @@ export class AddQuizComponent {
 
   constructor(
     private _QuizzesService: QuizzesService,
-    public dialogRef: MatDialogRef<AddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<AddEditQuizComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: IQuizzes,
     private _ToastrService: ToastrService,
     private fb: FormBuilder,
     public dialog: MatDialog,
@@ -72,12 +52,14 @@ export class AddQuizComponent {
   }
 
   ngOnInit(): void {
-    // if (this.data.id != null) {
-    //   this.viewQuestion(this.data.id);
-    // }
-    this.getGroups()
-
-
+    if (this.data._id != null) {
+      this.displayQuiz()
+      console.log("saraaaaaa");
+      
+      // this.viewQuestion(this.data.id);
+    }
+   
+    this.getGroups();
 
     this.quizForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -89,6 +71,21 @@ export class AddQuizComponent {
       type: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
       score_per_question: new FormControl('', [Validators.required]),
+    });
+  }
+  displayQuiz(){
+    console.log(this.data.title);
+    
+    this.quizForm.patchValue({
+      title: this.data.title,
+      description: this.data.description,
+      group: this.data.group,
+      questions_number:this.data.questions_number,
+      difficulty: this.data.difficulty,
+      schadule: this.data.schadule,
+      type:this.data.type,
+      duration: this.data.duration,
+      score_per_question: this.data.score_per_question
     });
   }
   // viewQuestion(id: string) {

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { NavbarService } from '../../services/navbar.service';
-import { AddQuizComponent } from 'src/app/features/instructor/quizzes/components/add-quiz/add-quiz.component';
+import { AddEditQuizComponent } from 'src/app/features/instructor/quizzes/components/add-quiz/add-edit-quiz.component';
 
 @Component({
   selector: 'app-navbar',
@@ -48,7 +48,7 @@ export class NavbarComponent {
   }
 
   openAddDialog(add: boolean): void {
-    const dialogRef = this.dialog.open(AddQuizComponent, {
+    const dialogRef = this.dialog.open(AddEditQuizComponent, {
       width: '75%',
       height: '75%',
       data: {
