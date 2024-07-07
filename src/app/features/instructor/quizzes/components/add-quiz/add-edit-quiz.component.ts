@@ -36,7 +36,8 @@ export class AddEditQuizComponent {
   difficulties: string[] = ['easy', 'medium', 'hard'];
   date: Date | null = null;
   time: string | null = null;
-
+  scheduleDate: string='';
+  scheduleTime: string='';
   constructor(
     private _QuizzesService: QuizzesService,
     private dialogRef: MatDialogRef<AddEditQuizComponent>,
@@ -52,15 +53,8 @@ export class AddEditQuizComponent {
   }
 
   ngOnInit(): void {
-    if (this.data._id != null) {
-      this.displayQuiz()
-      console.log("saraaaaaa");
-      
-      // this.viewQuestion(this.data.id);
-    }
-   
     this.getGroups();
-
+  
     this.quizForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -71,22 +65,53 @@ export class AddEditQuizComponent {
       type: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
       score_per_question: new FormControl('', [Validators.required]),
+      scheduleDate: new FormControl('', [Validators.required]),
+      scheduleTime: new FormControl('', [Validators.required])
     });
-  }
-  displayQuiz(){
-    console.log(this.data.title);
+  
+    this.displayQuiz();
+    console.log(this.getSchedule());
     
-    this.quizForm.patchValue({
-      title: this.data.title,
-      description: this.data.description,
-      group: this.data.group,
-      questions_number:this.data.questions_number,
-      difficulty: this.data.difficulty,
-      schadule: this.data.schadule,
-      type:this.data.type,
-      duration: this.data.duration,
-      score_per_question: this.data.score_per_question
-    });
+    this.parseSchedule(this.getSchedule())
+  }
+
+   parseSchedule(scheduleString: string) {
+    const scheduleDate = new Date(scheduleString);
+    this.scheduleDate = scheduleDate.toLocaleDateString();
+    console.log( this.scheduleDate);
+    
+    this.scheduleTime = scheduleDate.toLocaleTimeString();
+    console.log( this.scheduleTime);
+    
+  }
+  
+  displayQuiz() {
+    if (this.data._id != null) {
+      this.quizForm.patchValue({
+        title: this.data.title,
+        description: this.data.description,
+        group: this.data.group,
+        questions_number: this.data.questions_number,
+        difficulty: this.data.difficulty,
+        schadule: this.data.schadule,
+        type: this.data.type,
+        duration: this.data.duration,
+        score_per_question: this.data.score_per_question,
+      });
+    } else {
+      // Optionally, you can set default values for the form controls here
+      this.quizForm.patchValue({
+        title: '',
+        description: '',
+        group: '',
+        questions_number: '',
+        difficulty: '',
+        schadule: '',
+        type: '',
+        duration: '',
+        score_per_question: '',
+      });
+    }
   }
   // viewQuestion(id: string) {
   //   this._QuestionsService.getQuestionById(id).subscribe({
@@ -176,7 +201,7 @@ export class AddEditQuizComponent {
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.date = event.value;
-    console.log('Date Change: ', this.date);
+    console.log(this.date);
     this.updateSchedule();
 
   }
@@ -201,5 +226,7 @@ export class AddEditQuizComponent {
       console.log('Schedule:', this.quizForm.value.schadule);
     }
   }
-
+  getSchedule() {
+    return this.quizForm.get('schadule')?.value;
+  }
 }
