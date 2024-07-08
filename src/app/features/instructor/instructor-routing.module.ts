@@ -8,15 +8,15 @@ const routes: Routes = [
   { path: '', component: InstructorComponent ,children:[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component:InstuctorDashboardComponent},
-
+  { path:'profile' , component:ViewProfileComponent },
 
   ] },
   { path: 'groups', loadChildren: () => import('./groups/groups.module').then(m => m.GroupsModule) },
   { path: 'results', loadChildren: () => import('./results/results.module').then(m => m.ResultsModule) },
 
   { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
-  { path: 'questions', loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule) },{
-    path:'profile' , component:ViewProfileComponent },
+  { path: 'questions', loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule) },
+
 
   {
     path: 'students',

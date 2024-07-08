@@ -16,6 +16,7 @@ export class NavbarComponent {
   userFirstName: any;
   userLastName: any;
   userRole: any;
+  isInstructor: boolean = true;
 
   mainTextHeader: string = 'Dashboard';
 
@@ -64,5 +65,12 @@ export class NavbarComponent {
       if (result) {
       }
     });
+  }
+
+  getRole() {
+    const role = localStorage.getItem('role');
+    if(role == 'Student'){
+      this.isInstructor = false;
+    }
   }
 }
