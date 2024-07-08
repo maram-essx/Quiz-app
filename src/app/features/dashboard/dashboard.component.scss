@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.sidebar {
+  display: none !important;
+}
+
 .toggle-icon{
   cursor: pointer;
 }
@@ -35,6 +39,9 @@
       }
       .content{
         width: calc(100% - 60px);
+      }
+      .sidebar {
+        display: none !important;
       }
 
   }
