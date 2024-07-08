@@ -1,28 +1,21 @@
 <section>
   <div class="mt-4 me-4">
     <h4 class="">Continue your learning journey with QuizWiz!</h4>
-    <div class="my-5">
+    <div class="my-5 d-flex justify-content-start gap-4">
       <button
-        class="me-5 dark"
+      class="grey--selected d-flex flex-column align-items-center justify-content-center"
         type="button"
-        [ngClass]="{ active: !isActiveSignUp, 'de-active': isActiveSignUp }"
       >
-        <span class="d-block">
-          <mat-icon matPrefix class="w-100 h-100"> person</mat-icon>
-        </span>
-        <span class="text-white">sign in</span>
+        <i class="icon fa-solid fa-user-tie bg-transparent"></i>
+        <span class="text-white">Sign in</span>
       </button>
       <button
-        class="dark"
+      class="grey d-flex flex-column align-items-center justify-content-center mx-4"
         type="button"
         (click)="register()"
-        [ngClass]="{ active: isActiveSignUp, 'de-active': !isActiveSignUp }"
       >
-        <span>
-          <mat-icon matPrefix class="w-100 h-100"> person_add</mat-icon>
-        </span>
-
-        <span class="d-block text-white">sign up</span>
+        <i class="icon fa-solid fa-user-plus bg-transparent"></i>
+        <span class="text-white">Sign up</span>
       </button>
     </div>
     <form
