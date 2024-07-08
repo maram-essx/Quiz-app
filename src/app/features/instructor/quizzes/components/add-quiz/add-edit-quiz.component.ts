@@ -19,7 +19,7 @@ import { QuizCodeComponent } from '../quiz-code/quiz-code.component';
   styleUrls: ['./add-edit-quiz.component.scss']
 })
 export class AddEditQuizComponent {
- 
+
 
   // allQuestionsForUpdatingQuestion: any;
   quizForm!: FormGroup;
@@ -55,10 +55,10 @@ export class AddEditQuizComponent {
     if (this.data._id != null) {
       this.displayQuiz()
       console.log("saraaaaaa");
-      
+
       // this.viewQuestion(this.data.id);
     }
-   
+
     this.getGroups();
 
     this.quizForm = new FormGroup({
@@ -75,7 +75,7 @@ export class AddEditQuizComponent {
   }
   displayQuiz(){
     console.log(this.data.title);
-    
+
     this.quizForm.patchValue({
       title: this.data.title,
       description: this.data.description,

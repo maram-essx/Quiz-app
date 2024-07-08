@@ -1,7 +1,27 @@
+
+* {
+  font-weight: bolder;
+}
+
 .icon {
   cursor: pointer;
 }
 
-.input-group {
+
+.input-group-text {
+  background-color: #FFEDDF;
   border-radius: 20px;
 }
+
+.code {
+  border-radius: 20px;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #00000080;
+  overflow: hidden;
+}
+
+.form-control {
+  border-radius: 20px;
+}
+
