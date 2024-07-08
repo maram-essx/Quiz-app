@@ -56,7 +56,7 @@ export class AddEditQuizComponent {
 
   ngOnInit(): void {
 
-    if (this.data._id != null) {
+    if (this.quiz._id != null) {
       this.displayQuiz()
       console.log("saraaaaaa");
 
@@ -122,29 +122,18 @@ export class AddEditQuizComponent {
         score_per_question: '',
       });
     }
-
-
-  // viewQuestion(id: string) {
-  //   this._QuestionsService.getQuestionById(id).subscribe({
-  //     next: (res: any) => {
-  //       console.log(res);
-  //       this.quizDetails = res;
-  //     },
-  //     error: (err) => {
-  //       //console.log(err)
-  //     },
-  //   });
-  // }
+  
+  }
   onSubmit(quizForm: FormGroup) {
     
-   if (this.quiz._id) {
-    this.updateQuiz(quizForm.value.title)
+    if (this.quiz._id) {
+     this.updateQuiz(quizForm.value.title)
+    
+    }else{
    
-   }else{
-  
-    this.addQuiz(quizForm);
-   }
-  //  this.dialogRef.close(quizForm.value);
+     this.addQuiz(quizForm);
+    }
+   //  this.dialogRef.close(quizForm.value);
   }
 
   addQuiz(quizForm: FormGroup): void {
@@ -172,7 +161,6 @@ export class AddEditQuizComponent {
       });
     }
   }
-
   updateQuiz(title:string){
     var code: string = '';
       this._QuizzesService.editQuiz(this.quiz._id, title).subscribe({
