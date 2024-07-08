@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { NavbarService } from '../../services/navbar.service';
 import { AddEditQuizComponent } from 'src/app/features/instructor/quizzes/components/add-quiz/add-edit-quiz.component';
+import { IUser } from '../../models/iUser';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { AddEditQuizComponent } from 'src/app/features/instructor/quizzes/compon
 })
 export class NavbarComponent {
   // @Input() mainTextHeader: string = 'Dashboard';
-
+  currentUser: IUser | undefined;
   userFirstName: any;
   userLastName: any;
   userRole: any;
@@ -41,7 +42,9 @@ export class NavbarComponent {
     this.userRole = localStorage.getItem('role');
   }
 
-  openChangePassDialog() {}
+  updatePageTitle(title: string) {
+    this._NavbarService.changePageTitle(title);
+  }
 
   logout() {
     this._AuthService.logout();

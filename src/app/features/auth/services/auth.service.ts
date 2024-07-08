@@ -18,6 +18,8 @@ export class AuthService {
   role: string = '';
   first_name: string = '';
   last_name: string = '';
+  email: string = '';
+  status: string = '';
 
   constructor(private _HttpClient:HttpClient, private _Router:Router) { }
   forgotPass(evalue:string):Observable<any>{
@@ -31,8 +33,10 @@ export class AuthService {
     const role = localStorage.getItem('userToken');
     const first_name = localStorage.getItem('first_name');
     const last_name = localStorage.getItem('last_name');
+    const email = localStorage.getItem('email');
+    const status = localStorage.getItem('status');
 
-    if (token !== null && role !== null && first_name !== null && last_name !== null) {
+    if (token !== null && role !== null && first_name !== null && last_name !== null && email !== null && status !== null) {
       this.role = role;
       this.first_name = first_name;
       this.last_name = last_name;
