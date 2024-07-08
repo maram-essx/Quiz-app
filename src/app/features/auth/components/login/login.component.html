@@ -1,28 +1,21 @@
 <section>
   <div class="mt-4 me-4">
     <h4 class="">Continue your learning journey with QuizWiz!</h4>
-    <div class="my-5">
+    <div class="my-5 d-flex justify-content-start gap-4">
       <button
-        class="me-5 dark"
+      class="grey--selected d-flex flex-column align-items-center justify-content-center"
         type="button"
-        [ngClass]="{ active: !isActiveSignUp, 'de-active': isActiveSignUp }"
       >
-        <span class="d-block">
-          <mat-icon matPrefix class="w-100 h-100"> person</mat-icon>
-        </span>
-        <span class="text-white">sign in</span>
+        <i class="icon fa-solid fa-user-tie bg-transparent"></i>
+        <span class="text-white">Sign in</span>
       </button>
       <button
-        class="dark"
+      class="grey d-flex flex-column align-items-center justify-content-center mx-4"
         type="button"
         (click)="register()"
-        [ngClass]="{ active: isActiveSignUp, 'de-active': !isActiveSignUp }"
       >
-        <span>
-          <mat-icon matPrefix class="w-100 h-100"> person_add</mat-icon>
-        </span>
-
-        <span class="d-block text-white">sign up</span>
+        <i class="icon fa-solid fa-user-plus bg-transparent"></i>
+        <span class="text-white">Sign up</span>
       </button>
     </div>
     <form
@@ -35,16 +28,16 @@
         <label for="">Registered email address</label>
         <div class="input-group my-2 text-white">
           <span
-            class="input-group-text bg-transparent text-white"
+            class="input-group-text bg-transparent text-white border-3"
             id="basic-addon1"
           >
             <i class="fa fa-envelope"></i>
           </span>
           <input
             type="text"
-            class="form-control bg-transparent text-white"
+            class="form-control bg-transparent text-white border-3"
             formControlName="email"
-            placeholder="Enter your E-mail"
+            placeholder="Type your email"
             aria-label="email"
             aria-describedby="basic-addon1"
           />
@@ -65,20 +58,20 @@
         <label>Password</label>
         <div class="input-group my-2 text-white">
           <span
-            class="input-group-text bg-transparent text-white border-end-0"
+            class="input-group-text bg-transparent text-white  border-3"
             id="basic-addon1"
             ><i class="fa-solid fa-key"></i
           ></span>
           <input
             formControlName="password"
             [type]="hidePassword ? 'password' : 'text'"
-            class="form-control bg-transparent text-white border-start-0 border-end-0"
-            placeholder="Password"
+            class="form-control bg-transparent text-white   border-3"
+            placeholder="Type your password"
             aria-label="password"
             aria-describedby="basic-addon1"
           />
           <span
-            class="input-group-text bg-transparent text-white border-start-0"
+            class="input-group-text bg-transparent text-white border-3"
             id="basic-addon1"
           >
             <i
@@ -103,7 +96,7 @@
       </div>
 
       <button
-        class="white w-100 fw-bold my-3"
+      class="white fw-bold my-5 cursor-pointer"
         type="submit"
         [disabled]="loginForm.invalid"
       >

@@ -1,1 +1,26 @@
+@import '../../../assets/styles/abstracts/variables';
 
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $main-color;
+  border-radius: 10px;
+  height: 100%;
+  img {
+    width: 60% !important;
+  }
+}
+
+// select {
+// position: relative;
+// color: white;
+// background-color: $bg-color;
+// }
+// select + .fa-arrow-down {
+// color: $bg-color;
+// position: absolute;
+// right: 2%;
+// top: 50%;
+// transform: translateY(-50%);
+// }
