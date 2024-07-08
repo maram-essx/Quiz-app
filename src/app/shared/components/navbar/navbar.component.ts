@@ -17,7 +17,7 @@ export class NavbarComponent {
   userRole: any;
 
   mainTextHeader: string = 'Dashboard';
-  
+
   constructor(
     private _AuthService: AuthService,
     private _NavbarService: NavbarService,
@@ -49,8 +49,8 @@ export class NavbarComponent {
 
   openAddDialog(add: boolean): void {
     const dialogRef = this.dialog.open(AddEditQuizComponent, {
-      width: '75%',
-      height: '75%',
+      width: '960px',
+      height: '577px',
       data: {
         add: add,
       },

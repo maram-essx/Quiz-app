@@ -65,8 +65,8 @@ export class QuizzesComponent {
 
   openAddDialog(add: boolean): void {
     const dialogRef = this.dialog.open(AddEditQuizComponent, {
-      width: '75%',
-      height: '75%',
+      width: '960px',
+      height: '577px',
       data: {
         add: add,
       },
