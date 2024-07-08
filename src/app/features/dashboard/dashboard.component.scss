@@ -5,11 +5,17 @@
   overflow: hidden;
 }
 
+.sidebar {
+  display: none !important;
+}
+
 .toggle-icon{
   cursor: pointer;
 }
 
 .sidebar-header{
+  margin-top: 7.5px;
+
   border-bottom: 1px solid #00000033;
 }
 
@@ -34,5 +40,8 @@
       .content{
         width: calc(100% - 60px);
       }
-  
+      .sidebar {
+        display: none !important;
+      }
+
   }
