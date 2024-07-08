@@ -63,33 +63,70 @@
         </div>
       </div>
 
-      <div class="col-md-4 col-12 p-0">
+      <!-- <div class="col-md-4 col-12 p-0">
         <div class="input-group col-12 my-2 px-1">
           <span class="input-group-text " id="basic-addon1"
             >No. of questions</span
           >
           <input
             type="number"
-            formControlName="questions_number"
+
             class="form-control p-2"
             aria-label="No. of questions"
             aria-describedby="basic-addon1"
           />
         </div>
+      </div> -->
+
+      <div class="col-md-4 col-12 p-0">
+        <div class="input-group my-2 px-1 text-black">
+          <span class="input-group-text " id="basic-addon1"
+            >No. of questions</span
+          >
+          <select
+          formControlName="questions_number"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
+            aria-label="Question"
+            aria-describedby="basic-addon1"
+            (change)="onQuestionNumberChange($event)"
+          >
+            <option
+              *ngFor="let questionNumber of numberOfQuestions"
+              class="text-black"
+              [value]="questionNumber"
+            >
+              {{ questionNumber }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
       </div>
 
       <div class="col-md-4 col-12 p-0">
-        <div class="input-group col-12 my-2 p-0">
+        <div class="input-group my-2 px-0 text-black">
           <span class="input-group-text " id="basic-addon1"
             >Score per question</span
           >
-          <input
-            type="number"
+          <select
             formControlName="score_per_question"
-            class="form-control p-2"
+            class="form-control bg-transparent text-black border-end-0 border-start-0"
             aria-label="Score per question"
             aria-describedby="basic-addon1"
-          />
+            (change)="onScoreChange($event)"
+          >
+            <option
+              *ngFor="let score of scorePerQuestion"
+              class="text-black"
+              [value]="score"
+            >
+              {{ score }}
+            </option>
+          </select>
+          <span class="input-group-text border-start-0" id="basic-addon1">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
         </div>
       </div>
 
