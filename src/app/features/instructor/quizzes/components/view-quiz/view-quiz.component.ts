@@ -81,12 +81,15 @@ export class ViewQuizComponent {
       data: quizDetails 
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        if (quizDetails._id) {
-          this.editQuiz(result);
-        } 
-      }
+    dialogRef.afterClosed().subscribe((res) => {
+console.log(res);
+
+        
+        // if (quizDetails._id) {
+        //   this.editQuiz(result);
+        // } 
+        this.getQuizById();
+      
     });
   }
   editQuiz(model:FormGroup){

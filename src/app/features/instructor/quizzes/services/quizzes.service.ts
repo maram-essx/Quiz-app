@@ -23,9 +23,11 @@ export class QuizzesService {
   }
 
   addQuiz(quizData: any): Observable<any> {
-    console.log( 'SERVICE FILE QUIZ DATA', quizData);
-
     return this._HttpClient.post('quiz', quizData);
+  }
+
+  editQuiz(quizId:string,title: string): Observable<any> {
+    return this._HttpClient.put(`quiz/${quizId}`, {"title":title});
   }
   getQuizById(id:string):Observable<IQuizzes>{
     return this._HttpClient.get<IQuizzes>(`quiz/${id}` ) 

@@ -41,7 +41,7 @@ export class AddEditQuizComponent {
   constructor(
     private _QuizzesService: QuizzesService,
     private dialogRef: MatDialogRef<AddEditQuizComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IQuizzes,
+    @Inject(MAT_DIALOG_DATA) public quiz: IQuizzes,
     private _ToastrService: ToastrService,
     private fb: FormBuilder,
     public dialog: MatDialog,
@@ -64,9 +64,7 @@ export class AddEditQuizComponent {
       schadule: new FormControl('', [Validators.required]),
       type: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
-      score_per_question: new FormControl('', [Validators.required]),
-      scheduleDate: new FormControl('', [Validators.required]),
-      scheduleTime: new FormControl('', [Validators.required])
+      score_per_question: new FormControl('', [Validators.required])
     });
   
     this.displayQuiz();
@@ -86,17 +84,17 @@ export class AddEditQuizComponent {
   }
   
   displayQuiz() {
-    if (this.data._id != null) {
+    if (this.quiz._id != null) {
       this.quizForm.patchValue({
-        title: this.data.title,
-        description: this.data.description,
-        group: this.data.group,
-        questions_number: this.data.questions_number,
-        difficulty: this.data.difficulty,
-        schadule: this.data.schadule,
-        type: this.data.type,
-        duration: this.data.duration,
-        score_per_question: this.data.score_per_question,
+        title: this.quiz.title,
+        description: this.quiz.description,
+        group: this.quiz.group,
+        questions_number: this.quiz.questions_number,
+        difficulty: this.quiz.difficulty,
+        schadule: this.quiz.schadule,
+        type: this.quiz.type,
+        duration: this.quiz.duration,
+        score_per_question: this.quiz.score_per_question,
       });
     } else {
       // Optionally, you can set default values for the form controls here
@@ -125,10 +123,15 @@ export class AddEditQuizComponent {
   //   });
   // }
   onSubmit(quizForm: FormGroup) {
-    console.log('ADD QUIZ FORM',quizForm);
-
-    this.dialogRef.close(quizForm.value);
+    
+   if (this.quiz._id) {
+    this.updateQuiz(quizForm.value.title)
+   
+   }else{
+  
     this.addQuiz(quizForm);
+   }
+  //  this.dialogRef.close(quizForm.value);
   }
 
   addQuiz(quizForm: FormGroup): void {
@@ -157,6 +160,27 @@ export class AddEditQuizComponent {
     }
   }
 
+  updateQuiz(title:string){
+    var code: string = '';
+      this._QuizzesService.editQuiz(this.quiz._id, title).subscribe({
+        next: (res: any) => {
+          code = res.data.code;
+  
+          this.openQuizCodeDialog(code);
+  
+          // this.questionCode = res.data.code;
+        },
+        error: (err) => {
+          this._ToastrService.Error(err.error.message);
+        },
+        complete: () => {
+          this.onNoClick();
+          this._ToastrService.Success('Quiz updated Succesfully');
+        }
+      });
+   
+  }
+
   openQuizCodeDialog(code: string) {
     const dialogRef = this.dialog.open(QuizCodeComponent, {
       width: '450px',
@@ -172,9 +196,7 @@ export class AddEditQuizComponent {
   getGroups() {
     this._QuizzesService.allGroups().subscribe({
       next: (res) => {
-        console.log('allGroups: ', res);
         this.allGroups = res;
-        console.log(this.allGroups);
       },
     });
   }
