@@ -1,13 +1,13 @@
-<form [formGroup]="addEditForm" (ngSubmit)="onSubmit(addEditForm)">
-  <div class="container">
+<form [formGroup]="addEditForm" (ngSubmit)="onSubmit()">
     <div
       class="caption d-flex justify-content-between align-items-center border-bottom"
     >
       <div class="p-3">
-        <h5 class="m-0 p-0" *ngIf="data.add">Set up a new question</h5>
+        <h5 class="m-0 p-0 fw-bolder">{{title}}</h5>
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <div
+        *ngIf="!data.view"
           class="d-inline check p-4 border-start d-flex justify-content-center align-items-center"
         >
           <button
@@ -29,7 +29,7 @@
     <div class="row p-3 m-0">
       <p class="fw-bold">Details:</p>
       <div class="input-group col-12 my-2 px-1">
-        <span class="input-group-text fw-bold" id="basic-addon1">Title</span>
+        <span class="input-group-text" id="basic-addon1">Title</span>
         <input
           type="text"
           [value]="questionDetails.title"
@@ -41,7 +41,7 @@
       </div>
 
       <div class="input-group col-12 my-2 px-1">
-        <span class="input-group-text fw-bold py-4" id="basic-addon1"
+        <span class="input-group-text py-4" id="basic-addon1"
           >Description</span
         >
         <input
@@ -57,7 +57,7 @@
       <div formGroupName="options" class="row p-0 m-0">
         <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">A</span>
+            <span class="input-group-text" id="basic-addon1">A</span>
             <input
               type="text"
               formControlName="A"
@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">B</span>
+            <span class="input-group-text" id="basic-addon1">B</span>
             <input
               type="text"
               formControlName="B"
@@ -81,7 +81,7 @@
         </div>
         <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">C</span>
+            <span class="input-group-text" id="basic-addon1">C</span>
             <input
               type="text"
               formControlName="C"
@@ -93,7 +93,7 @@
         </div>
         <div class="col-md-6 col-12 my-2 px-1">
           <div class="input-group">
-            <span class="input-group-text fw-bold" id="basic-addon1">D</span>
+            <span class="input-group-text" id="basic-addon1">D</span>
             <input
               type="text"
               formControlName="D"
@@ -105,9 +105,9 @@
         </div>
       </div>
 
-      <div class="col-md-4 col-12">
+      <div class="col-md-4 col-12 p-0">
         <div class="input-group my-2 px-1 text-black">
-          <span class="input-group-text fw-bold" id="basic-addon1">Answer</span>
+          <span class="input-group-text" id="basic-addon1">Answer</span>
           <select
             formControlName="answer"
             class="form-control bg-transparent text-black border-end-0 border-start-0"
@@ -124,14 +124,14 @@
             </option>
           </select>
           <span class="input-group-text border-start-0" id="basic-addon1">
-            <i class="fa-solid fa-arrow-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
           </span>
         </div>
       </div>
 
-      <div class="col-md-4 col-12">
+      <div class="col-md-4 col-12 p-0">
         <div class="input-group my-2 px-1 text-black">
-          <span class="input-group-text fw-bold" id="basic-addon1"
+          <span class="input-group-text" id="basic-addon1"
             >Category type</span
           >
           <select
@@ -150,14 +150,14 @@
             </option>
           </select>
           <span class="input-group-text border-start-0" id="basic-addon1">
-            <i class="fa-solid fa-arrow-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
           </span>
         </div>
       </div>
 
-      <div class="col-md-4 col-12">
+      <div class="col-md-4 col-12 p-0">
         <div class="input-group my-2 px-1 text-black">
-          <span class="input-group-text fw-bold" id="basic-addon1"
+          <span class="input-group-text" id="basic-addon1"
             >Difficulty</span
           >
           <select
@@ -176,10 +176,14 @@
             </option>
           </select>
           <span class="input-group-text border-start-0" id="basic-addon1">
-            <i class="fa-solid fa-arrow-down"></i>
+            <i class="fa-solid fa-chevron-down"></i>
           </span>
         </div>
       </div>
     </div>
-  </div>
+
 </form>
+
+
+
+

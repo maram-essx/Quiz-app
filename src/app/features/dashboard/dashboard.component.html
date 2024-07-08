@@ -4,15 +4,16 @@
     <div class="row opened flex-nowrap overflow-x-hidden group">
 
       <div class="side-section" [class]="isOpened? 'col-md-2': 'col-md-1'">
-        <div class="py-3 d-flex align-items-center sidebar-header">
-          <i  class="fa-solid fa-bars fa-2x toggle-icon m-auto py-1" (click)="toggleSidebar()"></i>
+        <div class="py-3 d-flex sidebar-header justify-content-center">
+          <i  class="fa-solid fa-bars fa-2x toggle-icon m-auto py-1  mx-3" (click)="toggleSidebar()"></i>
+          <img class=" mx-3" [class]="isOpened ?'' : 'sidebar'" src="../../../assets/images/logo.svg">
         </div>
         <app-sidebar [isOpenedValue]="isOpened"></app-sidebar>
 
       </div>
 
-      <div class="content" [class]="isOpened? 'col-md-10': 'col-md-11'" >
-        <div class="px-4">
+      <div class="content px-0" [class]="isOpened? 'col-md-10': 'col-md-11'" >
+        <div class="px-0">
           <app-navbar></app-navbar>
         </div>
         <div class="px-4">

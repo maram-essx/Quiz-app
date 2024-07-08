@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +18,11 @@ export class NavbarService {
   // getUserProfile(_id:string){
   //   return this._HttpClient.get(`portal/users/${_id}`)
   // }
+
+  private pageTitleSource = new BehaviorSubject<string>('Dashboard');
+  currentPageTitle = this.pageTitleSource.asObservable();
+
+  changePageTitle(title: string) {
+    this.pageTitleSource.next(title);
+  }
 }

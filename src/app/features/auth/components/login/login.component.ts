@@ -46,6 +46,8 @@ export class LoginComponent {
         localStorage.setItem('role' , res.data.profile.role);
         localStorage.setItem('first_name' , res.data.profile.first_name);
         localStorage.setItem('last_name' , res.data.profile.last_name);
+        localStorage.setItem('email' , res.data.profile.email);
+        localStorage.setItem('status' , res.data.profile.status);
 
        console.log("res",res);
       //  this._ToastrService.Success('Login successful!');

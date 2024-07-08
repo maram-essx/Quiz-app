@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ResetPasswordComponent {
   errMessage: string = '';
+  hidePassword:boolean=true;
+
   constructor(private _AuthService: AuthService, private _Router: Router) {}
 
   resetPasswordForm: FormGroup = new FormGroup({

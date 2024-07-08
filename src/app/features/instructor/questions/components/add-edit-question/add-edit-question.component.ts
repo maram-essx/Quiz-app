@@ -12,6 +12,8 @@ import { ToastrService } from 'src/app/common/helper-services/toastr.service';
   styleUrls: ['./add-edit-question.component.scss'],
 })
 export class AddEditQuestionComponent {
+    title: string = ''
+  questionID:string= ''
   questionDetails: IQuestions = {
     _id: '',
     title: '',
@@ -24,14 +26,12 @@ export class AddEditQuestionComponent {
       _id: '',
     },
     answer: '',
+    status: '',
+    instructor: '',
     difficulty: '',
     points: 0,
-    type: '',
-    status: '',
-  instructor: '',
+    type: '', 
   };
-  allQuestionsForAddNewQuestion!: any;
-  allQuestionsForUpdatingQuestion: any;
   addEditForm!: FormGroup;
 
   selectedAnswer: string = '';
@@ -51,14 +51,18 @@ export class AddEditQuestionComponent {
   ) {}
 
   ngOnInit(): void {
-    if (this.data.id != null) {
-      this.viewQuestion(this.data.id);
+    if(this.data.id){
+      this.questionID=this.data.id
+      console.log(this.data.id)
+      this.title = 'Update question'
+      this.getQuestion()
+      if(this.data.view){
+        this.title = 'View question'
+        this.addEditForm.disable();
+      }
+    }else{
+      this.title = 'Set up a new question'
     }
-
-    this.getAllQuestions();
-
-
-
     this.addEditForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -73,68 +77,66 @@ export class AddEditQuestionComponent {
       type: new FormControl('', [Validators.required]),
     });
   }
-  viewQuestion(id: string) {
-    this._QuestionsService.getQuestionById(id).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.questionDetails = res;
+  getQuestion():void{
+    this._QuestionsService.getQuestionById(this.questionID).subscribe({
+      next: (res)=>{
+        this.questionDetails = res
+      },error: (err)=>{
       },
-      error: (err) => {
-        //console.log(err)
-      },
-    });
+      complete:()=>{
+        this.addEditForm.patchValue({
+          title: this.questionDetails.title,
+          description: this.questionDetails.description,
+          options: {
+            A: this.questionDetails.options.A,
+            B: this.questionDetails.options.B,
+            C: this.questionDetails.options.C,
+            D: this.questionDetails.options.D
+          },
+          answer: this.questionDetails.answer,
+          difficulty: this.questionDetails.difficulty,
+          type: this.questionDetails.type
+        })
+      }
+    })
   }
-  onSubmit(addEditForm: FormGroup) {
-    this.dialogRef.close(addEditForm.value);
-    this.addQuestion(addEditForm);
-    this.getAllQuestions();
-  }
-
-  addQuestion(addEditForm: FormGroup): void {
-    if (addEditForm.valid) {
-      console.log('Question data:', addEditForm.value);
-      this._QuestionsService.AddNewQuestion(addEditForm.value).subscribe({
-        next: (res: IQuestionsRes) => {
-          console.log(res);
-        },
-        error: (err) => {
-          console.error('Question error:', err);
-          this._ToastrService.Error(err.error.message);
-        },
-        complete: () => {
-          this.onNoClick();
-          this._ToastrService.Success('Quesion added sucessfully');
-        }
-      });
+  onSubmit():void{
+    if(this.addEditForm.valid){
+      if(this.data.id){
+        this._QuestionsService.editQuestion(this.questionID, this.addEditForm.value).subscribe({
+          next: (res)=>{
+            this._ToastrService.Success(res.message)
+          },error: (err)=>{
+            this._ToastrService.Error(err.error.message)
+          },
+          complete:()=>{
+            this.onNoClick()
+          }
+        })
+      }else{
+        this._QuestionsService.AddNewQuestion(this.addEditForm.value).subscribe({
+          next: (res)=>{
+            this._ToastrService.Success(res.message)
+          },error:(err)=>{
+            this._ToastrService.Error(err.error.message)
+          },complete:()=>{
+            this.onNoClick()
+          }
+        })
+      }
     }
-  }
 
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  getAllQuestions() {
-    this._QuestionsService.getAllQuestions().subscribe({
-      next: (res) => {
-        console.log('getAllQuestions: ', res);
-        this.allQuestionsForUpdatingQuestion = res;
-        console.log(this.allQuestionsForUpdatingQuestion);
-      },
-    });
-  }
-
   onAnswerChange(event: any) {
     this.selectedAnswer = event.target.value;
-    console.log('Selected answer:', this.selectedAnswer);
   }
-
   onCategoryChange(event: any) {
     this.selectedCategory = event.target.value;
-    console.log('Selected category:', this.selectedCategory);
   }
-
   onDifficultyChange(event: any) {
     this.selectedDifficulty = event.target.value;
-    console.log('Selected difficulty:', this.selectedDifficulty);
   }
 }

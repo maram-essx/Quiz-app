@@ -109,12 +109,17 @@ editGroup(id: string, data: IUpdateOrAddGroup) {
   })
 }
 
-openDeleteDailog(id: string): void {
+openDeleteDailog(id:string,name:string,componentName:string): void {
 
   const dialogRef = this.dialog.open(DeleteComponent, {
-    width: '550px',
-    height: '300px',
-    data: {id: id,}
+    // width: '550px',
+    // height: '300px',
+    // data: {id: id,}
+    data:{
+      comp:componentName,
+      id:id,
+      name:name
+    }
   });
   dialogRef.afterClosed().subscribe(result => {
     // console.log('The delete  was closed');

@@ -1,4 +1,4 @@
-<section class="container d-flex flex-column m-auto">
+<section class="container d-flex flex-column mt-5">
   <div class="text-center">
     <svg
       width="60"
@@ -6,6 +6,7 @@
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      class="mb-3"
     >
       <path
         d="M60 30C60 46.5686 46.5686 60 30 60C13.4314 60 0 46.5686 0 30C0 13.4314 13.4314 0 30 0C46.5686 0 60 13.4314 60 30ZM26.5299 45.8848L48.788 23.6267C49.5438 22.8709 49.5438 21.6454 48.788 20.8896L46.0508 18.1524C45.295 17.3965 44.0695 17.3965 43.3136 18.1524L25.1613 36.3046L16.6864 27.8297C15.9306 27.0739 14.7051 27.0739 13.9492 27.8297L11.212 30.5669C10.4562 31.3227 10.4562 32.5482 11.212 33.304L23.7927 45.8846C24.5486 46.6406 25.774 46.6406 26.5299 45.8848Z"
@@ -13,27 +14,34 @@
       />
     </svg>
   </div>
-  <h5 class="text-center fw-bold">Quiz was successfully created</h5>
-  <div class="input-group my-2 px-1 d-flex align-items-center">
-    <span class="input-group-text fw-bold" id="basic-addon1">Quiz Code: </span>
-    <div class="w-75 form-control p-2 d-flex justify-content-between">
-      <span class="fw-bold">{{ data.code }}</span>
-      <svg
-        class="icon"
-        width="22"
-        height="25"
-        viewBox="0 0 22 25"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M15.625 21.875V23.8281C15.625 24.4753 15.1003 25 14.4531 25H1.17188C0.524658 25 0 24.4753 0 23.8281V5.85938C0 5.21216 0.524658 4.6875 1.17188 4.6875H4.6875V19.1406C4.6875 20.6484 5.91411 21.875 7.42188 21.875H15.625ZM15.625 5.07812V0H7.42188C6.77466 0 6.25 0.524658 6.25 1.17188V19.1406C6.25 19.7878 6.77466 20.3125 7.42188 20.3125H20.7031C21.3503 20.3125 21.875 19.7878 21.875 19.1406V6.25H16.7969C16.1523 6.25 15.625 5.72266 15.625 5.07812ZM21.5318 3.56304L18.312 0.343213C18.0922 0.123458 17.7941 1.62498e-06 17.4833 0L17.1875 0V4.6875H21.875V4.39165C21.875 4.08086 21.7515 3.7828 21.5318 3.56304Z"
-          fill="black"
-        />
-      </svg>
+  <h5 class="text-center fw-bolder mt-1">Quiz was successfully created</h5>
+  <div class="text-center d-flex justify-content-center">
+    <div class="input-group px-0 d-flex align-items-center code">
+      <span class="input-group-text fw-bolder h-100 code-title border-0" id="basic-addon1"
+        >CODE:
+      </span>
+      <div class="form-control p-2 d-flex justify-content-between h-100 code-icon border-0">
+        <span #quizCode class="fw-bold">{{ data.code }}</span>
+        <svg
+          class="icon fw-bolder"
+          width="22"
+          height="25"
+          viewBox="0 0 22 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          (click)="copyQuizCode(quizCode)"
+        >
+          <path
+            d="M15.625 21.875V23.8281C15.625 24.4753 15.1003 25 14.4531 25H1.17188C0.524658 25 0 24.4753 0 23.8281V5.85938C0 5.21216 0.524658 4.6875 1.17188 4.6875H4.6875V19.1406C4.6875 20.6484 5.91411 21.875 7.42188 21.875H15.625ZM15.625 5.07812V0H7.42188C6.77466 0 6.25 0.524658 6.25 1.17188V19.1406C6.25 19.7878 6.77466 20.3125 7.42188 20.3125H20.7031C21.3503 20.3125 21.875 19.7878 21.875 19.1406V6.25H16.7969C16.1523 6.25 15.625 5.72266 15.625 5.07812ZM21.5318 3.56304L18.312 0.343213C18.0922 0.123458 17.7941 1.62498e-06 17.4833 0L17.1875 0V4.6875H21.875V4.39165C21.875 4.08086 21.7515 3.7828 21.5318 3.56304Z"
+            fill="black"
+          />
+        </svg>
+      </div>
     </div>
   </div>
-  <div class="text-center">
-    <button (click)="onNoClick()" class="button primary">Close</button>
+  <div class="text-center mt-5">
+    <button (click)="onNoClick()" class="button primary fw-semibold">
+      Close
+    </button>
   </div>
 </section>

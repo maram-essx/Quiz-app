@@ -19,19 +19,21 @@ import { QuizCodeComponent } from '../quiz-code/quiz-code.component';
   styleUrls: ['./add-edit-quiz.component.scss']
 })
 export class AddEditQuizComponent {
- 
+
 
   // allQuestionsForUpdatingQuestion: any;
   quizForm!: FormGroup;
 
   selectedDuration: string = '';
   durations: string[] = ['5', '10', '15', '20', '25', '30', '40', '50', '60', '90', '100', '120'];
-  numberOfQuestions: string = '';
+  numberOfQuestions: string[] = ['1', '2', '3', '5', '10', '15', '20', '25', '30', '35', '40', '50'];
+  scorePerQuestion: string[] = ['1', '2', '3', '4', '5', '10', '15', '20'];
   selectedCategory: string = '';
   categories: string[] = ['FE', 'BE', 'DO'];
   allGroups!: IGroup;
   selectedGroup: string | null = null;
-
+  selectedQuestionNumber: string = '';
+  selectedScore: string = '';
   selectedDifficulty: string = '';
   difficulties: string[] = ['easy', 'medium', 'hard'];
   date: Date | null = null;
@@ -53,6 +55,15 @@ export class AddEditQuizComponent {
   }
 
   ngOnInit(): void {
+
+    if (this.data._id != null) {
+      this.displayQuiz()
+      console.log("saraaaaaa");
+
+      // this.viewQuestion(this.data.id);
+    }
+
+
     this.getGroups();
   
     this.quizForm = new FormGroup({
@@ -72,6 +83,7 @@ export class AddEditQuizComponent {
     
     this.parseSchedule(this.getSchedule())
   }
+
 
    parseSchedule(scheduleString: string) {
     const scheduleDate = new Date(scheduleString);
@@ -110,7 +122,8 @@ export class AddEditQuizComponent {
         score_per_question: '',
       });
     }
-  }
+
+
   // viewQuestion(id: string) {
   //   this._QuestionsService.getQuestionById(id).subscribe({
   //     next: (res: any) => {
@@ -209,6 +222,16 @@ export class AddEditQuizComponent {
   onDurationChange(event: any) {
     this.selectedDuration = event.target.value;
     console.log('Selected Duration:', this.selectedDuration);
+  }
+
+  onQuestionNumberChange(event: any) {
+    this.selectedQuestionNumber = event.target.value;
+    console.log('Selected number of question:', this.selectedQuestionNumber);
+  }
+
+  onScoreChange(event: any) {
+    this.selectedScore = event.target.value;
+    console.log('Selected score per question:', this.selectedScore);
   }
 
   onCategoryChange(event: any) {
