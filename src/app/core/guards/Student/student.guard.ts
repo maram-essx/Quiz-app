@@ -15,5 +15,5 @@ export const studentGuard: CanActivateFn = (route, state) => {
   } else {
     _Rouer.navigateByUrl('/auth');
     return false;
-  }
+}
 };
