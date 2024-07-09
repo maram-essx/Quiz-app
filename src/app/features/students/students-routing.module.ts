@@ -5,7 +5,8 @@ import { ViewProfileComponent } from 'src/app/shared/components/view-profile/vie
 
 const routes: Routes = [{ path: '', component: StudentsComponent },
   { path:'profile' , component:ViewProfileComponent },
-  { path: 'quize', loadChildren: () => import('./quize-student/quize-student.module').then(m => m.QuizeStudentModule) }];
+  { path: 'quize', loadChildren: () => import('./quize-student/quize-student.module').then(m => m.QuizeStudentModule) },
+  { path: 'results', loadChildren: () => import('./modules/results/results.module').then(m => m.ResultsModule) }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
