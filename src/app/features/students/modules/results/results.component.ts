@@ -9,6 +9,9 @@ import { IResultsRes } from '../../models/results';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent {
+  ngOnInit(): void {
+    this.quizesResaults()
+  }
 
   resultsLis:IResultsRes[]=[]
 
@@ -16,10 +19,11 @@ export class ResultsComponent {
 
   }
 
-  quizessResaults(): void {
+  quizesResaults(): void {
     this._ResultsService.getAllResults().subscribe({
       next:(res:IResultsRes[])=>{
         this.resultsLis=res;
+        console.log(this.resultsLis);
       }
     
     });
