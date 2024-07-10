@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { IUserResponse, IUser } from '../../models/iUser';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-view-profile',
@@ -9,6 +10,8 @@ import { IUserResponse, IUser } from '../../models/iUser';
   styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
+
+  updateProfileForm!: FormGroup;
 
   userId: string = '';
   viewUser: string = '';
@@ -54,6 +57,13 @@ export class ViewProfileComponent implements OnInit {
       // from users page
       this.isViewUser = true;
     }
+
+    this.updateProfileForm = new FormGroup({
+      first_name: new FormControl('', [Validators.required]),
+      last_name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      status: new FormControl('', [Validators.required]),
+      });
   }
 
   getCurrentUser(): void {

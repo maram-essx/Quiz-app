@@ -14,13 +14,100 @@
                 />
               </div>
             </div>
-              <div class="brd col-md-6 col-sm-12">
-                {{ first_name }}
+            <div class="brd col-md-6 col-sm-12">
+              <!-- {{ first_name }}
                 {{ last_name }}
                 {{ role }}
                 {{ email }}
-                {{ status }}
-              </div>
+                {{ status }} -->
+
+              <form [formGroup]="updateProfileForm">
+                <div class="container">
+                  <div
+                    class="caption d-flex justify-content-between align-items-center border-bottom"
+                  >
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    ></div>
+                  </div>
+                  <div class="row p-3 m-0">
+                    <label class="text-start px-0 fw-bold"
+                      >Your first name</label
+                    >
+                    <div class="input-group col-12 my-2 p-0">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa fa-id-card"></i
+                      ></span>
+                      <input
+                        type="text"
+                        [value]="first_name"
+                        formControlName="first_name"
+                        [placeholder]="first_name"
+                        class="form-control p-2"
+                        aria-label="First name"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+
+                    <label class="text-start px-0 fw-bold"
+                      >Your last name</label
+                    >
+
+                    <div class="input-group col-12 my-2 px-0">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa fa-id-card"></i
+                      ></span>
+                      <input
+                        type="text"
+                        formControlName="last_name"
+                        placeholder="Last name"
+                        class="form-control p-2"
+                        aria-label="Last name"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+
+                    <label class="text-start px-0 fw-bold">Your email</label>
+                    <div class="input-group col-12 my-2 px-0">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa-solid fa-envelope"></i
+                      ></span>
+                      <input
+                        type="text"
+                        formControlName="email"
+                        placeholder="Email"
+                        class="form-control p-2"
+                        aria-label="Email"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+
+                    <label class="text-start px-0 fw-bold">Your status</label>
+                    <div class="input-group col-12 my-2 px-0">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa-regular fa-circle-check"></i
+                      ></span>
+                      <input
+                        type="text"
+                        formControlName="status"
+                        placeholder="Status"
+                        class="form-control p-2"
+                        aria-label="Status"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  [disabled]="updateProfileForm.invalid"
+                  class="quiz-outline fw-bold d-flex justify-content-center align-items-center me-3 gap-1 m-3 cursor-pointer"
+                >
+                  <i class="fa-solid fa-check p-1"></i>
+                  Update
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
