@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { IUserResponse, IUser } from '../../models/iUser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -47,7 +48,8 @@ export class ViewProfileComponent implements OnInit {
   constructor(
     private _AuthService: AuthService,
     private _ActivatedRoute: ActivatedRoute,
-    private _Router: Router
+    private _Router: Router,
+    private _ProfileService: ProfileService
   ) {
     this.getCurrentUser();
   }
