@@ -11,7 +11,7 @@ import { ResultStudentService } from './result-student.service';
 })
 export class ResultsComponent {
   ngOnInit(): void {
-    this.quizesResaults()
+    this.quizessResaults()
   }
 
   resultsLis:IResultsRes[]=[]
