@@ -6,7 +6,7 @@
       <div class="side-section" [class]="isOpened? 'col-md-2': 'col-md-1'">
         <div class="py-3 d-flex sidebar-header justify-content-center">
           <i  class="fa-solid fa-bars fa-2x toggle-icon m-auto py-1  mx-3" (click)="toggleSidebar()"></i>
-          <img class=" mx-3" [class]="isOpened ?'' : 'sidebar'" src="../../../assets/images/logo.svg">
+          <img class=" mx-3" *ngIf="isOpened" [class]="isOpened ?'' : 'sidebar'" src="../../../assets/images/logo.svg">
         </div>
         <app-sidebar [isOpenedValue]="isOpened"></app-sidebar>
 
