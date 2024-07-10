@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { NavbarService } from '../../services/navbar.service';
 import { AddEditQuizComponent } from 'src/app/features/instructor/quizzes/components/add-quiz/add-edit-quiz.component';
 import { IUser } from '../../models/iUser';
+import { JoinQuizDialog } from 'src/app/features/students/quize-student/compoents/join-quiz/Join-quiz.dialog';
 
 @Component({
   selector: 'app-navbar',
@@ -34,6 +35,20 @@ export class NavbarComponent {
     this.getUser();
     this._NavbarService.currentPageTitle.subscribe(title => {
       this.mainTextHeader = title;
+    });
+  }
+
+  JoinQuizDialoug(): void {
+    const dialogRef = this.dialog.open(JoinQuizDialog, {
+      data: {},
+      width: '40%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+      }
     });
   }
 

@@ -14,7 +14,7 @@
                   alt="new quiz"
                 />
               </div>
-              <h5 class="mt-2">Join Quiz</h5>
+              <h5 class="mt-2 text-black">Join Quiz</h5>
             </a>
           </div>
         </div>
@@ -36,14 +36,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                                  
+
                     <tr *ngFor="let quiz of completedQuizzes">
                       <td>{{ quiz.title }}</td>
                       <td>{{ quiz.description }}</td>
                       <td>{{ quiz.participants }}</td>
                       <td>{{ quiz.closed_at | date : "dd/MM/YYYY" }}</td>
                     </tr>
-                  
+
                 </tbody>
               </table>
               <!-- </div> -->
@@ -53,4 +53,3 @@
       </div>
     </div>
   </section>
-  
