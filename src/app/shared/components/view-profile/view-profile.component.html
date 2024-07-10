@@ -1,1 +1,29 @@
-<p>view-profile works!</p>
+<div class="pt-3 container-fluid">
+  <div class="row">
+    <div class="col-md-12 p-3">
+      <div class="rounded-3">
+        <div class="d-flex flex-column">
+          <div class="row gap-5">
+            <div class="brd col-md-5">
+              <h5 class="pt-2 fw-bold">Your Profile</h5>
+
+              <div class="d-flex justify-content-center">
+                <img
+                  src="../../../../assets/images/Avatar-Profile.png"
+                  class="w-75 rounded-circle pb-2"
+                />
+              </div>
+            </div>
+              <div class="brd col-md-6 col-sm-12">
+                {{ first_name }}
+                {{ last_name }}
+                {{ role }}
+                {{ email }}
+                {{ status }}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
