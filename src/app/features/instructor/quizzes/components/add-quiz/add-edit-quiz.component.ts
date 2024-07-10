@@ -25,7 +25,7 @@ export class AddEditQuizComponent {
   quizForm!: FormGroup;
 
   selectedDuration: string = '';
-  durations: string[] = ['5', '10', '15', '20', '25', '30', '40', '50', '60', '90', '100', '120'];
+  durations: string[] = ['1','5', '10', '15', '20', '25', '30', '40', '50', '60', '90', '100', '120'];
   numberOfQuestions: string[] = ['1', '2', '3', '5', '10', '15', '20', '25', '30', '35', '40', '50'];
   scorePerQuestion: string[] = ['1', '2', '3', '4', '5', '10', '15', '20'];
   selectedCategory: string = '';
@@ -56,12 +56,12 @@ export class AddEditQuizComponent {
 
   ngOnInit(): void {
 
-    if (this.quiz._id != null) {
-      this.displayQuiz()
-      console.log("saraaaaaa");
+    // if (this.quiz._id != null) {
+    //   this.displayQuiz()
+    //   console.log("saraaaaaa");
 
-      // this.viewQuestion(this.data.id);
-    }
+    //   // this.viewQuestion(this.data.id);
+    // }
 
 
     this.getGroups();
@@ -79,23 +79,15 @@ export class AddEditQuizComponent {
     });
   
     this.displayQuiz();
-    console.log(this.getSchedule());
     
-    this.parseSchedule(this.getSchedule())
   }
 
 
-   parseSchedule(scheduleString: string) {
-    const scheduleDate = new Date(scheduleString);
-    this.scheduleDate = scheduleDate.toLocaleDateString();
-    console.log( this.scheduleDate);
-    
-    this.scheduleTime = scheduleDate.toLocaleTimeString();
-    console.log( this.scheduleTime);
-    
-  }
+ 
   
   displayQuiz() {
+  
+    
     if (this.quiz._id != null) {
       this.quizForm.patchValue({
         title: this.quiz.title,
@@ -108,6 +100,7 @@ export class AddEditQuizComponent {
         duration: this.quiz.duration,
         score_per_question: this.quiz.score_per_question,
       });
+      console.log("schadule",this.quizForm.value.schadule);
     } else {
       // Optionally, you can set default values for the form controls here
       this.quizForm.patchValue({
@@ -127,7 +120,7 @@ export class AddEditQuizComponent {
   onSubmit(quizForm: FormGroup) {
     
     if (this.quiz._id) {
-     this.updateQuiz(quizForm.value.title)
+     this.updateQuiz(quizForm)
     
     }else{
    
@@ -161,31 +154,41 @@ export class AddEditQuizComponent {
       });
     }
   }
-  updateQuiz(title:string){
-    var code: string = '';
-      this._QuizzesService.editQuiz(this.quiz._id, title).subscribe({
-        next: (res: any) => {
-          code = res.data.code;
-  
-          this.openQuizCodeDialog(code);
-  
-          // this.questionCode = res.data.code;
-        },
-        error: (err) => {
-          this._ToastrService.Error(err.error.message);
-        },
-        complete: () => {
-          this.onNoClick();
-          this._ToastrService.Success('Quiz updated Succesfully');
-        }
-      });
+  updateQuiz(quizForm:FormGroup){
+    if (quizForm.valid) {
+      const updatedData = {
+        title: quizForm.get('title')?.value,
+        description: quizForm.get('description')?.value,
+        group: quizForm.get('group')?.value,
+        schadule: quizForm.get('schadule')?.value,
+        duration: quizForm.get('duration')?.value,
+        score_per_question: quizForm.get('score_per_question')?.value
+      };
+      var code: string = '';
+        this._QuizzesService.editQuiz(this.quiz._id,updatedData).subscribe({
+          next: (res: any) => {
+            code = res.data.code;
+    
+            this.openQuizCodeDialog(code);
+    
+            // this.questionCode = res.data.code;
+          },
+          error: (err) => {
+            this._ToastrService.Error(err.error.message);
+          },
+          complete: () => {
+            this.onNoClick();
+            this._ToastrService.Success('Quiz updated Succesfully');
+          }
+        });
+    }
+   
    
   }
 
   openQuizCodeDialog(code: string) {
     const dialogRef = this.dialog.open(QuizCodeComponent, {
       width: '450px',
-      height: '300px',
       data: { code: code },
     });
   }
@@ -259,7 +262,8 @@ export class AddEditQuizComponent {
       console.log('Schedule:', this.quizForm.value.schadule);
     }
   }
-  getSchedule() {
+  get schedule() {
     return this.quizForm.get('schadule')?.value;
   }
+  
 }

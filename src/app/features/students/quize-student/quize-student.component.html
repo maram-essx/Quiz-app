@@ -1,1 +1,56 @@
-<p>quize-student works!</p>
+
+<section id="quizes">
+    <div class="container-fluid">
+      <div class="row pointer">
+        <div class="col-md-5">
+          <div (click)="JoinQuizDialoug()" class="py-3 d-flex mx-0 gap-3">
+            <a
+              class="p-4 quiz-header student-card text-center text-darkColor px-5 mx-2 text-decoration-none"
+            >
+              <div class="d-flex justify-content-center">
+                <img
+                  src="../../../../assets/images/new quiz icon.svg"
+                  class="img-fluid"
+                  alt="new quiz"
+                />
+              </div>
+              <h5 class="mt-2">Join Quiz</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row mx-2 gap-3">
+        <div class="col-md-7 quiz-header">
+          <div class="m-3 quiz">
+            <div>
+              <h4>Completed Quizzes</h4>
+            </div>
+            <div class="mt-4">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">No. of persons in group</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                  
+                    <tr *ngFor="let quiz of completedQuizzes">
+                      <td>{{ quiz.title }}</td>
+                      <td>{{ quiz.description }}</td>
+                      <td>{{ quiz.participants }}</td>
+                      <td>{{ quiz.closed_at | date : "dd/MM/YYYY" }}</td>
+                    </tr>
+                  
+                </tbody>
+              </table>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
