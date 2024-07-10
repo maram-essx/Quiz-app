@@ -15,6 +15,8 @@ export class ProfileService {
   }
 
   updateStudentProfile(data:any):Observable<any>{
+    console.log('STUDENT: ',data);
+
     return this._HttpClient.put('student',data)
   }
 }
