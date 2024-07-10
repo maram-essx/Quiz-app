@@ -13,6 +13,8 @@ export class ViewProfileComponent implements OnInit {
 
   updateProfileForm!: FormGroup;
 
+  isInstructor: boolean = true;
+
   userId: string = '';
   viewUser: string = '';
   isViewUser: boolean = false;
@@ -103,5 +105,17 @@ export class ViewProfileComponent implements OnInit {
     } else {
       this._Router.navigate(['/student/home']);
     }
+  }
+
+
+  getRole() {
+    const role = localStorage.getItem('role');
+    if(role == 'Student'){
+      this.isInstructor = false;
+    }
+  }
+
+  refreshPage(): void {
+    window.location.reload();
   }
 }
