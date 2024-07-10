@@ -1,0 +1,23 @@
+#quizes {
+    .quiz-header {
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.20);
+      padding: 5px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+    .quiz-header {
+      .quiz-header:hover {
+        background-color: rgba(var(--bs-emphasis-color-rgb), 0.075);
+        cursor: pointer;
+      }
+    }
+    a {
+      &.quiz-header:hover{
+        background-color: rgba(var(--bs-emphasis-color-rgb), 0.075);
+        cursor: pointer;
+      }
+    }
+    
+  }
+  

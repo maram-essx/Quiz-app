@@ -3,6 +3,8 @@
 @use './components';
 @use './layout';
 @use './pages';
+@use './layout/cards';
+@use './abstracts/variables';
 .cursor-pointer{
     cursor: pointer;
 }

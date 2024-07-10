@@ -10,6 +10,9 @@ import { ResultStudentService } from './result-student.service';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent {
+  ngOnInit(): void {
+    this.quizesResaults()
+  }
 
   resultsLis:IResultsRes[]=[]
 
@@ -19,8 +22,10 @@ export class ResultsComponent {
 
   quizessResaults(): void {
     this._ResultStudentService.getAllResults().subscribe({
+
       next:(res:IResultsRes[])=>{
         this.resultsLis=res;
+        console.log(this.resultsLis);
       }
     
     });

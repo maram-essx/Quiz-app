@@ -151,7 +151,7 @@
 
        <div class="input-group col-12 my-2">
         <span class="input-group-text" id="basic-addon1">Schedule :</span>
-        <input
+        <input  [value]="this.quizForm.value.schadule"
           type="datetime-local"
           formControlName="schadule"
           class="form-control p-2"

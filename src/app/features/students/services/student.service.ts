@@ -7,9 +7,13 @@ import { IResultsRes } from '../models/results';
 })
 export class StudentService {
 
-  constructor(private _HttpClient:HttpClient) { } 
-  
+  constructor(private _HttpClient:HttpClient) { }
+
   getAllResults(): Observable<IResultsRes[]> {
     return this._HttpClient.get<IResultsRes[]>('quiz/result')
+  }
+
+  getIncommingQuzzes(): Observable<any[]> {
+    return this._HttpClient.get<any[]>('quiz/incomming')
   }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
@@ -54,7 +54,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatDatepickerModule,
     MenuModule,
     ButtonModule,
-SpeedDialModule,
+    SpeedDialModule,
   ],
   exports: [
     MatIconModule,

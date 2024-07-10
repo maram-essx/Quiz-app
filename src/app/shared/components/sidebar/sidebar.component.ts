@@ -9,9 +9,20 @@ import { NavbarService } from '../../services/navbar.service';
 export class SidebarComponent {
   @Input() isOpenedValue!: boolean;
 
-  constructor(private _NavbarService: NavbarService) {}
+  isInstructor: boolean = true;
+
+  constructor(private _NavbarService: NavbarService) {
+    this.getRole();
+  }
 
   updatePageTitle(title: string) {
     this._NavbarService.changePageTitle(title);
+  }
+
+  getRole() {
+    const role = localStorage.getItem('role');
+    if(role == 'Student'){
+      this.isInstructor = false;
+    }
   }
 }

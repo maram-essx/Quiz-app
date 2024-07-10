@@ -12,6 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,11 @@ import { MatInputModule } from '@angular/material/input';
     NgxSpinnerModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
 
   ],
   providers: [
+    DecimalPipe,
 
 
     {
