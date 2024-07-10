@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { IUserResponse, IUser } from '../../models/iUser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from '../../services/profile.service';
+import { ToastrService } from 'src/app/common/helper-services/toastr.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -49,10 +50,9 @@ export class ViewProfileComponent implements OnInit {
     private _AuthService: AuthService,
     private _ActivatedRoute: ActivatedRoute,
     private _Router: Router,
-    private _ProfileService: ProfileService
-  ) {
-    this.getCurrentUser();
-  }
+    private _ProfileService: ProfileService,
+    private _ToastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.userId = this._ActivatedRoute.snapshot.params['id'];
@@ -63,11 +63,14 @@ export class ViewProfileComponent implements OnInit {
     }
 
     this.updateProfileForm = new FormGroup({
-      first_name: new FormControl('', [Validators.required]),
-      last_name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      status: new FormControl('', [Validators.required]),
-      });
+      first_name: new FormControl(''),
+      last_name: new FormControl(''),
+      email: new FormControl(''),
+      status: new FormControl(''),
+    });
+
+    this.getCurrentUser();
+    this.getRole();
   }
 
   getCurrentUser(): void {
@@ -77,43 +80,72 @@ export class ViewProfileComponent implements OnInit {
     const email = localStorage.getItem('email');
     const status = localStorage.getItem('status');
 
-    if ( role !== null && first_name !== null && last_name !== null && email !== null && status !== null) {
+    if (role !== null && first_name !== null && last_name !== null && email !== null && status !== null) {
       this.role = role;
       this.first_name = first_name;
       this.last_name = last_name;
       this.email = email;
       this.status = status;
 
-      console.log('IF CONDITION FIRES');
-      console.log('PROFILE DATA: ', this.role, this.first_name, this.last_name, this.email, this.status);
-
-    } else {
+      this.updateProfileForm.patchValue({
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        status: this.status
+      });
     }
   }
-
-  goToHomeOrUsers(): void {
-    if (this.viewUser) {
-      // from users page
-      this._Router.navigate(['/instructor/users']);
-    } else {
-      this.navigateToAdminOrUser();
-    }
-  }
-
-  navigateToAdminOrUser(): void {
-    const role = localStorage.getItem('role');
-    if (role === 'Instructor') {
-      this._Router.navigate(['/instructor/home']);
-    } else {
-      this._Router.navigate(['/student/home']);
-    }
-  }
-
 
   getRole() {
     const role = localStorage.getItem('role');
-    if(role == 'Student'){
+    if (role == 'Student') {
       this.isInstructor = false;
+    }
+  }
+
+  updateProfile(): void {
+    const updatedData = this.updateProfileForm.value;
+
+    const updateLocalStorage = (data: any) => {
+      localStorage.setItem('first_name', data.first_name);
+      localStorage.setItem('last_name', data.last_name);
+      localStorage.setItem('email', data.email);
+      localStorage.setItem('status', data.status);
+    };
+
+    if (this.isInstructor) {
+      this._ProfileService.updateInstructorProfile(updatedData).subscribe({
+        next: (res) => {
+          console.log('Instructor profile updated successfully', res);
+          this._Router.navigate(['/dashboard/instructor/profile']);
+        },
+        error: (err) => {
+          console.error('Error updating instructor profile', err.message);
+          this._ToastrService.ServerError(err.message);
+        },
+        complete: () => {
+          updateLocalStorage(updatedData);
+          this._ToastrService.Success('Profile updated successfully!');
+          this.refreshPage();
+        }
+      });
+    } else {
+      this._ProfileService.updateStudentProfile(updatedData).subscribe({
+        next: (res) => {
+          console.log('Student profile updated successfully', res);
+          this._Router.navigate(['/dashboard/student/profile']);
+        },
+        error: (err) => {
+          console.error('Error updating student profile', err.message);
+          console.error('Error details:', err);
+          this._ToastrService.ServerError(err.message);
+        },
+        complete: () => {
+          updateLocalStorage(updatedData);
+          this._ToastrService.Success('Profile updated successfully!');
+          this.refreshPage();
+        }
+      });
     }
   }
 

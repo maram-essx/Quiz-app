@@ -76,6 +76,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MenuModule,
     ButtonModule,
     SpeedDialModule,
+    ViewProfileComponent,
   ],
 })
 export class SharedModule {}
