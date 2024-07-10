@@ -16,7 +16,7 @@ export class JoinQuizDialog{
     code: new FormControl(null),
   });
 
-  constructor(private QuizServices:QuizServices, 
+  constructor(private QuizServices:QuizServices,
     private _Router:Router,
     private _ToastrService:ToastrService,
     public dialogRef: MatDialogRef<JoinQuizDialog>){
@@ -27,14 +27,14 @@ export class JoinQuizDialog{
       next: (res: any) => {
         console.log(res.data.quiz);
         this.code=res
-      
+
       },
       error: (err: any) => {
         this._ToastrService.Error(err.error.message)
       },
       complete: () => {
         this.onNoClick();
-        this._Router.navigate(['/dashboard/student/quize/exam'],{queryParams:{quiz:this.code.data.quiz}})
+        this._Router.navigate(['/dashboard/student/quizzes/exam'],{queryParams:{quiz:this.code.data.quiz}})
       },
     });
   }
