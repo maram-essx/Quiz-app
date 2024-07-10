@@ -1,1 +1,64 @@
-<p>students works!</p>
+<div class="pt-3 container-fluid">
+  <div class="row">
+    <div class="col-md-12 p-3">
+      <div class="p-3 brd rounded-3">
+        <div class="d-flex flex-column gap-2">
+          <div class="mb-3 d-flex align-items-center justify-content-between">
+            <h4 class="m-0 fw-bolder">Upcoming quizzes</h4>
+          </div>
+          <div class="row">
+            <div
+              *ngFor="let quiz of upcomingQuizzes"
+              class="col-md-6 col-12 mb-4"
+            >
+              <article class="d-flex align-items-center gap-3 overflow-hidden">
+                <figure
+                  class="h-100 m-0 rounded-2 flex-shrink-0"
+                  style="width: 150px"
+                >
+                  <img
+                    [src]="quizImg"
+                    class="object-fit-cover rounded-2 w-100 h-100"
+                  />
+                </figure>
+                <div class="d-flex align-items-center gap-4 pe-3 w-100">
+                  <div class="d-flex flex-column gap-3 p-3 w-100">
+                    <div class="card-main-header">
+                      <h4 class="m-0 fw-bolder">{{ quiz.title }}</h4>
+                      <div class="card-details d-flex align-items-center gap-3">
+                        <span>{{ quiz.schadule | date }} </span>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div
+                        class="card-student d-flex align-items-center justify-content-between"
+                      >
+                        Code:
+                        <span class="px-1" #quizCode>{{ quiz.code }} </span>
+                      </div>
+
+                      <svg
+                        class="icon fw-bolder ms-5"
+                        width="22"
+                        height="25"
+                        viewBox="0 0 22 25"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        (click)="copyQuizCode(quizCode)"
+                      >
+                        <path
+                          d="M15.625 21.875V23.8281C15.625 24.4753 15.1003 25 14.4531 25H1.17188C0.524658 25 0 24.4753 0 23.8281V5.85938C0 5.21216 0.524658 4.6875 1.17188 4.6875H4.6875V19.1406C4.6875 20.6484 5.91411 21.875 7.42188 21.875H15.625ZM15.625 5.07812V0H7.42188C6.77466 0 6.25 0.524658 6.25 1.17188V19.1406C6.25 19.7878 6.77466 20.3125 7.42188 20.3125H20.7031C21.3503 20.3125 21.875 19.7878 21.875 19.1406V6.25H16.7969C16.1523 6.25 15.625 5.72266 15.625 5.07812ZM21.5318 3.56304L18.312 0.343213C18.0922 0.123458 17.7941 1.62498e-06 17.4833 0L17.1875 0V4.6875H21.875V4.39165C21.875 4.08086 21.7515 3.7828 21.5318 3.56304Z"
+                          fill="#0D1321"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
