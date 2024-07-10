@@ -57,7 +57,7 @@
             (change)="onDurationChange($event)"
           >
 
-          
+
             <option [value]="duration" *ngFor="let duration of durations" class="text-black">
 
               {{ duration }}
@@ -149,7 +149,7 @@
       </mat-form-field>
        -->
 
-       <div class="input-group col-12 my-2">
+       <div class="input-group col-12 mx-0 p-0">
         <span class="input-group-text" id="basic-addon1">Schedule :</span>
         <input  [value]="this.quizForm.value.schadule"
           type="datetime-local"
@@ -160,9 +160,9 @@
         />
        </div>
 
-      <div class="col-md-4 col-12">
-        <div class="input-group my-2 px-1 text-black">
-          <span class="input-group-text fw-bold" id="basic-addon1"
+      <div class="col-md-4 col-12 px-0">
+        <div class="input-group my-2 px-0 text-black">
+          <span class="input-group-text fw-bolder" id="basic-addon1"
             >Difficulty</span
           >
           <select
