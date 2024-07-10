@@ -40,7 +40,6 @@
                       ></span>
                       <input
                         type="text"
-                        [value]="first_name"
                         formControlName="first_name"
                         [placeholder]="first_name"
                         class="form-control p-2"
@@ -60,7 +59,7 @@
                       <input
                         type="text"
                         formControlName="last_name"
-                        placeholder="Last name"
+                        [placeholder]="last_name"
                         class="form-control p-2"
                         aria-label="Last name"
                         aria-describedby="basic-addon1"
@@ -75,7 +74,7 @@
                       <input
                         type="text"
                         formControlName="email"
-                        placeholder="Email"
+                        [placeholder]="email"
                         class="form-control p-2"
                         aria-label="Email"
                         aria-describedby="basic-addon1"
@@ -90,7 +89,7 @@
                       <input
                         type="text"
                         formControlName="status"
-                        placeholder="Status"
+                        [placeholder]="status"
                         class="form-control p-2"
                         aria-label="Status"
                         aria-describedby="basic-addon1"
