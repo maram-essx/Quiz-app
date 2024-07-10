@@ -1,1 +1,36 @@
-<p>view works!</p>
+<article>
+    <div class="col-md-8 rounded-3 px-4 py-2">
+      <h1 class="text-black h2 fw-semibold mt-3 my-0 mb-0 p-0">Results</h1>
+    <div class="all">
+      <table  class="table text-center mt-4">
+      <thead>
+        <tr>
+          <th class="py-2 th1 border-2 rounded-start-2">Duration</th>
+          <th class="py-2 border-white border-2">Score</th>
+          <th class="py-2 border-white border-2">Started At</th>
+          <th class="py-2 border-white border-2">Finished At </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  class="mt-4">
+          <td>
+            {{quizDetails.quiz.duration}} 
+          </td>
+          <td>
+            {{quizDetails.result.score}}
+          </td>
+          <td>
+            {{quizDetails.result.started_at | date :'short' }}
+          </td>
+          <td>
+            {{quizDetails.result.finished_at |date:'short'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    
+
+
+</div>
+  </article> 
