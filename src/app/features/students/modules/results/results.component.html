@@ -1,33 +1,42 @@
 <div class="all">
-    <div class="card p-3 rounded-3 mt-3">
-      <h2 class="fw-semibold">results</h2>
-      <table class="table text-center mt-4">
-        <thead>
-            <th class="py-2 th1 border-2 rounded-start-2">Quiz Title</th>
-            <th class="py-2 border-white border-2">Description</th>
-            <th class="py-2 border-white border-2">Type</th>
-            <th class="py-2 border-white border-2">Created At</th>
-            <th class="py-2 border-white border-2">Closed At</th>
-            <th class="py-2 th2 border-2 rounded-end-2">Actions</th>
-        </thead>
-       
-        <tbody>
-          <ng-container *ngFor="let key of resultsLis let i = index">
-            <tr class="mt-4">
-                <td class="border-2 tdd">  {{key.quiz.title}}</td>
-                <td class="border-2 tdd"> {{key.quiz.description}}</td>
-                <td class="border-2 tdd">          {{key.quiz.type}}
-                </td>
-                <td class="border-2 tdd">           {{key.quiz.closed_at| date :'short' }}
-                </td>
-                <td class="border-2 tdd">          {{key.quiz.createdAt| date :'short' }}
-                </td>
-                
-                <td class="border-2 tdd"><span [routerLink]="['/dashboard/student/results/view']" class="rounded-4 py-1 px-4 cursor-pointer view">view</span></td>
-            </tr>
-          </ng-container>
-          
-        </tbody>
+  <div class="card p-3 rounded-3 mt-3">
+    <h2 class="fw-semibold">results</h2>
+    <table class="table text-center mt-4">
+      <thead>
+        <th class="py-2 th1 border-2 rounded-start-2">Quiz Title</th>
+        <th class="py-2 border-white border-2">Description</th>
+        <th class="py-2 border-white border-2">Type</th>
+        <th class="py-2 border-white border-2">Created At</th>
+        <th class="py-2 border-white border-2">Closed At</th>
+        <th class="py-2 th2 border-2 rounded-end-2">Actions</th>
+      </thead>
+
+      <tbody>
+        <ng-container *ngFor="let key of resultsLis; let i = index">
+          <tr class="mt-4">
+            <td class="border-2 tdd">{{ key.quiz.title }}</td>
+            <td class="border-2 tdd">{{ key.quiz.description }}</td>
+            <td class="border-2 tdd">{{ key.quiz.type }}</td>
+            <td class="border-2 tdd">
+              {{ key.quiz.closed_at | date : "short" }}
+            </td>
+            <td class="border-2 tdd">
+              {{ key.quiz.createdAt | date : "short" }}
+            </td>
+  
+
+            <td class="border-2 tdd">
+              <div >
+    
+                <button (click)="viewResults(key)" class="bg-transparent p-0" >
+                  <span class="rounded-4 py-1 px-4 cursor-pointer view">view</span>
+                </button>
+              </div>
+            </td>
+
+          </tr>
+        </ng-container>
+      </tbody>
     </table>
-    </div>
   </div>
+</div>
